@@ -9,7 +9,7 @@ namespace Company.Product.Aggregate
         {
             var a = Array.Empty<int>()
                 .DefaultIfEmpty();
-            int max = a.Aggregate(
+            var max = a.Aggregate(
               (acc, cur) => cur > acc ? cur : acc);
             Console.WriteLine(max);
         }
