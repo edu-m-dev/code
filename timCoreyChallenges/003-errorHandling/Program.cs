@@ -20,12 +20,31 @@ namespace ErrorHandlingChallenge
 
                     Console.WriteLine(result.TransactionAmount);
                 }
-                catch (Exception)
+                catch (IndexOutOfRangeException e)
+                {
+                    Console.WriteLine("Skipped invalid record");
+                    WriteInnerException(e);
+                }
+                catch (FormatException e) when (i != 5)
+                {
+                    Console.WriteLine("Formatting Issue");
+                    WriteInnerException(e);
+                }
+                catch (Exception e)
                 {
                     Console.WriteLine($"Payment skipped for payment with {i} items", i);
+                    WriteInnerException(e);
                 }
             }
             Console.ReadLine();
+        }
+
+        private static void WriteInnerException(Exception e)
+        {
+            if (!string.IsNullOrWhiteSpace(e?.InnerException?.Message))
+            {
+                Console.WriteLine(e.InnerException.Message);
+            }
         }
     }
 }
