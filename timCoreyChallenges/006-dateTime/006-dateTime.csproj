@@ -6,4 +6,8 @@
     <RootNamespace>_006_dateTime</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="ConsoleMenu-simple" Version="2.4.0" />
+  </ItemGroup>
+
 </Project>
