@@ -1,5 +1,6 @@
 ﻿using ConsoleTools;
 using System;
+using System.Collections.Generic;
 using System.Globalization;
 
 namespace _006_dateTime
@@ -22,40 +23,43 @@ namespace _006_dateTime
 
         public MenuBasedDateTimeDifferenceCalculator()
         {
-            // TODO - dry, .AddMenu()
-            var dateMenu = new ConsoleMenu()
-                .Add("dd/MM/yyyy", () => this.CalculateDateDiff(DateFormat.dayFirst))
-                .Add("MM/dd/yyyy", () => this.CalculateDateDiff(DateFormat.monthFirst))
-                .Add("Back", () => this.consoleMenu.Show())
+            var dateMenu = this.CreateMenuItem(
+                new List<(string, Action)> {
+                    ("dd/MM/yyyy", () => this.CalculateDateDiff(DateFormat.dayFirst)),
+                    ("MM/dd/yyyy", () => this.CalculateDateDiff(DateFormat.monthFirst)),
+                    ("Back", () => this.consoleMenu.Show()),},
+                "Select date format");
+
+            var timeMenu = this.CreateMenuItem(
+                new List<(string, Action)>{
+                    ("h24", () => this.CalculateTimeDiff(TimeFormat.h24)),
+                    ("am/pm", () => this.CalculateTimeDiff(TimeFormat.am_pm)),
+                    ("Back", () => this.consoleMenu.Show()),},
+                "Select time format");
+
+            this.consoleMenu = this.CreateMenuItem(
+                new List<(string, Action)>{
+                    ("Date", () => dateMenu.Show()),
+                    ("Time", () => timeMenu.Show()),
+                    ("Exit", () => Environment.Exit(0)),},
+                "Select date or time");
+        }
+
+        private ConsoleMenu CreateMenuItem(IReadOnlyList<(string name, Action action)> options, string title)
+        {
+            var menu = new ConsoleMenu()
                 .Configure(config =>
                 {
                     config.EnableFilter = true;
-                    config.Title = "Select date format";
+                    config.Title = title;
                     config.EnableWriteTitle = true;
                     config.EnableBreadcrumb = true;
                 });
-            var timeMenu = new ConsoleMenu()
-                .Add("h24", () => this.CalculateTimeDiff(TimeFormat.h24))
-                .Add("am/pm", () => this.CalculateTimeDiff(TimeFormat.am_pm))
-                .Add("Back", () => this.consoleMenu.Show())
-                .Configure(config =>
-                {
-                    config.EnableFilter = true;
-                    config.Title = "Select time format";
-                    config.EnableWriteTitle = true;
-                    config.EnableBreadcrumb = true;
-                });
-            this.consoleMenu = new ConsoleMenu()
-                .Add("Date", () => dateMenu.Show())
-                .Add("Time", () => timeMenu.Show())
-                .Add("Exit", () => Environment.Exit(0))
-                .Configure(config =>
-                {
-                    config.EnableFilter = true;
-                    config.Title = "Select date or time";
-                    config.EnableWriteTitle = true;
-                    config.EnableBreadcrumb = true;
-                });
+            foreach (var option in options)
+            {
+                menu.Add(option.name, option.action);
+            }
+            return menu;
         }
 
         public void Show()
