@@ -55,9 +55,9 @@ namespace _006_dateTime
                     config.EnableWriteTitle = true;
                     config.EnableBreadcrumb = true;
                 });
-            foreach (var option in options)
+            foreach (var (name, action) in options)
             {
-                menu.Add(option.name, option.action);
+                menu.Add(name, action);
             }
             return menu;
         }
@@ -67,7 +67,7 @@ namespace _006_dateTime
             this.consoleMenu.Show();
         }
 
-        // TODO - dry, include iso in enum, create enum - pattern dict
+        // TODO - dry, separation of concerns, include iso in enum, create enum - pattern dict
         private void CalculateDateDiff(DateFormat dateFormat)
         {
             Console.WriteLine($"Enter a date in {dateFormat} format");
