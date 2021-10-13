@@ -24,3 +24,18 @@ tim corey https://www.youtube.com/watch?v=mmza9x3QxYE
 ***tidbit
 c# features, one at a time
 
+*** tidbit
+given an ecommerce db (sqlserver, mysql)
+db running on a container
+migrations for data seeding
+db is versioned, updates are via migrations
+create dal classes (ef tools, dapper?)
+create bl classes
+create presentation classes
+api via swagger
+ui with angular
+
+ref
+https://docs.microsoft.com/en-us/dotnet/architecture/microservices/
+https://www.danylkoweb.com/Blog/collection-sql-server-sample-databases-OO
+https://docs.microsoft.com/en-us/azure/architecture/patterns/
