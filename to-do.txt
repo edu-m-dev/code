@@ -1,0 +1,26 @@
+***tidbit
+https://www.infoq.com/news/Fowler explains the design benefits of the PeriodicTimer,
+This API only makes sense for timers that fire repeatedly, timers that fire once could be Task based (we already have Task.Delay for this).
+The timer will be paused while user code is executing and will resume the next period once it ends.
+The timer can be stopped using a CancellationToken provided to stop the enumeration.
+The execution context isn't captured.
+The timer can also be stopped by calling Stop or Dispose, even while a WaitForNextTickAsync call is currently being executed.
+do periodic timer (many ticks) vs task.delay (1 tick)
+
+***tidbit
+https://devblogs.microsoft.com/dotnet/string-interpolation-in-c-10-and-net-6/?utm_source=csharpdigest&utm_medium=email&utm_campaign=376
+
+Always use interpolated string over string.format.
+Always use interpolated string with Append/AppendLine over AppendFormat for StringBuilder.
+Always use string.Create over FormattableString.Invariant.
+
+***tidbit
+https://devblogs.microsoft.com/dotnet/string-interpolation-in-c-10-and-net-6/?utm_source=csharpdigest&utm_medium=email&utm_campaign=376
+
+We can see an example of the performance impact of this by running a simple benchmark
+benchmarking - MemoryDiagnoser + Benchmark attribs
+tim corey https://www.youtube.com/watch?v=mmza9x3QxYE
+
+***tidbit
+c# features, one at a time
+
