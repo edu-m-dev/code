@@ -29,3 +29,7 @@ ref https://stackoverflow.com/questions/1710894/using-git-show-all-commits-that-
 **point local brach x to its remote**
 
 git reset --hard origin/x
+
+**remove untracked files from the working tree**
+
+git clean -f <path>
