@@ -1,4 +1,5 @@
-﻿using System.Web.Http;
+﻿using System.Net.Http.Formatting;
+using System.Web.Http;
 
 namespace minimal_webapi
 {
@@ -16,6 +17,10 @@ namespace minimal_webapi
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+
+            config.Formatters.Clear();
+            config.Formatters.Add(new JsonMediaTypeFormatter());
+            JsonSerializerSettingsConfigurator.Configure(config.Formatters.JsonFormatter.SerializerSettings);
         }
     }
 }
