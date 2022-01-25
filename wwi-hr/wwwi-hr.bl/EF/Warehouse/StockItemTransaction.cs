@@ -7,13 +7,13 @@ namespace wwi.bl.EF
 {
     public partial class StockItemTransaction
     {
-        public int StockItemTransactionId { get; set; }
-        public int StockItemId { get; set; }
-        public int TransactionTypeId { get; set; }
-        public int? CustomerId { get; set; }
-        public int? InvoiceId { get; set; }
-        public int? SupplierId { get; set; }
-        public int? PurchaseOrderId { get; set; }
+        public int StockItemTransactionID { get; set; }
+        public int StockItemID { get; set; }
+        public int TransactionTypeID { get; set; }
+        public int? CustomerID { get; set; }
+        public int? InvoiceID { get; set; }
+        public int? SupplierID { get; set; }
+        public int? PurchaseOrderID { get; set; }
         public DateTime TransactionOccurredWhen { get; set; }
         public decimal Quantity { get; set; }
         public int LastEditedBy { get; set; }

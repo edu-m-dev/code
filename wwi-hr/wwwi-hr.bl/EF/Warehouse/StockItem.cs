@@ -17,12 +17,12 @@ namespace wwi.bl.EF
             StockItemTransactions = new HashSet<StockItemTransaction>();
         }
 
-        public int StockItemId { get; set; }
+        public int StockItemID { get; set; }
         public string StockItemName { get; set; }
-        public int SupplierId { get; set; }
-        public int? ColorId { get; set; }
-        public int UnitPackageId { get; set; }
-        public int OuterPackageId { get; set; }
+        public int SupplierID { get; set; }
+        public int? ColorID { get; set; }
+        public int UnitPackageID { get; set; }
+        public int OuterPackageID { get; set; }
         public string Brand { get; set; }
         public string Size { get; set; }
         public int LeadTimeDays { get; set; }

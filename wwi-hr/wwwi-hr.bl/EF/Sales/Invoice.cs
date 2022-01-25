@@ -14,15 +14,15 @@ namespace wwi.bl.EF
             StockItemTransactions = new HashSet<StockItemTransaction>();
         }
 
-        public int InvoiceId { get; set; }
-        public int CustomerId { get; set; }
-        public int BillToCustomerId { get; set; }
-        public int? OrderId { get; set; }
-        public int DeliveryMethodId { get; set; }
-        public int ContactPersonId { get; set; }
-        public int AccountsPersonId { get; set; }
-        public int SalespersonPersonId { get; set; }
-        public int PackedByPersonId { get; set; }
+        public int InvoiceID { get; set; }
+        public int CustomerID { get; set; }
+        public int BillToCustomerID { get; set; }
+        public int? OrderID { get; set; }
+        public int DeliveryMethodID { get; set; }
+        public int ContactPersonID { get; set; }
+        public int AccountsPersonID { get; set; }
+        public int SalespersonPersonID { get; set; }
+        public int PackedByPersonID { get; set; }
         public DateTime InvoiceDate { get; set; }
         public string CustomerPurchaseOrderNumber { get; set; }
         public bool IsCreditNote { get; set; }

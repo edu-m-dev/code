@@ -13,7 +13,7 @@ namespace wwi.bl.EF
             StockItemStockGroups = new HashSet<StockItemStockGroup>();
         }
 
-        public int StockGroupId { get; set; }
+        public int StockGroupID { get; set; }
         public string StockGroupName { get; set; }
         public int LastEditedBy { get; set; }
 

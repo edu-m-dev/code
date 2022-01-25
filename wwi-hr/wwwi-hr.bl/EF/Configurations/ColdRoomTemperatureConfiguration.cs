@@ -12,7 +12,7 @@ namespace wwi.bl.EF.Configurations
     {
         public void Configure(EntityTypeBuilder<ColdRoomTemperature> entity)
         {
-            entity.HasKey(e => e.ColdRoomTemperatureId)
+            entity.HasKey(e => e.ColdRoomTemperatureID)
                 .HasName("PK_Warehouse_ColdRoomTemperatures")
                 .IsClustered(false);
 
@@ -32,8 +32,6 @@ namespace wwi.bl.EF.Configurations
 ));
 
             entity.HasIndex(e => e.ColdRoomSensorNumber, "IX_Warehouse_ColdRoomTemperatures_ColdRoomSensorNumber");
-
-            entity.Property(e => e.ColdRoomTemperatureId).HasColumnName("ColdRoomTemperatureID");
 
             entity.Property(e => e.Temperature).HasColumnType("decimal(10, 2)");
 

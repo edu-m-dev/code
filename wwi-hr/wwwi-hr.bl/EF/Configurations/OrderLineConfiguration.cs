@@ -14,31 +14,23 @@ namespace wwi.bl.EF.Configurations
         {
             entity.ToTable("OrderLines", "Sales");
 
-            entity.HasIndex(e => e.OrderId, "FK_Sales_OrderLines_OrderID");
+            entity.HasIndex(e => e.OrderID, "FK_Sales_OrderLines_OrderID");
 
-            entity.HasIndex(e => e.PackageTypeId, "FK_Sales_OrderLines_PackageTypeID");
+            entity.HasIndex(e => e.PackageTypeID, "FK_Sales_OrderLines_PackageTypeID");
 
-            entity.HasIndex(e => e.StockItemId, "IX_Sales_OrderLines_AllocatedStockItems");
+            entity.HasIndex(e => e.StockItemID, "IX_Sales_OrderLines_AllocatedStockItems");
 
-            entity.HasIndex(e => new { e.PickingCompletedWhen, e.OrderId, e.OrderLineId }, "IX_Sales_OrderLines_Perf_20160301_01");
+            entity.HasIndex(e => new { e.PickingCompletedWhen, e.OrderID, e.OrderLineID }, "IX_Sales_OrderLines_Perf_20160301_01");
 
-            entity.HasIndex(e => new { e.StockItemId, e.PickingCompletedWhen }, "IX_Sales_OrderLines_Perf_20160301_02");
+            entity.HasIndex(e => new { e.StockItemID, e.PickingCompletedWhen }, "IX_Sales_OrderLines_Perf_20160301_02");
 
-            entity.Property(e => e.OrderLineId)
-                .HasColumnName("OrderLineID")
-                .HasDefaultValueSql("(NEXT VALUE FOR [Sequences].[OrderLineID])");
+            entity.Property(e => e.OrderLineID).HasDefaultValueSql("(NEXT VALUE FOR [Sequences].[OrderLineID])");
 
             entity.Property(e => e.Description)
                 .IsRequired()
                 .HasMaxLength(100);
 
             entity.Property(e => e.LastEditedWhen).HasDefaultValueSql("(sysdatetime())");
-
-            entity.Property(e => e.OrderId).HasColumnName("OrderID");
-
-            entity.Property(e => e.PackageTypeId).HasColumnName("PackageTypeID");
-
-            entity.Property(e => e.StockItemId).HasColumnName("StockItemID");
 
             entity.Property(e => e.TaxRate).HasColumnType("decimal(18, 3)");
 
@@ -52,19 +44,19 @@ namespace wwi.bl.EF.Configurations
 
             entity.HasOne(d => d.Order)
                 .WithMany(p => p.OrderLines)
-                .HasForeignKey(d => d.OrderId)
+                .HasForeignKey(d => d.OrderID)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Sales_OrderLines_OrderID_Sales_Orders");
 
             entity.HasOne(d => d.PackageType)
                 .WithMany(p => p.OrderLines)
-                .HasForeignKey(d => d.PackageTypeId)
+                .HasForeignKey(d => d.PackageTypeID)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Sales_OrderLines_PackageTypeID_Warehouse_PackageTypes");
 
             entity.HasOne(d => d.StockItem)
                 .WithMany(p => p.OrderLines)
-                .HasForeignKey(d => d.StockItemId)
+                .HasForeignKey(d => d.StockItemID)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Sales_OrderLines_StockItemID_Warehouse_StockItems");
 

@@ -15,7 +15,7 @@ namespace wwi.bl.EF
             Suppliers = new HashSet<Supplier>();
         }
 
-        public int DeliveryMethodId { get; set; }
+        public int DeliveryMethodID { get; set; }
         public string DeliveryMethodName { get; set; }
         public int LastEditedBy { get; set; }
 

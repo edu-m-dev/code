@@ -29,9 +29,7 @@ namespace wwi.bl.EF.Configurations
             entity.HasIndex(e => e.BuyingGroupName, "UQ_Sales_BuyingGroups_BuyingGroupName")
                 .IsUnique();
 
-            entity.Property(e => e.BuyingGroupId)
-                .HasColumnName("BuyingGroupID")
-                .HasDefaultValueSql("(NEXT VALUE FOR [Sequences].[BuyingGroupID])");
+            entity.Property(e => e.BuyingGroupID).HasDefaultValueSql("(NEXT VALUE FOR [Sequences].[BuyingGroupID])");
 
             entity.Property(e => e.BuyingGroupName)
                 .IsRequired()

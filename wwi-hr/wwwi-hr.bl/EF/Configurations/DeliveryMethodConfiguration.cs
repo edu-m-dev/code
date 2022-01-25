@@ -29,9 +29,7 @@ namespace wwi.bl.EF.Configurations
             entity.HasIndex(e => e.DeliveryMethodName, "UQ_Application_DeliveryMethods_DeliveryMethodName")
                 .IsUnique();
 
-            entity.Property(e => e.DeliveryMethodId)
-                .HasColumnName("DeliveryMethodID")
-                .HasDefaultValueSql("(NEXT VALUE FOR [Sequences].[DeliveryMethodID])");
+            entity.Property(e => e.DeliveryMethodID).HasDefaultValueSql("(NEXT VALUE FOR [Sequences].[DeliveryMethodID])");
 
             entity.Property(e => e.DeliveryMethodName)
                 .IsRequired()

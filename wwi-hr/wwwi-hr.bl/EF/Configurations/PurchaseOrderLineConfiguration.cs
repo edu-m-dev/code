@@ -14,17 +14,15 @@ namespace wwi.bl.EF.Configurations
         {
             entity.ToTable("PurchaseOrderLines", "Purchasing");
 
-            entity.HasIndex(e => e.PackageTypeId, "FK_Purchasing_PurchaseOrderLines_PackageTypeID");
+            entity.HasIndex(e => e.PackageTypeID, "FK_Purchasing_PurchaseOrderLines_PackageTypeID");
 
-            entity.HasIndex(e => e.PurchaseOrderId, "FK_Purchasing_PurchaseOrderLines_PurchaseOrderID");
+            entity.HasIndex(e => e.PurchaseOrderID, "FK_Purchasing_PurchaseOrderLines_PurchaseOrderID");
 
-            entity.HasIndex(e => e.StockItemId, "FK_Purchasing_PurchaseOrderLines_StockItemID");
+            entity.HasIndex(e => e.StockItemID, "FK_Purchasing_PurchaseOrderLines_StockItemID");
 
-            entity.HasIndex(e => new { e.IsOrderLineFinalized, e.StockItemId }, "IX_Purchasing_PurchaseOrderLines_Perf_20160301_4");
+            entity.HasIndex(e => new { e.IsOrderLineFinalized, e.StockItemID }, "IX_Purchasing_PurchaseOrderLines_Perf_20160301_4");
 
-            entity.Property(e => e.PurchaseOrderLineId)
-                .HasColumnName("PurchaseOrderLineID")
-                .HasDefaultValueSql("(NEXT VALUE FOR [Sequences].[PurchaseOrderLineID])");
+            entity.Property(e => e.PurchaseOrderLineID).HasDefaultValueSql("(NEXT VALUE FOR [Sequences].[PurchaseOrderLineID])");
 
             entity.Property(e => e.Description)
                 .IsRequired()
@@ -36,12 +34,6 @@ namespace wwi.bl.EF.Configurations
 
             entity.Property(e => e.LastReceiptDate).HasColumnType("date");
 
-            entity.Property(e => e.PackageTypeId).HasColumnName("PackageTypeID");
-
-            entity.Property(e => e.PurchaseOrderId).HasColumnName("PurchaseOrderID");
-
-            entity.Property(e => e.StockItemId).HasColumnName("StockItemID");
-
             entity.HasOne(d => d.LastEditedByNavigation)
                 .WithMany(p => p.PurchaseOrderLines)
                 .HasForeignKey(d => d.LastEditedBy)
@@ -50,19 +42,19 @@ namespace wwi.bl.EF.Configurations
 
             entity.HasOne(d => d.PackageType)
                 .WithMany(p => p.PurchaseOrderLines)
-                .HasForeignKey(d => d.PackageTypeId)
+                .HasForeignKey(d => d.PackageTypeID)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Purchasing_PurchaseOrderLines_PackageTypeID_Warehouse_PackageTypes");
 
             entity.HasOne(d => d.PurchaseOrder)
                 .WithMany(p => p.PurchaseOrderLines)
-                .HasForeignKey(d => d.PurchaseOrderId)
+                .HasForeignKey(d => d.PurchaseOrderID)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Purchasing_PurchaseOrderLines_PurchaseOrderID_Purchasing_PurchaseOrders");
 
             entity.HasOne(d => d.StockItem)
                 .WithMany(p => p.PurchaseOrderLines)
-                .HasForeignKey(d => d.StockItemId)
+                .HasForeignKey(d => d.StockItemID)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Purchasing_PurchaseOrderLines_StockItemID_Warehouse_StockItems");
 

@@ -12,15 +12,13 @@ namespace wwi.bl.EF.Configurations
     {
         public void Configure(EntityTypeBuilder<VehicleTemperature> entity)
         {
-            entity.HasKey(e => e.VehicleTemperatureId)
+            entity.HasKey(e => e.VehicleTemperatureID)
                 .HasName("PK_Warehouse_VehicleTemperatures")
                 .IsClustered(false);
 
             entity.ToTable("VehicleTemperatures", "Warehouse");
 
             entity.IsMemoryOptimized();
-
-            entity.Property(e => e.VehicleTemperatureId).HasColumnName("VehicleTemperatureID");
 
             entity.Property(e => e.FullSensorData)
                 .HasMaxLength(1000)

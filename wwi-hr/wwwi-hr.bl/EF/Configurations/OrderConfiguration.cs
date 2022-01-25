@@ -14,23 +14,15 @@ namespace wwi.bl.EF.Configurations
         {
             entity.ToTable("Orders", "Sales");
 
-            entity.HasIndex(e => e.ContactPersonId, "FK_Sales_Orders_ContactPersonID");
+            entity.HasIndex(e => e.ContactPersonID, "FK_Sales_Orders_ContactPersonID");
 
-            entity.HasIndex(e => e.CustomerId, "FK_Sales_Orders_CustomerID");
+            entity.HasIndex(e => e.CustomerID, "FK_Sales_Orders_CustomerID");
 
-            entity.HasIndex(e => e.PickedByPersonId, "FK_Sales_Orders_PickedByPersonID");
+            entity.HasIndex(e => e.PickedByPersonID, "FK_Sales_Orders_PickedByPersonID");
 
-            entity.HasIndex(e => e.SalespersonPersonId, "FK_Sales_Orders_SalespersonPersonID");
+            entity.HasIndex(e => e.SalespersonPersonID, "FK_Sales_Orders_SalespersonPersonID");
 
-            entity.Property(e => e.OrderId)
-                .HasColumnName("OrderID")
-                .HasDefaultValueSql("(NEXT VALUE FOR [Sequences].[OrderID])");
-
-            entity.Property(e => e.BackorderOrderId).HasColumnName("BackorderOrderID");
-
-            entity.Property(e => e.ContactPersonId).HasColumnName("ContactPersonID");
-
-            entity.Property(e => e.CustomerId).HasColumnName("CustomerID");
+            entity.Property(e => e.OrderID).HasDefaultValueSql("(NEXT VALUE FOR [Sequences].[OrderID])");
 
             entity.Property(e => e.CustomerPurchaseOrderNumber).HasMaxLength(20);
 
@@ -40,24 +32,20 @@ namespace wwi.bl.EF.Configurations
 
             entity.Property(e => e.OrderDate).HasColumnType("date");
 
-            entity.Property(e => e.PickedByPersonId).HasColumnName("PickedByPersonID");
-
-            entity.Property(e => e.SalespersonPersonId).HasColumnName("SalespersonPersonID");
-
             entity.HasOne(d => d.BackorderOrder)
                 .WithMany(p => p.InverseBackorderOrder)
-                .HasForeignKey(d => d.BackorderOrderId)
+                .HasForeignKey(d => d.BackorderOrderID)
                 .HasConstraintName("FK_Sales_Orders_BackorderOrderID_Sales_Orders");
 
             entity.HasOne(d => d.ContactPerson)
                 .WithMany(p => p.OrderContactPeople)
-                .HasForeignKey(d => d.ContactPersonId)
+                .HasForeignKey(d => d.ContactPersonID)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Sales_Orders_ContactPersonID_Application_People");
 
             entity.HasOne(d => d.Customer)
                 .WithMany(p => p.Orders)
-                .HasForeignKey(d => d.CustomerId)
+                .HasForeignKey(d => d.CustomerID)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Sales_Orders_CustomerID_Sales_Customers");
 
@@ -69,12 +57,12 @@ namespace wwi.bl.EF.Configurations
 
             entity.HasOne(d => d.PickedByPerson)
                 .WithMany(p => p.OrderPickedByPeople)
-                .HasForeignKey(d => d.PickedByPersonId)
+                .HasForeignKey(d => d.PickedByPersonID)
                 .HasConstraintName("FK_Sales_Orders_PickedByPersonID_Application_People");
 
             entity.HasOne(d => d.SalespersonPerson)
                 .WithMany(p => p.OrderSalespersonPeople)
-                .HasForeignKey(d => d.SalespersonPersonId)
+                .HasForeignKey(d => d.SalespersonPersonID)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Sales_Orders_SalespersonPersonID_Application_People");
 

@@ -14,7 +14,7 @@ namespace wwi.bl.EF
             SupplierTransactions = new HashSet<SupplierTransaction>();
         }
 
-        public int TransactionTypeId { get; set; }
+        public int TransactionTypeID { get; set; }
         public string TransactionTypeName { get; set; }
         public int LastEditedBy { get; set; }
 

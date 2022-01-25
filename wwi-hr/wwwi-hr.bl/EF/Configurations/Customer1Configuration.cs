@@ -24,8 +24,6 @@ namespace wwi.bl.EF.Configurations
 
             entity.Property(e => e.CustomerCategoryName).HasMaxLength(50);
 
-            entity.Property(e => e.CustomerId).HasColumnName("CustomerID");
-
             entity.Property(e => e.CustomerName)
                 .IsRequired()
                 .HasMaxLength(100);
@@ -46,10 +44,9 @@ namespace wwi.bl.EF.Configurations
 
             entity.Property(e => e.RunPosition).HasMaxLength(5);
 
-            entity.Property(e => e.WebsiteUrl)
+            entity.Property(e => e.WebsiteURL)
                 .IsRequired()
-                .HasMaxLength(256)
-                .HasColumnName("WebsiteURL");
+                .HasMaxLength(256);
 
             OnConfigurePartial(entity);
         }

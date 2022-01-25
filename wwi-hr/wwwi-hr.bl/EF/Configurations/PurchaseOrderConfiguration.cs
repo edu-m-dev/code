@@ -14,19 +14,13 @@ namespace wwi.bl.EF.Configurations
         {
             entity.ToTable("PurchaseOrders", "Purchasing");
 
-            entity.HasIndex(e => e.ContactPersonId, "FK_Purchasing_PurchaseOrders_ContactPersonID");
+            entity.HasIndex(e => e.ContactPersonID, "FK_Purchasing_PurchaseOrders_ContactPersonID");
 
-            entity.HasIndex(e => e.DeliveryMethodId, "FK_Purchasing_PurchaseOrders_DeliveryMethodID");
+            entity.HasIndex(e => e.DeliveryMethodID, "FK_Purchasing_PurchaseOrders_DeliveryMethodID");
 
-            entity.HasIndex(e => e.SupplierId, "FK_Purchasing_PurchaseOrders_SupplierID");
+            entity.HasIndex(e => e.SupplierID, "FK_Purchasing_PurchaseOrders_SupplierID");
 
-            entity.Property(e => e.PurchaseOrderId)
-                .HasColumnName("PurchaseOrderID")
-                .HasDefaultValueSql("(NEXT VALUE FOR [Sequences].[PurchaseOrderID])");
-
-            entity.Property(e => e.ContactPersonId).HasColumnName("ContactPersonID");
-
-            entity.Property(e => e.DeliveryMethodId).HasColumnName("DeliveryMethodID");
+            entity.Property(e => e.PurchaseOrderID).HasDefaultValueSql("(NEXT VALUE FOR [Sequences].[PurchaseOrderID])");
 
             entity.Property(e => e.ExpectedDeliveryDate).HasColumnType("date");
 
@@ -34,19 +28,17 @@ namespace wwi.bl.EF.Configurations
 
             entity.Property(e => e.OrderDate).HasColumnType("date");
 
-            entity.Property(e => e.SupplierId).HasColumnName("SupplierID");
-
             entity.Property(e => e.SupplierReference).HasMaxLength(20);
 
             entity.HasOne(d => d.ContactPerson)
                 .WithMany(p => p.PurchaseOrderContactPeople)
-                .HasForeignKey(d => d.ContactPersonId)
+                .HasForeignKey(d => d.ContactPersonID)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Purchasing_PurchaseOrders_ContactPersonID_Application_People");
 
             entity.HasOne(d => d.DeliveryMethod)
                 .WithMany(p => p.PurchaseOrders)
-                .HasForeignKey(d => d.DeliveryMethodId)
+                .HasForeignKey(d => d.DeliveryMethodID)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Purchasing_PurchaseOrders_DeliveryMethodID_Application_DeliveryMethods");
 
@@ -58,7 +50,7 @@ namespace wwi.bl.EF.Configurations
 
             entity.HasOne(d => d.Supplier)
                 .WithMany(p => p.PurchaseOrders)
-                .HasForeignKey(d => d.SupplierId)
+                .HasForeignKey(d => d.SupplierID)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Purchasing_PurchaseOrders_SupplierID_Purchasing_Suppliers");
 

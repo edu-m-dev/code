@@ -16,7 +16,7 @@ namespace wwi.bl.EF
             StockItemUnitPackages = new HashSet<StockItem>();
         }
 
-        public int PackageTypeId { get; set; }
+        public int PackageTypeID { get; set; }
         public string PackageTypeName { get; set; }
         public int LastEditedBy { get; set; }
 

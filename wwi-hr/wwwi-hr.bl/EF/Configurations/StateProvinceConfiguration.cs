@@ -26,18 +26,14 @@ namespace wwi.bl.EF.Configurations
     }
 ));
 
-            entity.HasIndex(e => e.CountryId, "FK_Application_StateProvinces_CountryID");
+            entity.HasIndex(e => e.CountryID, "FK_Application_StateProvinces_CountryID");
 
             entity.HasIndex(e => e.SalesTerritory, "IX_Application_StateProvinces_SalesTerritory");
 
             entity.HasIndex(e => e.StateProvinceName, "UQ_Application_StateProvinces_StateProvinceName")
                 .IsUnique();
 
-            entity.Property(e => e.StateProvinceId)
-                .HasColumnName("StateProvinceID")
-                .HasDefaultValueSql("(NEXT VALUE FOR [Sequences].[StateProvinceID])");
-
-            entity.Property(e => e.CountryId).HasColumnName("CountryID");
+            entity.Property(e => e.StateProvinceID).HasDefaultValueSql("(NEXT VALUE FOR [Sequences].[StateProvinceID])");
 
             entity.Property(e => e.SalesTerritory)
                 .IsRequired()
@@ -53,7 +49,7 @@ namespace wwi.bl.EF.Configurations
 
             entity.HasOne(d => d.Country)
                 .WithMany(p => p.StateProvinces)
-                .HasForeignKey(d => d.CountryId)
+                .HasForeignKey(d => d.CountryID)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Application_StateProvinces_CountryID_Application_Countries");
 

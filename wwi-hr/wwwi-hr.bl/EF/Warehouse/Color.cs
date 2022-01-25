@@ -12,7 +12,7 @@ namespace wwi.bl.EF
             StockItems = new HashSet<StockItem>();
         }
 
-        public int ColorId { get; set; }
+        public int ColorID { get; set; }
         public string ColorName { get; set; }
         public int LastEditedBy { get; set; }
 

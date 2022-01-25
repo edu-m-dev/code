@@ -29,9 +29,7 @@ namespace wwi.bl.EF.Configurations
             entity.HasIndex(e => e.CustomerCategoryName, "UQ_Sales_CustomerCategories_CustomerCategoryName")
                 .IsUnique();
 
-            entity.Property(e => e.CustomerCategoryId)
-                .HasColumnName("CustomerCategoryID")
-                .HasDefaultValueSql("(NEXT VALUE FOR [Sequences].[CustomerCategoryID])");
+            entity.Property(e => e.CustomerCategoryID).HasDefaultValueSql("(NEXT VALUE FOR [Sequences].[CustomerCategoryID])");
 
             entity.Property(e => e.CustomerCategoryName)
                 .IsRequired()

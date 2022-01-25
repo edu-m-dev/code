@@ -29,9 +29,7 @@ namespace wwi.bl.EF.Configurations
             entity.HasIndex(e => e.TransactionTypeName, "UQ_Application_TransactionTypes_TransactionTypeName")
                 .IsUnique();
 
-            entity.Property(e => e.TransactionTypeId)
-                .HasColumnName("TransactionTypeID")
-                .HasDefaultValueSql("(NEXT VALUE FOR [Sequences].[TransactionTypeID])");
+            entity.Property(e => e.TransactionTypeID).HasDefaultValueSql("(NEXT VALUE FOR [Sequences].[TransactionTypeID])");
 
             entity.Property(e => e.TransactionTypeName)
                 .IsRequired()

@@ -7,11 +7,11 @@ namespace wwi.bl.EF
 {
     public partial class CustomerTransaction
     {
-        public int CustomerTransactionId { get; set; }
-        public int CustomerId { get; set; }
-        public int TransactionTypeId { get; set; }
-        public int? InvoiceId { get; set; }
-        public int? PaymentMethodId { get; set; }
+        public int CustomerTransactionID { get; set; }
+        public int CustomerID { get; set; }
+        public int TransactionTypeID { get; set; }
+        public int? InvoiceID { get; set; }
+        public int? PaymentMethodID { get; set; }
         public DateTime TransactionDate { get; set; }
         public decimal AmountExcludingTax { get; set; }
         public decimal TaxAmount { get; set; }

@@ -7,7 +7,7 @@ namespace wwi.bl.EF
 {
     public partial class VehicleTemperature1
     {
-        public long VehicleTemperatureId { get; set; }
+        public long VehicleTemperatureID { get; set; }
         public string VehicleRegistration { get; set; }
         public int ChillerSensorNumber { get; set; }
         public DateTime RecordedWhen { get; set; }

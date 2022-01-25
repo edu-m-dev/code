@@ -29,9 +29,7 @@ namespace wwi.bl.EF.Configurations
             entity.HasIndex(e => e.PaymentMethodName, "UQ_Application_PaymentMethods_PaymentMethodName")
                 .IsUnique();
 
-            entity.Property(e => e.PaymentMethodId)
-                .HasColumnName("PaymentMethodID")
-                .HasDefaultValueSql("(NEXT VALUE FOR [Sequences].[PaymentMethodID])");
+            entity.Property(e => e.PaymentMethodID).HasDefaultValueSql("(NEXT VALUE FOR [Sequences].[PaymentMethodID])");
 
             entity.Property(e => e.PaymentMethodName)
                 .IsRequired()

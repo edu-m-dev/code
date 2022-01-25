@@ -7,7 +7,7 @@ namespace wwi.bl.EF
 {
     public partial class StockItemHolding
     {
-        public int StockItemId { get; set; }
+        public int StockItemID { get; set; }
         public int QuantityOnHand { get; set; }
         public string BinLocation { get; set; }
         public int LastStocktakeQuantity { get; set; }

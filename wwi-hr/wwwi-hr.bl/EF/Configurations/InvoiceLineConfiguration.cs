@@ -14,15 +14,13 @@ namespace wwi.bl.EF.Configurations
         {
             entity.ToTable("InvoiceLines", "Sales");
 
-            entity.HasIndex(e => e.InvoiceId, "FK_Sales_InvoiceLines_InvoiceID");
+            entity.HasIndex(e => e.InvoiceID, "FK_Sales_InvoiceLines_InvoiceID");
 
-            entity.HasIndex(e => e.PackageTypeId, "FK_Sales_InvoiceLines_PackageTypeID");
+            entity.HasIndex(e => e.PackageTypeID, "FK_Sales_InvoiceLines_PackageTypeID");
 
-            entity.HasIndex(e => e.StockItemId, "FK_Sales_InvoiceLines_StockItemID");
+            entity.HasIndex(e => e.StockItemID, "FK_Sales_InvoiceLines_StockItemID");
 
-            entity.Property(e => e.InvoiceLineId)
-                .HasColumnName("InvoiceLineID")
-                .HasDefaultValueSql("(NEXT VALUE FOR [Sequences].[InvoiceLineID])");
+            entity.Property(e => e.InvoiceLineID).HasDefaultValueSql("(NEXT VALUE FOR [Sequences].[InvoiceLineID])");
 
             entity.Property(e => e.Description)
                 .IsRequired()
@@ -30,15 +28,9 @@ namespace wwi.bl.EF.Configurations
 
             entity.Property(e => e.ExtendedPrice).HasColumnType("decimal(18, 2)");
 
-            entity.Property(e => e.InvoiceId).HasColumnName("InvoiceID");
-
             entity.Property(e => e.LastEditedWhen).HasDefaultValueSql("(sysdatetime())");
 
             entity.Property(e => e.LineProfit).HasColumnType("decimal(18, 2)");
-
-            entity.Property(e => e.PackageTypeId).HasColumnName("PackageTypeID");
-
-            entity.Property(e => e.StockItemId).HasColumnName("StockItemID");
 
             entity.Property(e => e.TaxAmount).HasColumnType("decimal(18, 2)");
 
@@ -48,7 +40,7 @@ namespace wwi.bl.EF.Configurations
 
             entity.HasOne(d => d.Invoice)
                 .WithMany(p => p.InvoiceLines)
-                .HasForeignKey(d => d.InvoiceId)
+                .HasForeignKey(d => d.InvoiceID)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Sales_InvoiceLines_InvoiceID_Sales_Invoices");
 
@@ -60,13 +52,13 @@ namespace wwi.bl.EF.Configurations
 
             entity.HasOne(d => d.PackageType)
                 .WithMany(p => p.InvoiceLines)
-                .HasForeignKey(d => d.PackageTypeId)
+                .HasForeignKey(d => d.PackageTypeID)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Sales_InvoiceLines_PackageTypeID_Warehouse_PackageTypes");
 
             entity.HasOne(d => d.StockItem)
                 .WithMany(p => p.InvoiceLines)
-                .HasForeignKey(d => d.StockItemId)
+                .HasForeignKey(d => d.StockItemID)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Sales_InvoiceLines_StockItemID_Warehouse_StockItems");
 

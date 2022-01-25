@@ -29,9 +29,7 @@ namespace wwi.bl.EF.Configurations
             entity.HasIndex(e => e.ColorName, "UQ_Warehouse_Colors_ColorName")
                 .IsUnique();
 
-            entity.Property(e => e.ColorId)
-                .HasColumnName("ColorID")
-                .HasDefaultValueSql("(NEXT VALUE FOR [Sequences].[ColorID])");
+            entity.Property(e => e.ColorID).HasDefaultValueSql("(NEXT VALUE FOR [Sequences].[ColorID])");
 
             entity.Property(e => e.ColorName)
                 .IsRequired()

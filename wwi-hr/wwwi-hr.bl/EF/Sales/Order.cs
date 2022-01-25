@@ -14,12 +14,12 @@ namespace wwi.bl.EF
             OrderLines = new HashSet<OrderLine>();
         }
 
-        public int OrderId { get; set; }
-        public int CustomerId { get; set; }
-        public int SalespersonPersonId { get; set; }
-        public int? PickedByPersonId { get; set; }
-        public int ContactPersonId { get; set; }
-        public int? BackorderOrderId { get; set; }
+        public int OrderID { get; set; }
+        public int CustomerID { get; set; }
+        public int SalespersonPersonID { get; set; }
+        public int? PickedByPersonID { get; set; }
+        public int ContactPersonID { get; set; }
+        public int? BackorderOrderID { get; set; }
         public DateTime OrderDate { get; set; }
         public DateTime ExpectedDeliveryDate { get; set; }
         public string CustomerPurchaseOrderNumber { get; set; }

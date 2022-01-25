@@ -29,9 +29,7 @@ namespace wwi.bl.EF.Configurations
             entity.HasIndex(e => e.PackageTypeName, "UQ_Warehouse_PackageTypes_PackageTypeName")
                 .IsUnique();
 
-            entity.Property(e => e.PackageTypeId)
-                .HasColumnName("PackageTypeID")
-                .HasDefaultValueSql("(NEXT VALUE FOR [Sequences].[PackageTypeID])");
+            entity.Property(e => e.PackageTypeID).HasDefaultValueSql("(NEXT VALUE FOR [Sequences].[PackageTypeID])");
 
             entity.Property(e => e.PackageTypeName)
                 .IsRequired()

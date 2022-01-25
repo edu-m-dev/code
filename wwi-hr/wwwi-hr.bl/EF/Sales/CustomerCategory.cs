@@ -13,7 +13,7 @@ namespace wwi.bl.EF
             SpecialDeals = new HashSet<SpecialDeal>();
         }
 
-        public int CustomerCategoryId { get; set; }
+        public int CustomerCategoryID { get; set; }
         public string CustomerCategoryName { get; set; }
         public int LastEditedBy { get; set; }
 

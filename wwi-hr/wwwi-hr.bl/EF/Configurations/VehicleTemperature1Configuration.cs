@@ -24,9 +24,7 @@ namespace wwi.bl.EF.Configurations
                 .IsRequired()
                 .HasMaxLength(20);
 
-            entity.Property(e => e.VehicleTemperatureId)
-                .ValueGeneratedOnAdd()
-                .HasColumnName("VehicleTemperatureID");
+            entity.Property(e => e.VehicleTemperatureID).ValueGeneratedOnAdd();
 
             OnConfigurePartial(entity);
         }

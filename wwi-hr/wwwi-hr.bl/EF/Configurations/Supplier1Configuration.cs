@@ -34,18 +34,15 @@ namespace wwi.bl.EF.Configurations
 
             entity.Property(e => e.SupplierCategoryName).HasMaxLength(50);
 
-            entity.Property(e => e.SupplierId).HasColumnName("SupplierID");
-
             entity.Property(e => e.SupplierName)
                 .IsRequired()
                 .HasMaxLength(100);
 
             entity.Property(e => e.SupplierReference).HasMaxLength(20);
 
-            entity.Property(e => e.WebsiteUrl)
+            entity.Property(e => e.WebsiteURL)
                 .IsRequired()
-                .HasMaxLength(256)
-                .HasColumnName("WebsiteURL");
+                .HasMaxLength(256);
 
             OnConfigurePartial(entity);
         }

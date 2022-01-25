@@ -12,7 +12,7 @@ namespace wwi.bl.EF
             Suppliers = new HashSet<Supplier>();
         }
 
-        public int SupplierCategoryId { get; set; }
+        public int SupplierCategoryID { get; set; }
         public string SupplierCategoryName { get; set; }
         public int LastEditedBy { get; set; }
 

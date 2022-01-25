@@ -26,40 +26,30 @@ namespace wwi.bl.EF.Configurations
     }
 ));
 
-            entity.HasIndex(e => e.AlternateContactPersonId, "FK_Sales_Customers_AlternateContactPersonID");
+            entity.HasIndex(e => e.AlternateContactPersonID, "FK_Sales_Customers_AlternateContactPersonID");
 
-            entity.HasIndex(e => e.BuyingGroupId, "FK_Sales_Customers_BuyingGroupID");
+            entity.HasIndex(e => e.BuyingGroupID, "FK_Sales_Customers_BuyingGroupID");
 
-            entity.HasIndex(e => e.CustomerCategoryId, "FK_Sales_Customers_CustomerCategoryID");
+            entity.HasIndex(e => e.CustomerCategoryID, "FK_Sales_Customers_CustomerCategoryID");
 
-            entity.HasIndex(e => e.DeliveryCityId, "FK_Sales_Customers_DeliveryCityID");
+            entity.HasIndex(e => e.DeliveryCityID, "FK_Sales_Customers_DeliveryCityID");
 
-            entity.HasIndex(e => e.DeliveryMethodId, "FK_Sales_Customers_DeliveryMethodID");
+            entity.HasIndex(e => e.DeliveryMethodID, "FK_Sales_Customers_DeliveryMethodID");
 
-            entity.HasIndex(e => e.PostalCityId, "FK_Sales_Customers_PostalCityID");
+            entity.HasIndex(e => e.PostalCityID, "FK_Sales_Customers_PostalCityID");
 
-            entity.HasIndex(e => e.PrimaryContactPersonId, "FK_Sales_Customers_PrimaryContactPersonID");
+            entity.HasIndex(e => e.PrimaryContactPersonID, "FK_Sales_Customers_PrimaryContactPersonID");
 
-            entity.HasIndex(e => new { e.IsOnCreditHold, e.CustomerId, e.BillToCustomerId }, "IX_Sales_Customers_Perf_20160301_06");
+            entity.HasIndex(e => new { e.IsOnCreditHold, e.CustomerID, e.BillToCustomerID }, "IX_Sales_Customers_Perf_20160301_06");
 
             entity.HasIndex(e => e.CustomerName, "UQ_Sales_Customers_CustomerName")
                 .IsUnique();
 
-            entity.Property(e => e.CustomerId)
-                .HasColumnName("CustomerID")
-                .HasDefaultValueSql("(NEXT VALUE FOR [Sequences].[CustomerID])");
+            entity.Property(e => e.CustomerID).HasDefaultValueSql("(NEXT VALUE FOR [Sequences].[CustomerID])");
 
             entity.Property(e => e.AccountOpenedDate).HasColumnType("date");
 
-            entity.Property(e => e.AlternateContactPersonId).HasColumnName("AlternateContactPersonID");
-
-            entity.Property(e => e.BillToCustomerId).HasColumnName("BillToCustomerID");
-
-            entity.Property(e => e.BuyingGroupId).HasColumnName("BuyingGroupID");
-
             entity.Property(e => e.CreditLimit).HasColumnType("decimal(18, 2)");
-
-            entity.Property(e => e.CustomerCategoryId).HasColumnName("CustomerCategoryID");
 
             entity.Property(e => e.CustomerName)
                 .IsRequired()
@@ -70,10 +60,6 @@ namespace wwi.bl.EF.Configurations
                 .HasMaxLength(60);
 
             entity.Property(e => e.DeliveryAddressLine2).HasMaxLength(60);
-
-            entity.Property(e => e.DeliveryCityId).HasColumnName("DeliveryCityID");
-
-            entity.Property(e => e.DeliveryMethodId).HasColumnName("DeliveryMethodID");
 
             entity.Property(e => e.DeliveryPostalCode)
                 .IsRequired()
@@ -95,54 +81,49 @@ namespace wwi.bl.EF.Configurations
 
             entity.Property(e => e.PostalAddressLine2).HasMaxLength(60);
 
-            entity.Property(e => e.PostalCityId).HasColumnName("PostalCityID");
-
             entity.Property(e => e.PostalPostalCode)
                 .IsRequired()
                 .HasMaxLength(10);
-
-            entity.Property(e => e.PrimaryContactPersonId).HasColumnName("PrimaryContactPersonID");
 
             entity.Property(e => e.RunPosition).HasMaxLength(5);
 
             entity.Property(e => e.StandardDiscountPercentage).HasColumnType("decimal(18, 3)");
 
-            entity.Property(e => e.WebsiteUrl)
+            entity.Property(e => e.WebsiteURL)
                 .IsRequired()
-                .HasMaxLength(256)
-                .HasColumnName("WebsiteURL");
+                .HasMaxLength(256);
 
             entity.HasOne(d => d.AlternateContactPerson)
                 .WithMany(p => p.CustomerAlternateContactPeople)
-                .HasForeignKey(d => d.AlternateContactPersonId)
+                .HasForeignKey(d => d.AlternateContactPersonID)
                 .HasConstraintName("FK_Sales_Customers_AlternateContactPersonID_Application_People");
 
             entity.HasOne(d => d.BillToCustomer)
                 .WithMany(p => p.InverseBillToCustomer)
-                .HasForeignKey(d => d.BillToCustomerId)
+                .HasForeignKey(d => d.BillToCustomerID)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Sales_Customers_BillToCustomerID_Sales_Customers");
 
             entity.HasOne(d => d.BuyingGroup)
                 .WithMany(p => p.Customers)
-                .HasForeignKey(d => d.BuyingGroupId)
+                .HasForeignKey(d => d.BuyingGroupID)
                 .HasConstraintName("FK_Sales_Customers_BuyingGroupID_Sales_BuyingGroups");
 
             entity.HasOne(d => d.CustomerCategory)
                 .WithMany(p => p.Customers)
-                .HasForeignKey(d => d.CustomerCategoryId)
+                .HasForeignKey(d => d.CustomerCategoryID)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Sales_Customers_CustomerCategoryID_Sales_CustomerCategories");
 
             entity.HasOne(d => d.DeliveryCity)
                 .WithMany(p => p.CustomerDeliveryCities)
-                .HasForeignKey(d => d.DeliveryCityId)
+                .HasForeignKey(d => d.DeliveryCityID)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Sales_Customers_DeliveryCityID_Application_Cities");
 
             entity.HasOne(d => d.DeliveryMethod)
                 .WithMany(p => p.Customers)
-                .HasForeignKey(d => d.DeliveryMethodId)
+                .HasForeignKey(d => d.DeliveryMethodID)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Sales_Customers_DeliveryMethodID_Application_DeliveryMethods");
 
@@ -154,13 +135,13 @@ namespace wwi.bl.EF.Configurations
 
             entity.HasOne(d => d.PostalCity)
                 .WithMany(p => p.CustomerPostalCities)
-                .HasForeignKey(d => d.PostalCityId)
+                .HasForeignKey(d => d.PostalCityID)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Sales_Customers_PostalCityID_Application_Cities");
 
             entity.HasOne(d => d.PrimaryContactPerson)
                 .WithMany(p => p.CustomerPrimaryContactPeople)
-                .HasForeignKey(d => d.PrimaryContactPersonId)
+                .HasForeignKey(d => d.PrimaryContactPersonID)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Sales_Customers_PrimaryContactPersonID_Application_People");
 

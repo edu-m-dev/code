@@ -14,25 +14,17 @@ namespace wwi.bl.EF.Configurations
         {
             entity.ToTable("SpecialDeals", "Sales");
 
-            entity.HasIndex(e => e.BuyingGroupId, "FK_Sales_SpecialDeals_BuyingGroupID");
+            entity.HasIndex(e => e.BuyingGroupID, "FK_Sales_SpecialDeals_BuyingGroupID");
 
-            entity.HasIndex(e => e.CustomerCategoryId, "FK_Sales_SpecialDeals_CustomerCategoryID");
+            entity.HasIndex(e => e.CustomerCategoryID, "FK_Sales_SpecialDeals_CustomerCategoryID");
 
-            entity.HasIndex(e => e.CustomerId, "FK_Sales_SpecialDeals_CustomerID");
+            entity.HasIndex(e => e.CustomerID, "FK_Sales_SpecialDeals_CustomerID");
 
-            entity.HasIndex(e => e.StockGroupId, "FK_Sales_SpecialDeals_StockGroupID");
+            entity.HasIndex(e => e.StockGroupID, "FK_Sales_SpecialDeals_StockGroupID");
 
-            entity.HasIndex(e => e.StockItemId, "FK_Sales_SpecialDeals_StockItemID");
+            entity.HasIndex(e => e.StockItemID, "FK_Sales_SpecialDeals_StockItemID");
 
-            entity.Property(e => e.SpecialDealId)
-                .HasColumnName("SpecialDealID")
-                .HasDefaultValueSql("(NEXT VALUE FOR [Sequences].[SpecialDealID])");
-
-            entity.Property(e => e.BuyingGroupId).HasColumnName("BuyingGroupID");
-
-            entity.Property(e => e.CustomerCategoryId).HasColumnName("CustomerCategoryID");
-
-            entity.Property(e => e.CustomerId).HasColumnName("CustomerID");
+            entity.Property(e => e.SpecialDealID).HasDefaultValueSql("(NEXT VALUE FOR [Sequences].[SpecialDealID])");
 
             entity.Property(e => e.DealDescription)
                 .IsRequired()
@@ -48,25 +40,21 @@ namespace wwi.bl.EF.Configurations
 
             entity.Property(e => e.StartDate).HasColumnType("date");
 
-            entity.Property(e => e.StockGroupId).HasColumnName("StockGroupID");
-
-            entity.Property(e => e.StockItemId).HasColumnName("StockItemID");
-
             entity.Property(e => e.UnitPrice).HasColumnType("decimal(18, 2)");
 
             entity.HasOne(d => d.BuyingGroup)
                 .WithMany(p => p.SpecialDeals)
-                .HasForeignKey(d => d.BuyingGroupId)
+                .HasForeignKey(d => d.BuyingGroupID)
                 .HasConstraintName("FK_Sales_SpecialDeals_BuyingGroupID_Sales_BuyingGroups");
 
             entity.HasOne(d => d.CustomerCategory)
                 .WithMany(p => p.SpecialDeals)
-                .HasForeignKey(d => d.CustomerCategoryId)
+                .HasForeignKey(d => d.CustomerCategoryID)
                 .HasConstraintName("FK_Sales_SpecialDeals_CustomerCategoryID_Sales_CustomerCategories");
 
             entity.HasOne(d => d.Customer)
                 .WithMany(p => p.SpecialDeals)
-                .HasForeignKey(d => d.CustomerId)
+                .HasForeignKey(d => d.CustomerID)
                 .HasConstraintName("FK_Sales_SpecialDeals_CustomerID_Sales_Customers");
 
             entity.HasOne(d => d.LastEditedByNavigation)
@@ -77,12 +65,12 @@ namespace wwi.bl.EF.Configurations
 
             entity.HasOne(d => d.StockGroup)
                 .WithMany(p => p.SpecialDeals)
-                .HasForeignKey(d => d.StockGroupId)
+                .HasForeignKey(d => d.StockGroupID)
                 .HasConstraintName("FK_Sales_SpecialDeals_StockGroupID_Warehouse_StockGroups");
 
             entity.HasOne(d => d.StockItem)
                 .WithMany(p => p.SpecialDeals)
-                .HasForeignKey(d => d.StockItemId)
+                .HasForeignKey(d => d.StockItemID)
                 .HasConstraintName("FK_Sales_SpecialDeals_StockItemID_Warehouse_StockItems");
 
             OnConfigurePartial(entity);

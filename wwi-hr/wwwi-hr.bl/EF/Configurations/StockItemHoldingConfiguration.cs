@@ -12,14 +12,12 @@ namespace wwi.bl.EF.Configurations
     {
         public void Configure(EntityTypeBuilder<StockItemHolding> entity)
         {
-            entity.HasKey(e => e.StockItemId)
+            entity.HasKey(e => e.StockItemID)
                 .HasName("PK_Warehouse_StockItemHoldings");
 
             entity.ToTable("StockItemHoldings", "Warehouse");
 
-            entity.Property(e => e.StockItemId)
-                .ValueGeneratedNever()
-                .HasColumnName("StockItemID");
+            entity.Property(e => e.StockItemID).ValueGeneratedNever();
 
             entity.Property(e => e.BinLocation)
                 .IsRequired()
@@ -37,7 +35,7 @@ namespace wwi.bl.EF.Configurations
 
             entity.HasOne(d => d.StockItem)
                 .WithOne(p => p.StockItemHolding)
-                .HasForeignKey<StockItemHolding>(d => d.StockItemId)
+                .HasForeignKey<StockItemHolding>(d => d.StockItemID)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("PKFK_Warehouse_StockItemHoldings_StockItemID_Warehouse_StockItems");
 

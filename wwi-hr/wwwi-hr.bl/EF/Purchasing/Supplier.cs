@@ -15,14 +15,14 @@ namespace wwi.bl.EF
             SupplierTransactions = new HashSet<SupplierTransaction>();
         }
 
-        public int SupplierId { get; set; }
+        public int SupplierID { get; set; }
         public string SupplierName { get; set; }
-        public int SupplierCategoryId { get; set; }
-        public int PrimaryContactPersonId { get; set; }
-        public int AlternateContactPersonId { get; set; }
-        public int? DeliveryMethodId { get; set; }
-        public int DeliveryCityId { get; set; }
-        public int PostalCityId { get; set; }
+        public int SupplierCategoryID { get; set; }
+        public int PrimaryContactPersonID { get; set; }
+        public int AlternateContactPersonID { get; set; }
+        public int? DeliveryMethodID { get; set; }
+        public int DeliveryCityID { get; set; }
+        public int PostalCityID { get; set; }
         public string SupplierReference { get; set; }
         public string BankAccountName { get; set; }
         public string BankAccountBranch { get; set; }
@@ -33,7 +33,7 @@ namespace wwi.bl.EF
         public string InternalComments { get; set; }
         public string PhoneNumber { get; set; }
         public string FaxNumber { get; set; }
-        public string WebsiteUrl { get; set; }
+        public string WebsiteURL { get; set; }
         public string DeliveryAddressLine1 { get; set; }
         public string DeliveryAddressLine2 { get; set; }
         public string DeliveryPostalCode { get; set; }

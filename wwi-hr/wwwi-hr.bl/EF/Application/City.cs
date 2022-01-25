@@ -17,9 +17,9 @@ namespace wwi.bl.EF
             SystemParameterPostalCities = new HashSet<SystemParameter>();
         }
 
-        public int CityId { get; set; }
+        public int CityID { get; set; }
         public string CityName { get; set; }
-        public int StateProvinceId { get; set; }
+        public int StateProvinceID { get; set; }
         public long? LatestRecordedPopulation { get; set; }
         public int LastEditedBy { get; set; }
 

@@ -7,7 +7,7 @@ namespace wwi.bl.EF
 {
     public partial class Customer1
     {
-        public int CustomerId { get; set; }
+        public int CustomerID { get; set; }
         public string CustomerName { get; set; }
         public string CustomerCategoryName { get; set; }
         public string PrimaryContact { get; set; }
@@ -15,7 +15,7 @@ namespace wwi.bl.EF
         public string PhoneNumber { get; set; }
         public string FaxNumber { get; set; }
         public string BuyingGroupName { get; set; }
-        public string WebsiteUrl { get; set; }
+        public string WebsiteURL { get; set; }
         public string DeliveryMethod { get; set; }
         public string CityName { get; set; }
         public string DeliveryRun { get; set; }

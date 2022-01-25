@@ -26,17 +26,13 @@ namespace wwi.bl.EF.Configurations
     }
 ));
 
-            entity.HasIndex(e => e.StateProvinceId, "FK_Application_Cities_StateProvinceID");
+            entity.HasIndex(e => e.StateProvinceID, "FK_Application_Cities_StateProvinceID");
 
-            entity.Property(e => e.CityId)
-                .HasColumnName("CityID")
-                .HasDefaultValueSql("(NEXT VALUE FOR [Sequences].[CityID])");
+            entity.Property(e => e.CityID).HasDefaultValueSql("(NEXT VALUE FOR [Sequences].[CityID])");
 
             entity.Property(e => e.CityName)
                 .IsRequired()
                 .HasMaxLength(50);
-
-            entity.Property(e => e.StateProvinceId).HasColumnName("StateProvinceID");
 
             entity.HasOne(d => d.LastEditedByNavigation)
                 .WithMany(p => p.Cities)
@@ -46,7 +42,7 @@ namespace wwi.bl.EF.Configurations
 
             entity.HasOne(d => d.StateProvince)
                 .WithMany(p => p.Cities)
-                .HasForeignKey(d => d.StateProvinceId)
+                .HasForeignKey(d => d.StateProvinceID)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Application_Cities_StateProvinceID_Application_StateProvinces");
 

@@ -29,9 +29,7 @@ namespace wwi.bl.EF.Configurations
             entity.HasIndex(e => e.StockGroupName, "UQ_Warehouse_StockGroups_StockGroupName")
                 .IsUnique();
 
-            entity.Property(e => e.StockGroupId)
-                .HasColumnName("StockGroupID")
-                .HasDefaultValueSql("(NEXT VALUE FOR [Sequences].[StockGroupID])");
+            entity.Property(e => e.StockGroupID).HasDefaultValueSql("(NEXT VALUE FOR [Sequences].[StockGroupID])");
 
             entity.Property(e => e.StockGroupName)
                 .IsRequired()

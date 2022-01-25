@@ -12,7 +12,7 @@ namespace wwi.bl.EF.Configurations
     {
         public void Configure(EntityTypeBuilder<CustomerTransaction> entity)
         {
-            entity.HasKey(e => e.CustomerTransactionId)
+            entity.HasKey(e => e.CustomerTransactionID)
                 .HasName("PK_Sales_CustomerTransactions")
                 .IsClustered(false);
 
@@ -21,27 +21,21 @@ namespace wwi.bl.EF.Configurations
             entity.HasIndex(e => e.TransactionDate, "CX_Sales_CustomerTransactions")
                 .IsClustered();
 
-            entity.HasIndex(e => new { e.TransactionDate, e.CustomerId }, "FK_Sales_CustomerTransactions_CustomerID");
+            entity.HasIndex(e => new { e.TransactionDate, e.CustomerID }, "FK_Sales_CustomerTransactions_CustomerID");
 
-            entity.HasIndex(e => new { e.TransactionDate, e.InvoiceId }, "FK_Sales_CustomerTransactions_InvoiceID");
+            entity.HasIndex(e => new { e.TransactionDate, e.InvoiceID }, "FK_Sales_CustomerTransactions_InvoiceID");
 
-            entity.HasIndex(e => new { e.TransactionDate, e.PaymentMethodId }, "FK_Sales_CustomerTransactions_PaymentMethodID");
+            entity.HasIndex(e => new { e.TransactionDate, e.PaymentMethodID }, "FK_Sales_CustomerTransactions_PaymentMethodID");
 
-            entity.HasIndex(e => new { e.TransactionDate, e.TransactionTypeId }, "FK_Sales_CustomerTransactions_TransactionTypeID");
+            entity.HasIndex(e => new { e.TransactionDate, e.TransactionTypeID }, "FK_Sales_CustomerTransactions_TransactionTypeID");
 
             entity.HasIndex(e => new { e.TransactionDate, e.IsFinalized }, "IX_Sales_CustomerTransactions_IsFinalized");
 
-            entity.Property(e => e.CustomerTransactionId)
-                .HasColumnName("CustomerTransactionID")
-                .HasDefaultValueSql("(NEXT VALUE FOR [Sequences].[TransactionID])");
+            entity.Property(e => e.CustomerTransactionID).HasDefaultValueSql("(NEXT VALUE FOR [Sequences].[TransactionID])");
 
             entity.Property(e => e.AmountExcludingTax).HasColumnType("decimal(18, 2)");
 
-            entity.Property(e => e.CustomerId).HasColumnName("CustomerID");
-
             entity.Property(e => e.FinalizationDate).HasColumnType("date");
-
-            entity.Property(e => e.InvoiceId).HasColumnName("InvoiceID");
 
             entity.Property(e => e.IsFinalized).HasComputedColumnSql("(case when [FinalizationDate] IS NULL then CONVERT([bit],(0)) else CONVERT([bit],(1)) end)", true);
 
@@ -49,25 +43,21 @@ namespace wwi.bl.EF.Configurations
 
             entity.Property(e => e.OutstandingBalance).HasColumnType("decimal(18, 2)");
 
-            entity.Property(e => e.PaymentMethodId).HasColumnName("PaymentMethodID");
-
             entity.Property(e => e.TaxAmount).HasColumnType("decimal(18, 2)");
 
             entity.Property(e => e.TransactionAmount).HasColumnType("decimal(18, 2)");
 
             entity.Property(e => e.TransactionDate).HasColumnType("date");
 
-            entity.Property(e => e.TransactionTypeId).HasColumnName("TransactionTypeID");
-
             entity.HasOne(d => d.Customer)
                 .WithMany(p => p.CustomerTransactions)
-                .HasForeignKey(d => d.CustomerId)
+                .HasForeignKey(d => d.CustomerID)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Sales_CustomerTransactions_CustomerID_Sales_Customers");
 
             entity.HasOne(d => d.Invoice)
                 .WithMany(p => p.CustomerTransactions)
-                .HasForeignKey(d => d.InvoiceId)
+                .HasForeignKey(d => d.InvoiceID)
                 .HasConstraintName("FK_Sales_CustomerTransactions_InvoiceID_Sales_Invoices");
 
             entity.HasOne(d => d.LastEditedByNavigation)
@@ -78,12 +68,12 @@ namespace wwi.bl.EF.Configurations
 
             entity.HasOne(d => d.PaymentMethod)
                 .WithMany(p => p.CustomerTransactions)
-                .HasForeignKey(d => d.PaymentMethodId)
+                .HasForeignKey(d => d.PaymentMethodID)
                 .HasConstraintName("FK_Sales_CustomerTransactions_PaymentMethodID_Application_PaymentMethods");
 
             entity.HasOne(d => d.TransactionType)
                 .WithMany(p => p.CustomerTransactions)
-                .HasForeignKey(d => d.TransactionTypeId)
+                .HasForeignKey(d => d.TransactionTypeID)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Sales_CustomerTransactions_TransactionTypeID_Application_TransactionTypes");
 

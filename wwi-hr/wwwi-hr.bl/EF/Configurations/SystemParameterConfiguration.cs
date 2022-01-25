@@ -14,13 +14,11 @@ namespace wwi.bl.EF.Configurations
         {
             entity.ToTable("SystemParameters", "Application");
 
-            entity.HasIndex(e => e.DeliveryCityId, "FK_Application_SystemParameters_DeliveryCityID");
+            entity.HasIndex(e => e.DeliveryCityID, "FK_Application_SystemParameters_DeliveryCityID");
 
-            entity.HasIndex(e => e.PostalCityId, "FK_Application_SystemParameters_PostalCityID");
+            entity.HasIndex(e => e.PostalCityID, "FK_Application_SystemParameters_PostalCityID");
 
-            entity.Property(e => e.SystemParameterId)
-                .HasColumnName("SystemParameterID")
-                .HasDefaultValueSql("(NEXT VALUE FOR [Sequences].[SystemParameterID])");
+            entity.Property(e => e.SystemParameterID).HasDefaultValueSql("(NEXT VALUE FOR [Sequences].[SystemParameterID])");
 
             entity.Property(e => e.ApplicationSettings).IsRequired();
 
@@ -29,8 +27,6 @@ namespace wwi.bl.EF.Configurations
                 .HasMaxLength(60);
 
             entity.Property(e => e.DeliveryAddressLine2).HasMaxLength(60);
-
-            entity.Property(e => e.DeliveryCityId).HasColumnName("DeliveryCityID");
 
             entity.Property(e => e.DeliveryPostalCode)
                 .IsRequired()
@@ -44,15 +40,13 @@ namespace wwi.bl.EF.Configurations
 
             entity.Property(e => e.PostalAddressLine2).HasMaxLength(60);
 
-            entity.Property(e => e.PostalCityId).HasColumnName("PostalCityID");
-
             entity.Property(e => e.PostalPostalCode)
                 .IsRequired()
                 .HasMaxLength(10);
 
             entity.HasOne(d => d.DeliveryCity)
                 .WithMany(p => p.SystemParameterDeliveryCities)
-                .HasForeignKey(d => d.DeliveryCityId)
+                .HasForeignKey(d => d.DeliveryCityID)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Application_SystemParameters_DeliveryCityID_Application_Cities");
 
@@ -64,7 +58,7 @@ namespace wwi.bl.EF.Configurations
 
             entity.HasOne(d => d.PostalCity)
                 .WithMany(p => p.SystemParameterPostalCities)
-                .HasForeignKey(d => d.PostalCityId)
+                .HasForeignKey(d => d.PostalCityID)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Application_SystemParameters_PostalCityID_Application_Cities");
 

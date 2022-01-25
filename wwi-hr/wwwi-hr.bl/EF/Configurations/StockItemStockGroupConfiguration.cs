@@ -14,21 +14,15 @@ namespace wwi.bl.EF.Configurations
         {
             entity.ToTable("StockItemStockGroups", "Warehouse");
 
-            entity.HasIndex(e => new { e.StockGroupId, e.StockItemId }, "UQ_StockItemStockGroups_StockGroupID_Lookup")
+            entity.HasIndex(e => new { e.StockGroupID, e.StockItemID }, "UQ_StockItemStockGroups_StockGroupID_Lookup")
                 .IsUnique();
 
-            entity.HasIndex(e => new { e.StockItemId, e.StockGroupId }, "UQ_StockItemStockGroups_StockItemID_Lookup")
+            entity.HasIndex(e => new { e.StockItemID, e.StockGroupID }, "UQ_StockItemStockGroups_StockItemID_Lookup")
                 .IsUnique();
 
-            entity.Property(e => e.StockItemStockGroupId)
-                .HasColumnName("StockItemStockGroupID")
-                .HasDefaultValueSql("(NEXT VALUE FOR [Sequences].[StockItemStockGroupID])");
+            entity.Property(e => e.StockItemStockGroupID).HasDefaultValueSql("(NEXT VALUE FOR [Sequences].[StockItemStockGroupID])");
 
             entity.Property(e => e.LastEditedWhen).HasDefaultValueSql("(sysdatetime())");
-
-            entity.Property(e => e.StockGroupId).HasColumnName("StockGroupID");
-
-            entity.Property(e => e.StockItemId).HasColumnName("StockItemID");
 
             entity.HasOne(d => d.LastEditedByNavigation)
                 .WithMany(p => p.StockItemStockGroups)
@@ -38,13 +32,13 @@ namespace wwi.bl.EF.Configurations
 
             entity.HasOne(d => d.StockGroup)
                 .WithMany(p => p.StockItemStockGroups)
-                .HasForeignKey(d => d.StockGroupId)
+                .HasForeignKey(d => d.StockGroupID)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Warehouse_StockItemStockGroups_StockGroupID_Warehouse_StockGroups");
 
             entity.HasOne(d => d.StockItem)
                 .WithMany(p => p.StockItemStockGroups)
-                .HasForeignKey(d => d.StockItemId)
+                .HasForeignKey(d => d.StockItemID)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Warehouse_StockItemStockGroups_StockItemID_Warehouse_StockItems");
 

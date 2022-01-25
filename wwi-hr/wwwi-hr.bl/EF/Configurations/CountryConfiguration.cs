@@ -32,9 +32,7 @@ namespace wwi.bl.EF.Configurations
             entity.HasIndex(e => e.FormalName, "UQ_Application_Countries_FormalName")
                 .IsUnique();
 
-            entity.Property(e => e.CountryId)
-                .HasColumnName("CountryID")
-                .HasDefaultValueSql("(NEXT VALUE FOR [Sequences].[CountryID])");
+            entity.Property(e => e.CountryID).HasDefaultValueSql("(NEXT VALUE FOR [Sequences].[CountryID])");
 
             entity.Property(e => e.Continent)
                 .IsRequired()

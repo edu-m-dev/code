@@ -26,28 +26,22 @@ namespace wwi.bl.EF.Configurations
     }
 ));
 
-            entity.HasIndex(e => e.ColorId, "FK_Warehouse_StockItems_ColorID");
+            entity.HasIndex(e => e.ColorID, "FK_Warehouse_StockItems_ColorID");
 
-            entity.HasIndex(e => e.OuterPackageId, "FK_Warehouse_StockItems_OuterPackageID");
+            entity.HasIndex(e => e.OuterPackageID, "FK_Warehouse_StockItems_OuterPackageID");
 
-            entity.HasIndex(e => e.SupplierId, "FK_Warehouse_StockItems_SupplierID");
+            entity.HasIndex(e => e.SupplierID, "FK_Warehouse_StockItems_SupplierID");
 
-            entity.HasIndex(e => e.UnitPackageId, "FK_Warehouse_StockItems_UnitPackageID");
+            entity.HasIndex(e => e.UnitPackageID, "FK_Warehouse_StockItems_UnitPackageID");
 
             entity.HasIndex(e => e.StockItemName, "UQ_Warehouse_StockItems_StockItemName")
                 .IsUnique();
 
-            entity.Property(e => e.StockItemId)
-                .HasColumnName("StockItemID")
-                .HasDefaultValueSql("(NEXT VALUE FOR [Sequences].[StockItemID])");
+            entity.Property(e => e.StockItemID).HasDefaultValueSql("(NEXT VALUE FOR [Sequences].[StockItemID])");
 
             entity.Property(e => e.Barcode).HasMaxLength(50);
 
             entity.Property(e => e.Brand).HasMaxLength(50);
-
-            entity.Property(e => e.ColorId).HasColumnName("ColorID");
-
-            entity.Property(e => e.OuterPackageId).HasColumnName("OuterPackageID");
 
             entity.Property(e => e.RecommendedRetailPrice).HasColumnType("decimal(18, 2)");
 
@@ -61,21 +55,17 @@ namespace wwi.bl.EF.Configurations
                 .IsRequired()
                 .HasMaxLength(100);
 
-            entity.Property(e => e.SupplierId).HasColumnName("SupplierID");
-
             entity.Property(e => e.Tags).HasComputedColumnSql("(json_query([CustomFields],N'$.Tags'))", false);
 
             entity.Property(e => e.TaxRate).HasColumnType("decimal(18, 3)");
 
             entity.Property(e => e.TypicalWeightPerUnit).HasColumnType("decimal(18, 3)");
 
-            entity.Property(e => e.UnitPackageId).HasColumnName("UnitPackageID");
-
             entity.Property(e => e.UnitPrice).HasColumnType("decimal(18, 2)");
 
             entity.HasOne(d => d.Color)
                 .WithMany(p => p.StockItems)
-                .HasForeignKey(d => d.ColorId)
+                .HasForeignKey(d => d.ColorID)
                 .HasConstraintName("FK_Warehouse_StockItems_ColorID_Warehouse_Colors");
 
             entity.HasOne(d => d.LastEditedByNavigation)
@@ -86,19 +76,19 @@ namespace wwi.bl.EF.Configurations
 
             entity.HasOne(d => d.OuterPackage)
                 .WithMany(p => p.StockItemOuterPackages)
-                .HasForeignKey(d => d.OuterPackageId)
+                .HasForeignKey(d => d.OuterPackageID)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Warehouse_StockItems_OuterPackageID_Warehouse_PackageTypes");
 
             entity.HasOne(d => d.Supplier)
                 .WithMany(p => p.StockItems)
-                .HasForeignKey(d => d.SupplierId)
+                .HasForeignKey(d => d.SupplierID)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Warehouse_StockItems_SupplierID_Purchasing_Suppliers");
 
             entity.HasOne(d => d.UnitPackage)
                 .WithMany(p => p.StockItemUnitPackages)
-                .HasForeignKey(d => d.UnitPackageId)
+                .HasForeignKey(d => d.UnitPackageID)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Warehouse_StockItems_UnitPackageID_Warehouse_PackageTypes");
 

@@ -29,9 +29,7 @@ namespace wwi.bl.EF.Configurations
             entity.HasIndex(e => e.SupplierCategoryName, "UQ_Purchasing_SupplierCategories_SupplierCategoryName")
                 .IsUnique();
 
-            entity.Property(e => e.SupplierCategoryId)
-                .HasColumnName("SupplierCategoryID")
-                .HasDefaultValueSql("(NEXT VALUE FOR [Sequences].[SupplierCategoryID])");
+            entity.Property(e => e.SupplierCategoryID).HasDefaultValueSql("(NEXT VALUE FOR [Sequences].[SupplierCategoryID])");
 
             entity.Property(e => e.SupplierCategoryName)
                 .IsRequired()

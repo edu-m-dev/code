@@ -12,7 +12,7 @@ namespace wwi.bl.EF
             StateProvinces = new HashSet<StateProvince>();
         }
 
-        public int CountryId { get; set; }
+        public int CountryID { get; set; }
         public string CountryName { get; set; }
         public string FormalName { get; set; }
         public string IsoAlpha3Code { get; set; }

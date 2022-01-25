@@ -12,7 +12,7 @@ namespace wwi.bl.EF.Configurations
     {
         public void Configure(EntityTypeBuilder<SupplierTransaction> entity)
         {
-            entity.HasKey(e => e.SupplierTransactionId)
+            entity.HasKey(e => e.SupplierTransactionID)
                 .HasName("PK_Purchasing_SupplierTransactions")
                 .IsClustered(false);
 
@@ -21,19 +21,17 @@ namespace wwi.bl.EF.Configurations
             entity.HasIndex(e => e.TransactionDate, "CX_Purchasing_SupplierTransactions")
                 .IsClustered();
 
-            entity.HasIndex(e => new { e.TransactionDate, e.PaymentMethodId }, "FK_Purchasing_SupplierTransactions_PaymentMethodID");
+            entity.HasIndex(e => new { e.TransactionDate, e.PaymentMethodID }, "FK_Purchasing_SupplierTransactions_PaymentMethodID");
 
-            entity.HasIndex(e => new { e.TransactionDate, e.PurchaseOrderId }, "FK_Purchasing_SupplierTransactions_PurchaseOrderID");
+            entity.HasIndex(e => new { e.TransactionDate, e.PurchaseOrderID }, "FK_Purchasing_SupplierTransactions_PurchaseOrderID");
 
-            entity.HasIndex(e => new { e.TransactionDate, e.SupplierId }, "FK_Purchasing_SupplierTransactions_SupplierID");
+            entity.HasIndex(e => new { e.TransactionDate, e.SupplierID }, "FK_Purchasing_SupplierTransactions_SupplierID");
 
-            entity.HasIndex(e => new { e.TransactionDate, e.TransactionTypeId }, "FK_Purchasing_SupplierTransactions_TransactionTypeID");
+            entity.HasIndex(e => new { e.TransactionDate, e.TransactionTypeID }, "FK_Purchasing_SupplierTransactions_TransactionTypeID");
 
             entity.HasIndex(e => new { e.TransactionDate, e.IsFinalized }, "IX_Purchasing_SupplierTransactions_IsFinalized");
 
-            entity.Property(e => e.SupplierTransactionId)
-                .HasColumnName("SupplierTransactionID")
-                .HasDefaultValueSql("(NEXT VALUE FOR [Sequences].[TransactionID])");
+            entity.Property(e => e.SupplierTransactionID).HasDefaultValueSql("(NEXT VALUE FOR [Sequences].[TransactionID])");
 
             entity.Property(e => e.AmountExcludingTax).HasColumnType("decimal(18, 2)");
 
@@ -45,12 +43,6 @@ namespace wwi.bl.EF.Configurations
 
             entity.Property(e => e.OutstandingBalance).HasColumnType("decimal(18, 2)");
 
-            entity.Property(e => e.PaymentMethodId).HasColumnName("PaymentMethodID");
-
-            entity.Property(e => e.PurchaseOrderId).HasColumnName("PurchaseOrderID");
-
-            entity.Property(e => e.SupplierId).HasColumnName("SupplierID");
-
             entity.Property(e => e.SupplierInvoiceNumber).HasMaxLength(20);
 
             entity.Property(e => e.TaxAmount).HasColumnType("decimal(18, 2)");
@@ -58,8 +50,6 @@ namespace wwi.bl.EF.Configurations
             entity.Property(e => e.TransactionAmount).HasColumnType("decimal(18, 2)");
 
             entity.Property(e => e.TransactionDate).HasColumnType("date");
-
-            entity.Property(e => e.TransactionTypeId).HasColumnName("TransactionTypeID");
 
             entity.HasOne(d => d.LastEditedByNavigation)
                 .WithMany(p => p.SupplierTransactions)
@@ -69,23 +59,23 @@ namespace wwi.bl.EF.Configurations
 
             entity.HasOne(d => d.PaymentMethod)
                 .WithMany(p => p.SupplierTransactions)
-                .HasForeignKey(d => d.PaymentMethodId)
+                .HasForeignKey(d => d.PaymentMethodID)
                 .HasConstraintName("FK_Purchasing_SupplierTransactions_PaymentMethodID_Application_PaymentMethods");
 
             entity.HasOne(d => d.PurchaseOrder)
                 .WithMany(p => p.SupplierTransactions)
-                .HasForeignKey(d => d.PurchaseOrderId)
+                .HasForeignKey(d => d.PurchaseOrderID)
                 .HasConstraintName("FK_Purchasing_SupplierTransactions_PurchaseOrderID_Purchasing_PurchaseOrders");
 
             entity.HasOne(d => d.Supplier)
                 .WithMany(p => p.SupplierTransactions)
-                .HasForeignKey(d => d.SupplierId)
+                .HasForeignKey(d => d.SupplierID)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Purchasing_SupplierTransactions_SupplierID_Purchasing_Suppliers");
 
             entity.HasOne(d => d.TransactionType)
                 .WithMany(p => p.SupplierTransactions)
-                .HasForeignKey(d => d.TransactionTypeId)
+                .HasForeignKey(d => d.TransactionTypeID)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_Purchasing_SupplierTransactions_TransactionTypeID_Application_TransactionTypes");
 

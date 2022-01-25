@@ -7,12 +7,12 @@ namespace wwi.bl.EF
 {
     public partial class SpecialDeal
     {
-        public int SpecialDealId { get; set; }
-        public int? StockItemId { get; set; }
-        public int? CustomerId { get; set; }
-        public int? BuyingGroupId { get; set; }
-        public int? CustomerCategoryId { get; set; }
-        public int? StockGroupId { get; set; }
+        public int SpecialDealID { get; set; }
+        public int? StockItemID { get; set; }
+        public int? CustomerID { get; set; }
+        public int? BuyingGroupID { get; set; }
+        public int? CustomerCategoryID { get; set; }
+        public int? StockGroupID { get; set; }
         public string DealDescription { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }

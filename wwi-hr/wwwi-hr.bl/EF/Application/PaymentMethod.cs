@@ -13,7 +13,7 @@ namespace wwi.bl.EF
             SupplierTransactions = new HashSet<SupplierTransaction>();
         }
 
-        public int PaymentMethodId { get; set; }
+        public int PaymentMethodID { get; set; }
         public string PaymentMethodName { get; set; }
         public int LastEditedBy { get; set; }
 

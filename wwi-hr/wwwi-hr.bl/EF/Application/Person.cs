@@ -52,7 +52,7 @@ namespace wwi.bl.EF
             TransactionTypes = new HashSet<TransactionType>();
         }
 
-        public int PersonId { get; set; }
+        public int PersonID { get; set; }
         public string FullName { get; set; }
         public string PreferredName { get; set; }
         public string SearchName { get; set; }

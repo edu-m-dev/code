@@ -12,10 +12,10 @@ namespace wwi.bl.EF
             Cities = new HashSet<City>();
         }
 
-        public int StateProvinceId { get; set; }
+        public int StateProvinceID { get; set; }
         public string StateProvinceCode { get; set; }
         public string StateProvinceName { get; set; }
-        public int CountryId { get; set; }
+        public int CountryID { get; set; }
         public string SalesTerritory { get; set; }
         public long? LatestRecordedPopulation { get; set; }
         public int LastEditedBy { get; set; }

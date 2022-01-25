@@ -7,11 +7,11 @@ namespace wwi.bl.EF
 {
     public partial class InvoiceLine
     {
-        public int InvoiceLineId { get; set; }
-        public int InvoiceId { get; set; }
-        public int StockItemId { get; set; }
+        public int InvoiceLineID { get; set; }
+        public int InvoiceID { get; set; }
+        public int StockItemID { get; set; }
         public string Description { get; set; }
-        public int PackageTypeId { get; set; }
+        public int PackageTypeID { get; set; }
         public int Quantity { get; set; }
         public decimal? UnitPrice { get; set; }
         public decimal TaxRate { get; set; }

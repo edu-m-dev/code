@@ -32,11 +32,9 @@ namespace wwi.bl.EF.Configurations
 
             entity.HasIndex(e => e.IsSalesperson, "IX_Application_People_IsSalesperson");
 
-            entity.HasIndex(e => new { e.IsPermittedToLogon, e.PersonId }, "IX_Application_People_Perf_20160301_05");
+            entity.HasIndex(e => new { e.IsPermittedToLogon, e.PersonID }, "IX_Application_People_Perf_20160301_05");
 
-            entity.Property(e => e.PersonId)
-                .HasColumnName("PersonID")
-                .HasDefaultValueSql("(NEXT VALUE FOR [Sequences].[PersonID])");
+            entity.Property(e => e.PersonID).HasDefaultValueSql("(NEXT VALUE FOR [Sequences].[PersonID])");
 
             entity.Property(e => e.EmailAddress).HasMaxLength(256);
 
