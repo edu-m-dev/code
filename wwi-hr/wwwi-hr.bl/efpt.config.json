@@ -1,346 +1,346 @@
 ﻿{
-  "CodeGenerationMode": 2,
-  "ContextClassName": "WwiContext",
-  "ContextNamespace": null,
-  "DefaultDacpacSchema": null,
-  "FilterSchemas": false,
-  "IncludeConnectionString": true,
-  "ModelNamespace": null,
-  "OutputContextPath": null,
-  "OutputPath": "EF",
-  "ProjectRootNamespace": "wwi.bl",
-  "Schemas": null,
-  "SelectedHandlebarsLanguage": 0,
-  "SelectedToBeGenerated": 0,
-  "Tables": [
-    {
-      "Name": "[Application].[Cities]",
-      "ObjectType": 0
-    },
-    {
-      "Name": "[Application].[Countries]",
-      "ObjectType": 0
-    },
-    {
-      "Name": "[Application].[DeliveryMethods]",
-      "ObjectType": 0
-    },
-    {
-      "Name": "[Application].[PaymentMethods]",
-      "ObjectType": 0
-    },
-    {
-      "Name": "[Application].[People]",
-      "ObjectType": 0
-    },
-    {
-      "Name": "[Application].[StateProvinces]",
-      "ObjectType": 0
-    },
-    {
-      "Name": "[Application].[SystemParameters]",
-      "ObjectType": 0
-    },
-    {
-      "Name": "[Application].[TransactionTypes]",
-      "ObjectType": 0
-    },
-    {
-      "Name": "[Purchasing].[PurchaseOrderLines]",
-      "ObjectType": 0
-    },
-    {
-      "Name": "[Purchasing].[PurchaseOrders]",
-      "ObjectType": 0
-    },
-    {
-      "Name": "[Purchasing].[SupplierCategories]",
-      "ObjectType": 0
-    },
-    {
-      "Name": "[Purchasing].[Suppliers]",
-      "ObjectType": 0
-    },
-    {
-      "Name": "[Purchasing].[SupplierTransactions]",
-      "ObjectType": 0
-    },
-    {
-      "Name": "[Sales].[BuyingGroups]",
-      "ObjectType": 0
-    },
-    {
-      "Name": "[Sales].[CustomerCategories]",
-      "ObjectType": 0
-    },
-    {
-      "Name": "[Sales].[Customers]",
-      "ObjectType": 0
-    },
-    {
-      "Name": "[Sales].[CustomerTransactions]",
-      "ObjectType": 0
-    },
-    {
-      "Name": "[Sales].[InvoiceLines]",
-      "ObjectType": 0
-    },
-    {
-      "Name": "[Sales].[Invoices]",
-      "ObjectType": 0
-    },
-    {
-      "Name": "[Sales].[OrderLines]",
-      "ObjectType": 0
-    },
-    {
-      "Name": "[Sales].[Orders]",
-      "ObjectType": 0
-    },
-    {
-      "Name": "[Sales].[SpecialDeals]",
-      "ObjectType": 0
-    },
-    {
-      "Name": "[Warehouse].[ColdRoomTemperatures]",
-      "ObjectType": 0
-    },
-    {
-      "Name": "[Warehouse].[Colors]",
-      "ObjectType": 0
-    },
-    {
-      "Name": "[Warehouse].[PackageTypes]",
-      "ObjectType": 0
-    },
-    {
-      "Name": "[Warehouse].[StockGroups]",
-      "ObjectType": 0
-    },
-    {
-      "Name": "[Warehouse].[StockItemHoldings]",
-      "ObjectType": 0
-    },
-    {
-      "Name": "[Warehouse].[StockItems]",
-      "ObjectType": 0
-    },
-    {
-      "Name": "[Warehouse].[StockItemStockGroups]",
-      "ObjectType": 0
-    },
-    {
-      "Name": "[Warehouse].[StockItemTransactions]",
-      "ObjectType": 0
-    },
-    {
-      "Name": "[Warehouse].[VehicleTemperatures]",
-      "ObjectType": 0
-    },
-    {
-      "Name": "[Website].[Customers]",
-      "ObjectType": 3
-    },
-    {
-      "Name": "[Website].[Suppliers]",
-      "ObjectType": 3
-    },
-    {
-      "Name": "[Website].[VehicleTemperatures]",
-      "ObjectType": 3
-    },
-    {
-      "Name": "[Application].[AddRoleMemberIfNonexistent]",
-      "ObjectType": 1
-    },
-    {
-      "Name": "[Application].[Configuration_ApplyAuditing]",
-      "ObjectType": 1
-    },
-    {
-      "Name": "[Application].[Configuration_ApplyColumnstoreIndexing]",
-      "ObjectType": 1
-    },
-    {
-      "Name": "[Application].[Configuration_ApplyFullTextIndexing]",
-      "ObjectType": 1
-    },
-    {
-      "Name": "[Application].[Configuration_ApplyPartitioning]",
-      "ObjectType": 1
-    },
-    {
-      "Name": "[Application].[Configuration_ApplyRowLevelSecurity]",
-      "ObjectType": 1
-    },
-    {
-      "Name": "[Application].[Configuration_ConfigureForEnterpriseEdition]",
-      "ObjectType": 1
-    },
-    {
-      "Name": "[Application].[Configuration_EnableInMemory]",
-      "ObjectType": 1
-    },
-    {
-      "Name": "[Application].[Configuration_RemoveAuditing]",
-      "ObjectType": 1
-    },
-    {
-      "Name": "[Application].[Configuration_RemoveRowLevelSecurity]",
-      "ObjectType": 1
-    },
-    {
-      "Name": "[Application].[CreateRoleIfNonexistent]",
-      "ObjectType": 1
-    },
-    {
-      "Name": "[DataLoadSimulation].[Configuration_ApplyDataLoadSimulationProcedures]",
-      "ObjectType": 1
-    },
-    {
-      "Name": "[DataLoadSimulation].[Configuration_RemoveDataLoadSimulationProcedures]",
-      "ObjectType": 1
-    },
-    {
-      "Name": "[DataLoadSimulation].[DeactivateTemporalTablesBeforeDataLoad]",
-      "ObjectType": 1
-    },
-    {
-      "Name": "[DataLoadSimulation].[PopulateDataToCurrentDate]",
-      "ObjectType": 1
-    },
-    {
-      "Name": "[DataLoadSimulation].[ReactivateTemporalTablesAfterDataLoad]",
-      "ObjectType": 1
-    },
-    {
-      "Name": "[Integration].[GetCityUpdates]",
-      "ObjectType": 1
-    },
-    {
-      "Name": "[Integration].[GetCustomerUpdates]",
-      "ObjectType": 1
-    },
-    {
-      "Name": "[Integration].[GetEmployeeUpdates]",
-      "ObjectType": 1
-    },
-    {
-      "Name": "[Integration].[GetMovementUpdates]",
-      "ObjectType": 1
-    },
-    {
-      "Name": "[Integration].[GetOrderUpdates]",
-      "ObjectType": 1
-    },
-    {
-      "Name": "[Integration].[GetPaymentMethodUpdates]",
-      "ObjectType": 1
-    },
-    {
-      "Name": "[Integration].[GetPurchaseUpdates]",
-      "ObjectType": 1
-    },
-    {
-      "Name": "[Integration].[GetSaleUpdates]",
-      "ObjectType": 1
-    },
-    {
-      "Name": "[Integration].[GetStockHoldingUpdates]",
-      "ObjectType": 1
-    },
-    {
-      "Name": "[Integration].[GetStockItemUpdates]",
-      "ObjectType": 1
-    },
-    {
-      "Name": "[Integration].[GetSupplierUpdates]",
-      "ObjectType": 1
-    },
-    {
-      "Name": "[Integration].[GetTransactionTypeUpdates]",
-      "ObjectType": 1
-    },
-    {
-      "Name": "[Integration].[GetTransactionUpdates]",
-      "ObjectType": 1
-    },
-    {
-      "Name": "[Sequences].[ReseedAllSequences]",
-      "ObjectType": 1
-    },
-    {
-      "Name": "[Sequences].[ReseedSequenceBeyondTableValues]",
-      "ObjectType": 1
-    },
-    {
-      "Name": "[Website].[ActivateWebsiteLogon]",
-      "ObjectType": 1
-    },
-    {
-      "Name": "[Website].[ChangePassword]",
-      "ObjectType": 1
-    },
-    {
-      "Name": "[Website].[InsertCustomerOrders]",
-      "ObjectType": 1
-    },
-    {
-      "Name": "[Website].[InvoiceCustomerOrders]",
-      "ObjectType": 1
-    },
-    {
-      "Name": "[Website].[RecordColdRoomTemperatures]",
-      "ObjectType": 1
-    },
-    {
-      "Name": "[Website].[RecordVehicleTemperature]",
-      "ObjectType": 1
-    },
-    {
-      "Name": "[Website].[SearchForCustomers]",
-      "ObjectType": 1
-    },
-    {
-      "Name": "[Website].[SearchForPeople]",
-      "ObjectType": 1
-    },
-    {
-      "Name": "[Website].[SearchForStockItems]",
-      "ObjectType": 1
-    },
-    {
-      "Name": "[Website].[SearchForStockItemsByTags]",
-      "ObjectType": 1
-    },
-    {
-      "Name": "[Website].[SearchForSuppliers]",
-      "ObjectType": 1
-    },
-    {
-      "Name": "[Application].[DetermineCustomerAccess]",
-      "ObjectType": 2
-    },
-    {
-      "Name": "[Website].[CalculateCustomerPrice]",
-      "ObjectType": 2
-    }
-  ],
-  "UiHint": "PC_EXT_1\\DEV.WideWorldImporters",
-  "UseBoolPropertiesWithoutDefaultSql": false,
-  "UseDatabaseNames": true,
-  "UseDbContextSplitting": true,
-  "UseFluentApiOnly": true,
-  "UseHandleBars": false,
-  "UseInflector": true,
-  "UseLegacyPluralizer": false,
-  "UseManyToManyEntity": true,
-  "UseNoConstructor": false,
-  "UseNoDefaultConstructor": false,
-  "UseNoNavigations": false,
-  "UseNoObjectFilter": false,
-  "UseNodaTime": false,
-  "UseNullableReferences": false,
-  "UseSchemaFolders": true,
-  "UseSpatial": false
+   "CodeGenerationMode": 2,
+   "ContextClassName": "WwiContext",
+   "ContextNamespace": null,
+   "DefaultDacpacSchema": null,
+   "FilterSchemas": false,
+   "IncludeConnectionString": true,
+   "ModelNamespace": null,
+   "OutputContextPath": null,
+   "OutputPath": "EF",
+   "ProjectRootNamespace": "wwi.bl",
+   "Schemas": null,
+   "SelectedHandlebarsLanguage": 0,
+   "SelectedToBeGenerated": 0,
+   "Tables": [
+      {
+         "Name": "[Application].[Cities]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[Application].[Countries]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[Application].[DeliveryMethods]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[Application].[PaymentMethods]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[Application].[People]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[Application].[StateProvinces]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[Application].[SystemParameters]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[Application].[TransactionTypes]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[Purchasing].[PurchaseOrderLines]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[Purchasing].[PurchaseOrders]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[Purchasing].[SupplierCategories]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[Purchasing].[Suppliers]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[Purchasing].[SupplierTransactions]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[Sales].[BuyingGroups]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[Sales].[CustomerCategories]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[Sales].[Customers]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[Sales].[CustomerTransactions]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[Sales].[InvoiceLines]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[Sales].[Invoices]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[Sales].[OrderLines]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[Sales].[Orders]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[Sales].[SpecialDeals]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[Warehouse].[ColdRoomTemperatures]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[Warehouse].[Colors]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[Warehouse].[PackageTypes]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[Warehouse].[StockGroups]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[Warehouse].[StockItemHoldings]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[Warehouse].[StockItems]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[Warehouse].[StockItemStockGroups]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[Warehouse].[StockItemTransactions]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[Warehouse].[VehicleTemperatures]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[Website].[Customers]",
+         "ObjectType": 3
+      },
+      {
+         "Name": "[Website].[Suppliers]",
+         "ObjectType": 3
+      },
+      {
+         "Name": "[Website].[VehicleTemperatures]",
+         "ObjectType": 3
+      },
+      {
+         "Name": "[Application].[AddRoleMemberIfNonexistent]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[Application].[Configuration_ApplyAuditing]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[Application].[Configuration_ApplyColumnstoreIndexing]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[Application].[Configuration_ApplyFullTextIndexing]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[Application].[Configuration_ApplyPartitioning]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[Application].[Configuration_ApplyRowLevelSecurity]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[Application].[Configuration_ConfigureForEnterpriseEdition]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[Application].[Configuration_EnableInMemory]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[Application].[Configuration_RemoveAuditing]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[Application].[Configuration_RemoveRowLevelSecurity]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[Application].[CreateRoleIfNonexistent]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[DataLoadSimulation].[Configuration_ApplyDataLoadSimulationProcedures]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[DataLoadSimulation].[Configuration_RemoveDataLoadSimulationProcedures]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[DataLoadSimulation].[DeactivateTemporalTablesBeforeDataLoad]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[DataLoadSimulation].[PopulateDataToCurrentDate]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[DataLoadSimulation].[ReactivateTemporalTablesAfterDataLoad]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[Integration].[GetCityUpdates]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[Integration].[GetCustomerUpdates]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[Integration].[GetEmployeeUpdates]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[Integration].[GetMovementUpdates]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[Integration].[GetOrderUpdates]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[Integration].[GetPaymentMethodUpdates]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[Integration].[GetPurchaseUpdates]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[Integration].[GetSaleUpdates]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[Integration].[GetStockHoldingUpdates]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[Integration].[GetStockItemUpdates]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[Integration].[GetSupplierUpdates]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[Integration].[GetTransactionTypeUpdates]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[Integration].[GetTransactionUpdates]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[Sequences].[ReseedAllSequences]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[Sequences].[ReseedSequenceBeyondTableValues]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[Website].[ActivateWebsiteLogon]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[Website].[ChangePassword]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[Website].[InsertCustomerOrders]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[Website].[InvoiceCustomerOrders]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[Website].[RecordColdRoomTemperatures]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[Website].[RecordVehicleTemperature]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[Website].[SearchForCustomers]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[Website].[SearchForPeople]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[Website].[SearchForStockItems]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[Website].[SearchForStockItemsByTags]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[Website].[SearchForSuppliers]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[Application].[DetermineCustomerAccess]",
+         "ObjectType": 2
+      },
+      {
+         "Name": "[Website].[CalculateCustomerPrice]",
+         "ObjectType": 2
+      }
+   ],
+   "UiHint": "PC_EXT_1\\DEV.WideWorldImporters",
+   "UseBoolPropertiesWithoutDefaultSql": false,
+   "UseDatabaseNames": true,
+   "UseDbContextSplitting": true,
+   "UseFluentApiOnly": true,
+   "UseHandleBars": false,
+   "UseInflector": true,
+   "UseLegacyPluralizer": false,
+   "UseManyToManyEntity": true,
+   "UseNoConstructor": false,
+   "UseNoDefaultConstructor": false,
+   "UseNoNavigations": false,
+   "UseNoObjectFilter": false,
+   "UseNodaTime": false,
+   "UseNullableReferences": false,
+   "UseSchemaFolders": true,
+   "UseSpatial": false
 }
