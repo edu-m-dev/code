@@ -7,7 +7,7 @@ using wwi.bl.EF;
 
 namespace wwi.bl.EF
 {
-    public partial class WwiContext
+    public partial class WwiDbContext
     {
 
         [DbFunction("CalculateCustomerPrice", "Website")]

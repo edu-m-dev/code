@@ -8,13 +8,13 @@ using wwi.bl.EF.Configurations;
 
 namespace wwi.bl.EF
 {
-    public partial class WwiContext : DbContext
+    public partial class WwiDbContext : DbContext
     {
-        public WwiContext()
+        public WwiDbContext()
         {
         }
 
-        public WwiContext(DbContextOptions<WwiContext> options)
+        public WwiDbContext(DbContextOptions<WwiDbContext> options)
             : base(options)
         {
         }
@@ -53,15 +53,6 @@ namespace wwi.bl.EF
         public virtual DbSet<TransactionType> TransactionTypes { get; set; }
         public virtual DbSet<VehicleTemperature> VehicleTemperatures { get; set; }
         public virtual DbSet<VehicleTemperature1> VehicleTemperatures1 { get; set; }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            if (!optionsBuilder.IsConfigured)
-            {
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Data Source=.\\dev;Initial Catalog=WideWorldImporters;Persist Security Info=True;User ID=sa;Password=9ext945A%$");
-            }
-        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

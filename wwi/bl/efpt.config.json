@@ -1,10 +1,10 @@
 ﻿{
    "CodeGenerationMode": 2,
-   "ContextClassName": "WwiContext",
+   "ContextClassName": "WwiDbContext",
    "ContextNamespace": null,
    "DefaultDacpacSchema": null,
    "FilterSchemas": false,
-   "IncludeConnectionString": true,
+   "IncludeConnectionString": false,
    "ModelNamespace": null,
    "OutputContextPath": null,
    "OutputPath": "EF",

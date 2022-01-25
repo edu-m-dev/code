@@ -10,15 +10,15 @@ using wwi.bl.EF;
 
 namespace wwi.bl.EF
 {
-    public partial class WwiContext
+    public partial class WwiDbContext
     {
-        private WwiContextProcedures _procedures;
+        private WwiDbContextProcedures _procedures;
 
-        public virtual WwiContextProcedures Procedures
+        public virtual WwiDbContextProcedures Procedures
         {
             get
             {
-                if (_procedures is null) _procedures = new WwiContextProcedures(this);
+                if (_procedures is null) _procedures = new WwiDbContextProcedures(this);
                 return _procedures;
             }
             set
@@ -27,17 +27,17 @@ namespace wwi.bl.EF
             }
         }
 
-        public WwiContextProcedures GetProcedures()
+        public WwiDbContextProcedures GetProcedures()
         {
             return Procedures;
         }
     }
 
-    public partial class WwiContextProcedures
+    public partial class WwiDbContextProcedures
     {
-        private readonly WwiContext _context;
+        private readonly WwiDbContext _context;
 
-        public WwiContextProcedures(WwiContext context)
+        public WwiDbContextProcedures(WwiDbContext context)
         {
             _context = context;
         }
