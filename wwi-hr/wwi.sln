@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32112.339
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "wwi-hr.console", "wwi-hr.console\wwi-hr.console.csproj", "{EA8FE0D4-2C98-4936-9C36-989B49544C7E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "wwi.console", "wwi-hr.console\wwi.console.csproj", "{EA8FE0D4-2C98-4936-9C36-989B49544C7E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "wwwi-hr.bl", "wwwi-hr.bl\wwwi-hr.bl.csproj", "{B533B997-3055-46CC-8D6A-211627CF81A0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "wwi.bl", "wwwi-hr.bl\wwi.bl.csproj", "{B533B997-3055-46CC-8D6A-211627CF81A0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

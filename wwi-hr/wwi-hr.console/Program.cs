@@ -1,7 +1,7 @@
 ﻿using System;
-using wwi.hr.EF;
+using wwi.bl.EF;
 
-namespace wwi.hr
+namespace wwi.console
 {
     internal class Program
     {

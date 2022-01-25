@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace wwi.hr.EF
+namespace wwi.bl.EF
 {
     public partial class DeactivateTemporalTablesBeforeDataLoadResult
     {

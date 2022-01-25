@@ -9,7 +9,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace wwi.hr.EF
+namespace wwi.bl.EF
 {
     public static class DbContextExtensions
     {
@@ -75,6 +75,7 @@ namespace wwi.hr.EF
         private bool _valueSet = false;
 
         public TValue _value;
+
         public TValue Value
         {
             get
