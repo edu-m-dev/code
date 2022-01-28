@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System;
 using System.Reflection;
 using System.Threading.Tasks;
 using wwi.bl.EF;
@@ -26,7 +27,8 @@ namespace wwi.console
                     services.AddDbContext<WwiDbContext>(options =>
                         options.UseSqlServer(configuration.GetConnectionString("wwi")));
 
-                    services.AddMediatR(Assembly.GetExecutingAssembly());
+                    services.AddMediatR(AppDomain.CurrentDomain.GetAssemblies());
+                    services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
                     services.AddSingleton<IHostedService, ConsoleApp>();
                 });
     }

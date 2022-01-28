@@ -12,24 +12,51 @@ namespace wwi.console
     {
         private readonly ILogger _logger;
         private readonly IMediator _mediator;
-        private readonly WwiDbContext _wwiDbContext;
 
         public ConsoleApp(ILogger<ConsoleApp> logger, IMediator mediator, WwiDbContext wwiDbContext)
         {
             _logger = logger ?? throw new System.ArgumentNullException(nameof(logger));
             _mediator = mediator ?? throw new System.ArgumentNullException(nameof(mediator));
-            _wwiDbContext = wwiDbContext ?? throw new System.ArgumentNullException(nameof(wwiDbContext));
         }
 
-        public Task StartAsync(CancellationToken cancellationToken)
+        public async Task StartAsync(CancellationToken cancellationToken)
         {
-            var people = _wwiDbContext.People;
-            foreach (var person in people)
+            _logger.LogInformation("Starting application");
+            int choice = -1;
+            while (choice != 0)
             {
-                Console.WriteLine($"{ person.FullName}");
-            }
+                Console.WriteLine("Please choose one of the following options:");
+                Console.WriteLine("0. Exit");
+                Console.WriteLine("1. List People");
 
-            return Task.CompletedTask;
+                try
+                {
+                    choice = int.Parse(Console.ReadLine());
+                }
+                catch (FormatException)
+                {
+                    choice = -1;
+                }
+
+                switch (choice)
+                {
+                    case 0:
+                        Console.WriteLine("Bye...");
+                        break;
+
+                    case 1:
+                        var result = await _mediator.Send(new Features.People.Index.Query(), cancellationToken);
+                        foreach (var person in result.People)
+                        {
+                            Console.WriteLine(person.FullName);
+                        }
+                        break;
+
+                    default:
+                        Console.WriteLine("Invalid choice! Please try again.");
+                        break;
+                }
+            }
         }
 
         public Task StopAsync(CancellationToken cancellationToken)
