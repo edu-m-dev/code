@@ -28,13 +28,13 @@ namespace wwi.Features.People
 
         public class QueryHandler : IRequestHandler<Query, Result>
         {
-            private readonly WwiDbContext _dbContext;
             private readonly IConfigurationProvider _configurationProvider;
+            private readonly IDbContextFactory<WwiDbContext> _dbContextFactory;
 
-            public QueryHandler(WwiDbContext dbContext, IConfigurationProvider configurationProvider)
+            public QueryHandler(IConfigurationProvider configurationProvider, IDbContextFactory<WwiDbContext> dbContextFactory)
             {
-                _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
                 _configurationProvider = configurationProvider ?? throw new ArgumentNullException(nameof(configurationProvider));
+                _dbContextFactory = dbContextFactory ?? throw new ArgumentNullException(nameof(dbContextFactory));
             }
 
             public async Task<Result> Handle(Query query, CancellationToken cancellationToken)
@@ -44,7 +44,9 @@ namespace wwi.Features.People
                     SearchString = query.SearchString
                 };
 
-                IQueryable<bl.EF.Person> people = _dbContext.People;
+                using var dbContext = await _dbContextFactory.CreateDbContextAsync(cancellationToken);
+
+                IQueryable<bl.EF.Person> people = dbContext.People;
                 if (!string.IsNullOrWhiteSpace(query.SearchString))
                 {
                     people = people.Where(x => x.FullName.Contains(query.SearchString));
@@ -55,7 +57,7 @@ namespace wwi.Features.People
                     SearchString = query.SearchString,
                     People = await people
                         .ProjectTo<Person>(_configurationProvider)
-                        .ToListAsync()
+                        .ToListAsync(cancellationToken)
                 };
             }
         }

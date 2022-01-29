@@ -4,7 +4,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using System;
-using System.Reflection;
 using System.Threading.Tasks;
 using wwi.bl.EF;
 
@@ -24,7 +23,7 @@ namespace wwi.console
                 .ConfigureServices((hostingContext, services) =>
                 {
                     var configuration = hostingContext.Configuration;
-                    services.AddDbContext<WwiDbContext>(options =>
+                    services.AddDbContextFactory<WwiDbContext>(options =>
                         options.UseSqlServer(configuration.GetConnectionString("wwi")));
 
                     services.AddMediatR(AppDomain.CurrentDomain.GetAssemblies());
