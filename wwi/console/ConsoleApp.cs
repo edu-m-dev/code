@@ -13,7 +13,7 @@ namespace wwi.console
         private readonly ILogger _logger;
         private readonly IMediator _mediator;
 
-        public ConsoleApp(ILogger<ConsoleApp> logger, IMediator mediator, WwiDbContext wwiDbContext)
+        public ConsoleApp(ILogger<ConsoleApp> logger, IMediator mediator)
         {
             _logger = logger ?? throw new System.ArgumentNullException(nameof(logger));
             _mediator = mediator ?? throw new System.ArgumentNullException(nameof(mediator));

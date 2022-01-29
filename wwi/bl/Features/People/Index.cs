@@ -10,20 +10,20 @@ namespace wwi.Features.People
     {
         public class Query : IRequest<Result>
         {
-            public string SearchString { get; init; }
+            public string? SearchString { get; init; }
         }
 
         public class Result
         {
-            public string SearchString { get; init; }
-            public IReadOnlyCollection<Person> People { get; init; }
+            public string? SearchString { get; init; }
+            public IReadOnlyCollection<Person> People { get; init; } = new List<Person>();
         }
 
         public class Person
         {
             public int PersonID { get; init; }
-            public string FullName { get; init; }
-            public string PreferredName { get; init; }
+            public string? FullName { get; init; }
+            public string? PreferredName { get; init; }
         }
 
         public class QueryHandler : IRequestHandler<Query, Result>
