@@ -4,7 +4,7 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 using AutoMapper;
 
-namespace wwi.Features.People
+namespace wwi.bl.Features.People
 {
     public class Index
     {

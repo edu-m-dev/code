@@ -3,8 +3,8 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net6.0</TargetFramework>
-    <AssemblyName>wwi-hr</AssemblyName>
-    <RootNamespace>wwi.hr</RootNamespace>
+    <AssemblyName>wwi-console</AssemblyName>
+    <RootNamespace>wwi</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

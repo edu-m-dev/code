@@ -44,7 +44,7 @@ namespace wwi.console
                         break;
 
                     case 1:
-                        var result = await _mediator.Send(new Features.People.Index.Query(), cancellationToken);
+                        var result = await _mediator.Send(new bl.Features.People.Index.Query(), cancellationToken);
                         foreach (var person in result.People)
                         {
                             Console.WriteLine(person.FullName);

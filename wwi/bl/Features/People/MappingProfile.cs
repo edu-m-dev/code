@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using wwi.bl.EF;
 
-namespace wwi.Features.People
+namespace wwi.bl.Features.People
 {
     public class MappingProfile : Profile
     {
