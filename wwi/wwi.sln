@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "wwi.console", "console\wwi.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "wwi.web", "web\wwi.web.csproj", "{C67192F5-3598-4370-8550-587F2E2095A0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "tests", "tests\tests.csproj", "{6B40AB4D-7E1B-4C47-840A-CA3AE8F0A1A7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{C67192F5-3598-4370-8550-587F2E2095A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C67192F5-3598-4370-8550-587F2E2095A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C67192F5-3598-4370-8550-587F2E2095A0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6B40AB4D-7E1B-4C47-840A-CA3AE8F0A1A7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B40AB4D-7E1B-4C47-840A-CA3AE8F0A1A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B40AB4D-7E1B-4C47-840A-CA3AE8F0A1A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B40AB4D-7E1B-4C47-840A-CA3AE8F0A1A7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
