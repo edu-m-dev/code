@@ -1,11 +1,7 @@
-﻿using MediatR;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
 using System.Threading.Tasks;
-using wwi.bl.EF;
+using wwwi.bl.DI;
 
 namespace wwi.console
 {
@@ -14,7 +10,6 @@ namespace wwi.console
         public static async Task Main(string[] args)
         {
             var hostBuilder = CreateHostBuilder(args);
-
             await hostBuilder.RunConsoleAsync();
         }
 
@@ -22,12 +17,7 @@ namespace wwi.console
             Host.CreateDefaultBuilder(args)
                 .ConfigureServices((hostingContext, services) =>
                 {
-                    var configuration = hostingContext.Configuration;
-                    services.AddDbContextFactory<WwiDbContext>(options =>
-                        options.UseSqlServer(configuration.GetConnectionString("wwi")));
-
-                    services.AddMediatR(AppDomain.CurrentDomain.GetAssemblies());
-                    services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+                    BaseDi.Configure(services, hostingContext.Configuration);
                     services.AddSingleton<IHostedService, ConsoleApp>();
                 });
     }
