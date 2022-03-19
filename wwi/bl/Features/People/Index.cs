@@ -3,6 +3,7 @@ using wwi.bl.EF;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using AutoMapper;
+using LazyCache;
 
 namespace wwi.bl.Features.People
 {
@@ -30,14 +31,23 @@ namespace wwi.bl.Features.People
         {
             private readonly IConfigurationProvider _configurationProvider;
             private readonly IDbContextFactory<WwiDbContext> _dbContextFactory;
+            private readonly IAppCache _appCache;
 
-            public QueryHandler(IConfigurationProvider configurationProvider, IDbContextFactory<WwiDbContext> dbContextFactory)
+            public QueryHandler(IConfigurationProvider configurationProvider, IDbContextFactory<WwiDbContext> dbContextFactory, IAppCache appCache)
             {
                 _configurationProvider = configurationProvider ?? throw new ArgumentNullException(nameof(configurationProvider));
                 _dbContextFactory = dbContextFactory ?? throw new ArgumentNullException(nameof(dbContextFactory));
+                this._appCache = appCache ?? throw new ArgumentNullException(nameof(appCache));
             }
 
             public async Task<Result> Handle(Query query, CancellationToken cancellationToken)
+            {
+                Task<Result> getter() => _Handle(query, cancellationToken);
+                var key = $"People.Index.{query.SearchString}";
+                return await _appCache.GetOrAddAsync(key, getter);
+            }
+
+            private async Task<Result> _Handle(Query query, CancellationToken cancellationToken)
             {
                 var result = new Result
                 {

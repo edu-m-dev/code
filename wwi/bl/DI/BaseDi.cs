@@ -15,6 +15,7 @@ namespace wwwi.bl.DI
 
             services.AddMediatR(AppDomain.CurrentDomain.GetAssemblies());
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+            services.AddLazyCache();
 
             return services;
         }
