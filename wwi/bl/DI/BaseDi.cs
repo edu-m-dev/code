@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using wwi.bl.EF;
 
 namespace wwwi.bl.DI
@@ -11,7 +12,8 @@ namespace wwwi.bl.DI
         public static IServiceCollection Configure(IServiceCollection services, IConfiguration configuration)
         {
             services.AddDbContextFactory<WwiDbContext>(options =>
-                options.UseSqlServer(configuration.GetConnectionString("wwi")));
+                options.UseSqlServer(configuration.GetConnectionString("wwi"))
+                    .LogTo(Console.WriteLine, LogLevel.Information));
 
             services.AddMediatR(AppDomain.CurrentDomain.GetAssemblies());
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
