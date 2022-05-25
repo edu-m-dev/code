@@ -26,7 +26,7 @@ namespace wwi.web
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
-            if (app.Environment.IsDevelopment())
+            if (app.Environment.IsDevelopment()) // TODO - why not on prod
             {
                 app.UseSwagger();
                 app.UseSwaggerUI();
