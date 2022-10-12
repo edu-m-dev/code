@@ -1,4 +1,5 @@
-*** kb links
+## kb links
 
-** recommended-patterns-for-cancellationtoken
+### recommended-patterns-for-cancellationtoken
 https://devblogs.microsoft.com/premier-developer/recommended-patterns-for-cancellationtoken/
+
