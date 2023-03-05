@@ -37,3 +37,5 @@ git clean -f <path>
 ## How-to
 
 ### [compare vscode with sls-based search](how-to/compare-vscode-with-sls-based-search.md)
+
+end of file
