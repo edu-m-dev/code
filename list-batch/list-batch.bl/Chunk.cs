@@ -1,15 +1,7 @@
 ﻿namespace list_batch.bl;
-public class Chunk
+static public class  Chunk
 {
-    public IEnumerable<IEnumerable<T>> BuildChunks<T>(List<T> fullList, int batchSize)
-    {
-        //return BuildChunksWithIteration(fullList, batchSize);
-        return BuildChunksWithRange(fullList, batchSize);
-        //return BuildChunksWithLinq(fullList, batchSize);
-        //return BuildChunksWithLinqAndYield(fullList, batchSize);
-    }
-
-    private IEnumerable<IEnumerable<T>> BuildChunksWithIteration<T>(List<T> fullList, int batchSize)
+    static public IEnumerable<IEnumerable<T>> BuildChunksWithIteration<T>(List<T> fullList, int batchSize)
     {
         var chunkedList = new List<IEnumerable<T>>();
         int count = fullList.Count;
@@ -30,7 +22,7 @@ public class Chunk
         return chunkedList;
     }
 
-    private IEnumerable<IEnumerable<T>> BuildChunksWithRange<T>(List<T> fullList, int batchSize)
+    static public IEnumerable<IEnumerable<T>> BuildChunksWithRange<T>(List<T> fullList, int batchSize)
     {
         var chunkedList = new List<IEnumerable<T>>();
         int count = fullList.Count;
@@ -50,12 +42,12 @@ public class Chunk
         return chunkedList;
     }
 
-    private IEnumerable<IEnumerable<T>> BuildChunksWithLinq<T>(List<T> fullList, int batchSize)
+    static public IEnumerable<IEnumerable<T>> BuildChunksWithLinq<T>(List<T> fullList, int batchSize)
     {
         return fullList.Chunk(batchSize);
     }
 
-    private IEnumerable<IEnumerable<T>> BuildChunksWithLinqAndYield<T>(List<T> fullList, int batchSize)
+    static public IEnumerable<IEnumerable<T>> BuildChunksWithLinqAndYield<T>(List<T> fullList, int batchSize)
     {
         int count = fullList.Count;
         var position = 0;
