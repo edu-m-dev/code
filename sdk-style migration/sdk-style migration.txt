@@ -1,0 +1,10 @@
+*** sdk-style migration
+https://docs.microsoft.com/en-us/dotnet/architecture/modernize-desktop/example-migration
+https://codeopinion.com/migrating-to-sdk-csproj/ - recommends https://github.com/hvanbakel/CsprojToVs2017
+https://hermit.no/moving-to-sdk-style-projects-and-package-references-in-visual-studio-part-2/ - recommends https://github.com/hvanbakel/CsprojToVs2017
+https://github.com/dotnet/try-convert
+https://www.michaeltaylorp3.net/migrating-to-sdk-project-format/ - has a section about nuget packages migration
+https://docs.microsoft.com/en-us/dotnet/core/project-sdk/overview
+https://docs.microsoft.com/en-us/visualstudio/msbuild/customize-your-build?view=vs-2022 - info about Directory.Build.props and Directory.Build.targets
+https://github.com/dotnet/upgrade-assistant - this is to migrate to latest dotnet
+https://natemcmaster.com/blog/2017/03/09/vs2015-to-vs2017-upgrade/ - for manual convertion
