@@ -1,5 +1,5 @@
 ﻿namespace equality.bl;
-public class Vehicle
+public class Vehicle:IEquatable<Vehicle>
 {
     private string _manufacturer;
     private string _model;
@@ -17,11 +17,10 @@ public class Vehicle
         return string.Format("{0} {1}", _manufacturer, _model);
     }
 
-    public override bool Equals(object? obj) => obj switch
+    public override bool Equals(object? obj)
     {
-        Vehicle v when _manufacturer.Equals(v._manufacturer) && _model.Equals(v._model) => true,
-        _ => false,
-    };
+        return Equals(obj as Vehicle);
+    }
 
     public override int GetHashCode()
     {
@@ -37,4 +36,9 @@ public class Vehicle
     {
         return !x?.Equals(y) ?? true;
     }
+    public bool Equals(Vehicle? vehicle) => vehicle switch
+    {
+        Vehicle v when _manufacturer.Equals(v._manufacturer) && _model.Equals(v._model) => true,
+        _ => false,
+    };
 }

@@ -9,3 +9,4 @@
 
 1. start with provided skeleton, all tests fail
 2. read ZH article, make tests pass
+3. base Equal implementation on strongly-typed Equals
