@@ -1,0 +1,12 @@
+services:
+    rabbitmq:
+        container_name: "rabbitmq-task-practice"
+        image: rabbitmq:3.11.15-management
+        # environment:
+        #     - RABBITMQ_DEFAULT_USER=myuser
+        #     - RABBITMQ_DEFAULT_PASS=mypassword
+        ports:
+            # AMQP protocol port
+            - '5672:5672'
+            # HTTP management UI
+            - '15672:15672'
