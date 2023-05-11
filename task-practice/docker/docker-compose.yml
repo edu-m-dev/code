@@ -6,7 +6,14 @@ services:
         #     - RABBITMQ_DEFAULT_USER=myuser
         #     - RABBITMQ_DEFAULT_PASS=mypassword
         ports:
-            # AMQP protocol port
-            - '5672:5672'
-            # HTTP management UI
-            - '15672:15672'
+            - '5672:5672' # AMQP protocol port
+            - '15672:15672' # HTTP management UI
+    elk:
+        container_name: "elk-task-practice"
+        image: sebp/elk:8.6.2
+        ports:
+            - '5044:5044'
+            - '5601:5601'
+            - '9200:9200'
+            - '9300:9300'
+            - '9600:9600'
