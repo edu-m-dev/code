@@ -12,14 +12,11 @@ using task_practice.messages;
 Serilog.Debugging.SelfLog.Enable(Console.Error); // TODO - remove
 var environment = Environment.GetEnvironmentVariable("DOTNET_ENVIRONMENT");
 
-Microsoft.Extensions.Logging.ILogger logger;
-
 var host = Host.CreateDefaultBuilder(args)
     .ConfigureServices((context, services) =>
     {
         services.RegisterEasyNetQ("host=localhost", register => register.EnableMicrosoftLogging());
     })
-    //.ConfigureAppConfiguration((x, y) => y.AddJsonFile("appsettings.json"))
     .UseSerilog((hostBuilderContext, loggerConfiguration) => loggerConfiguration
                 .Enrich.FromLogContext()
                 .Enrich.WithMachineName()
@@ -31,12 +28,13 @@ var host = Host.CreateDefaultBuilder(args)
                 .ReadFrom.Configuration(hostBuilderContext.Configuration))
     .Build();
 
-logger = host.Services.GetRequiredService<ILogger<Program>>();
+
 
 using var bus = RabbitHutch.CreateBus("host=localhost");
-bus.PubSub.SubscribeAsync<OrderPlaced>($"orderPlacer", orderPlaced =>
+await bus.PubSub.SubscribeAsync<OrderPlaced>($"orderPlacer", orderPlaced =>
 {
     var serializedMessage = System.Text.Json.JsonSerializer.Serialize(orderPlaced);
+    var logger = host.Services.GetRequiredService<ILogger<Program>>();
     logger.LogInformation(serializedMessage);
     Console.WriteLine($"OrderPlaced message {serializedMessage} logged");
 });
