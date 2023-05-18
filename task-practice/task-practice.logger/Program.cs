@@ -28,14 +28,12 @@ var host = Host.CreateDefaultBuilder(args)
                 .ReadFrom.Configuration(hostBuilderContext.Configuration))
     .Build();
 
-
-
 using var bus = RabbitHutch.CreateBus("host=localhost");
 await bus.PubSub.SubscribeAsync<OrderPlaced>($"orderPlacer", orderPlaced =>
 {
-    var serializedMessage = System.Text.Json.JsonSerializer.Serialize(orderPlaced);
     var logger = host.Services.GetRequiredService<ILogger<Program>>();
-    logger.LogInformation(serializedMessage);
+    logger.LogInformation("Order Placed: {OrderPlaced} with correlationId {CorrelationId}", orderPlaced, orderPlaced.CorrelationId);
+    var serializedMessage = System.Text.Json.JsonSerializer.Serialize(orderPlaced);
     Console.WriteLine($"OrderPlaced message {serializedMessage} logged");
 });
 

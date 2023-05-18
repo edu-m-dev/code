@@ -1,6 +1,6 @@
 ﻿namespace task_practice.messages;
 
-public class OrderPlaced
+public record OrderPlaced : MessageBase
 {
-    public int OrderId { get; set; }
+    public required int OrderId { get; init; }
 }

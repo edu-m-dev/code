@@ -13,7 +13,15 @@ while (!(input = Console.ReadLine() ?? "").Equals("Quit", StringComparison.Invar
     }
 
     var messages = Enumerable.Range(1, orderNumber)
-                    .Select(x => new PlaceOrder { ArticleIds = new List<int>(x) });
+                    .Select(x => new PlaceOrder
+                    {
+                        CorrelationId = Guid.NewGuid(),
+                        Products = Enumerable.Range(1, 1)
+                         .Select(p => new Product { Id = p })
+                         .ToList(),
+                    })
+                    .ToList();
+
     foreach (var x in messages)
     {
         var serializedMessage = System.Text.Json.JsonSerializer.Serialize(x);

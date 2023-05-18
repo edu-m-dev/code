@@ -30,7 +30,11 @@ async Task HandlePlaceOrderAsync(PlaceOrder placeOrder)
         throw new Exception($"primer number {rnd} not allowed");
     }
 
-    var orderPlaced = new OrderPlaced { OrderId = rnd };
+    var orderPlaced = new OrderPlaced
+    {
+        CorrelationId = placeOrder.CorrelationId,
+        OrderId = rnd
+    };
 
     var serializedMessage = System.Text.Json.JsonSerializer.Serialize(orderPlaced);
     var thread = Thread.CurrentThread;
