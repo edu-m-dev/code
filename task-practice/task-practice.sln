@@ -12,9 +12,10 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{BAE7DE89-B150-4836-BC5E-6711548F726F}"
 	ProjectSection(SolutionItems) = preProject
 		docker\docker-compose.yml = docker\docker-compose.yml
+		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "task-practice.logger", "task-practice.logger\task-practice.logger.csproj", "{CD4A235A-1F2E-4E02-B976-759349A22BBC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "task-practice.logger", "task-practice.logger\task-practice.logger.csproj", "{CD4A235A-1F2E-4E02-B976-759349A22BBC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
