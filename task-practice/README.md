@@ -1,0 +1,1 @@
+### [Using Docker-Desktop for Windows, how can sysctl parameters be configured to permeate a reboot?](https://stackoverflow.com/questions/69214301/using-docker-desktop-for-windows-how-can-sysctl-parameters-be-configured-to-per)
