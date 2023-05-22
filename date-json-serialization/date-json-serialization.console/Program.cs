@@ -1,9 +1,22 @@
-﻿using Newtonsoft.Json;
+﻿using date_json_serialization.console;
 
 while (true)
 {
-    Console.WriteLine("type date");
-    string? dateString = Console.ReadLine();
+    Console.WriteLine("type date and its format");
+
+    var input = Console.ReadLine()?.Split(" ");
+    string? dateString = input?.Take(1).FirstOrDefault();
+    if (dateString is null)
+    {
+        Console.WriteLine("provide a date");
+        continue;
+    }
+    string? dateFormat = input?.Skip(1).Take(1).FirstOrDefault();
+    if (dateFormat is null)
+    {
+        Console.WriteLine("provide a date format");
+        continue;
+    }
 
     var json = $$"""
             {
@@ -11,14 +24,15 @@ while (true)
             } 
             """;
     Console.WriteLine($"json: {json}");
-    // 1. System.Text.Json
-    var dateContainer = System.Text.Json.JsonSerializer.Deserialize<DateContainer>(json,
-        options: new System.Text.Json.JsonSerializerOptions
-        {
-            AllowTrailingCommas = true,
-        });
-    Console.WriteLine($"object: {dateContainer}");
-    // 2. Newtonsoft.Json
-    dateContainer = JsonConvert.DeserializeObject<DateContainer>(json);
-    Console.WriteLine($"object: {dateContainer}");
+    try
+    {
+        var stjDateContainer = new SystemTextJsonDateTimeSerializer<DateContainer>().Deserialize(json, dateFormat);
+        Console.WriteLine($"System.Text.Json object: {stjDateContainer}");
+        var njDateContainer = new NewtonsoftJsonDateTimeSerializer<DateContainer>().Deserialize(json, dateFormat);
+        Console.WriteLine($"Newtonsoft.Json object: {njDateContainer}");
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine(ex.Message);
+    }
 }
