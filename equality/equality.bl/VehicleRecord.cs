@@ -16,3 +16,5 @@ public record VehicleRecord
         return string.Format("{0} {1}", _manufacturer, _model);
     }
 }
+
+public record SimpleVehicleRecord(string Manufacturer, string Model, int ProductionYear);
