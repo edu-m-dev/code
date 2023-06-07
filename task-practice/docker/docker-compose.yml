@@ -10,7 +10,7 @@ services:
             - '15672:15672' # HTTP management UI
     elk:
         container_name: "elk-task-practice"
-        image: sebp/elk:8.6.2
+        image: sebp/elk:8.7.1
         ports:
             - '5044:5044'
             - '5601:5601'
