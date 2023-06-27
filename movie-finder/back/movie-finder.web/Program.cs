@@ -15,6 +15,7 @@ var appSettings = builder.Configuration.Get<AppSettings>()
 builder.Services.AddSingleton(appSettings);
 
 builder.Services.AddAutoMapper(typeof(SearchProfile));
+builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<SearchMovieQuery>());
 
 builder.Services.AddScoped<ISearchMovieService, TMDbSearchMovieService>();
 
