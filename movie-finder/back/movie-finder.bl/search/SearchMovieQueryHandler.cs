@@ -17,8 +17,15 @@ public class SearchMovieQueryHandler : IRequestHandler<SearchMovieQuery, IEnumer
 
     public async Task<IEnumerable<SearchMovie>> Handle(SearchMovieQuery searchMovieQuery, CancellationToken cancellationToken)
     {
-        var client = new TMDbClient(_appSettings.TmdbApiKey);
-        var searchMovies = await client.SearchMovieAsync(searchMovieQuery.Title);
+        using var client = new TMDbClient(_appSettings.TmdbApiKey); // TODO - if injected as transient, how is the disposing done?
+        var searchMovies = await client.SearchMovieAsync(
+            query: searchMovieQuery.Title,
+            page: default,
+            includeAdult: default,
+            year: default,
+            region: default,
+            primaryReleaseYear: default,
+            cancellationToken);
         return
             searchMovies.Results
                 .Select(x => _mapper.Map<TMDbLib.Objects.Search.SearchMovie, SearchMovie>(x))
