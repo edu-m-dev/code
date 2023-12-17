@@ -6,19 +6,20 @@ namespace movie_finder.bl.search;
 
 public class SearchMovieQueryHandler : IRequestHandler<SearchMovieQuery, IEnumerable<SearchMovie>>
 {
-    private readonly AppSettings _appSettings;
     private readonly IMapper _mapper;
+    private readonly TMDbClient _tMDbClient;
 
-    public SearchMovieQueryHandler(AppSettings appSettings, IMapper mapper)
+    public SearchMovieQueryHandler(
+        IMapper mapper,
+        TMDbClient tMDbClient)
     {
-        _appSettings = appSettings;
         _mapper = mapper;
+        _tMDbClient = tMDbClient;
     }
 
     public async Task<IEnumerable<SearchMovie>> Handle(SearchMovieQuery searchMovieQuery, CancellationToken cancellationToken)
     {
-        using var client = new TMDbClient(_appSettings.TmdbApiKey); // TODO - if injected as transient, how is the disposing done?
-        var searchMovies = await client.SearchMovieAsync(
+        var searchMovies = await _tMDbClient.SearchMovieAsync(
             query: searchMovieQuery.Title,
             page: default,
             includeAdult: default,

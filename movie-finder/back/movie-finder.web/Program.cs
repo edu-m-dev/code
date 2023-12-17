@@ -1,5 +1,6 @@
 ﻿using movie_finder.bl;
 using movie_finder.bl.search;
+using TMDbLib.Client;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,6 +18,7 @@ builder.Services.AddSingleton(appSettings);
 builder.Services.AddAutoMapper(typeof(SearchProfile));
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(SearchMovieQuery).Assembly));
 
+builder.Services.AddScoped<TMDbClient>((sp) => new TMDbClient(appSettings.TmdbApiKey));
 builder.Services.AddScoped<ISearchMovieService, TMDbSearchMovieService>();
 
 var app = builder.Build();
