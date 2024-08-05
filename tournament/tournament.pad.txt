@@ -1,0 +1,8 @@
+project splitting - api, domain, core, data, bl, web
+
+db structure - player (isCaptain), match, tournament, league, team, prize, entry
+concepts:
+- scheduling - free, scheduled
+- tournament/league - type? strategy?
+- entry type - free, fee
+- prizeStrategy
