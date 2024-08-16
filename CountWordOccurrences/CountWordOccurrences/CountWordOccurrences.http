@@ -1,0 +1,6 @@
+@CountWordOccurrences_HostAddress = http://localhost:5144
+
+GET {{CountWordOccurrences_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

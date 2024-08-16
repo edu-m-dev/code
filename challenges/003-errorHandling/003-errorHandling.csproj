@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net5.0</TargetFramework>
+    <RootNamespace>ErrorHandlingChallenge</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="DemoLibrary">
+      <HintPath>DemoLibrary.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

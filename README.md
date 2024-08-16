@@ -38,4 +38,9 @@ git clean -f <path>
 
 ### [compare vscode with sls-based search](how-to/compare-vscode-with-sls-based-search.md)
 
+### add all projects to a solution file 
+https://stackoverflow.com/questions/52017316/how-to-add-all-projects-to-a-single-solution-with-dotnet-sln
+dotnet sln add (ls -r **/*.csproj)
+
 end of file
+
