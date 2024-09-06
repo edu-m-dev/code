@@ -6,9 +6,11 @@ public static class EndpointExtensions
 {
     public static void AddEmployeeEndpoints(this IEndpointRouteBuilder app)
     {
-        app.MapGet("/allEmployees", async (IEmployeeRepo employeeRepo, CancellationToken cancellationToken) =>
+        app.MapGet("/allEmployees", async (IEmployeeRepo employeeRepo, ILogger<Employee> logger, CancellationToken cancellationToken) => // TODO - ILogger type?
         {
-            return await employeeRepo.GetAllEmployees(cancellationToken);
+            var employees = await employeeRepo.GetAllEmployees(cancellationToken);
+            logger.LogInformation("Returned {EmployeeCount} employees", employees.Count());
+            return employees;
         })
         .WithName("GetAllEmployees")
         .WithOpenApi();

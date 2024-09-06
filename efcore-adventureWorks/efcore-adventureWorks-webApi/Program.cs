@@ -1,4 +1,8 @@
 ﻿using adventureWorks.webApi;
+using OpenTelemetry.Logs;
+using OpenTelemetry.Metrics;
+using OpenTelemetry.Resources;
+using OpenTelemetry.Trace;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +12,28 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddEmployeeServices(builder.Configuration);
+
+// Configure OpenTelemetry
+builder.Services.AddOpenTelemetry()
+    .ConfigureResource(resource => resource
+        .AddService(DiagnosticsConfig.ServiceName))
+    .WithTracing(tracing => tracing
+        .AddAspNetCoreInstrumentation()
+        .AddHttpClientInstrumentation()
+        .AddOtlpExporter())
+    .WithMetrics(metrics => metrics
+        .AddAspNetCoreInstrumentation()
+        .AddHttpClientInstrumentation()
+        .AddOtlpExporter());
+
+// Configure OpenTelemetry Logging
+builder.Logging.AddOpenTelemetry(logging =>
+{
+    logging.IncludeFormattedMessage = true;
+    logging.IncludeScopes = true;
+    logging.ParseStateValues = true;
+    logging.AddOtlpExporter();
+});
 
 var app = builder.Build();
 
@@ -21,6 +47,7 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.AddEmployeeEndpoints();
+
 
 app.Run();
 
