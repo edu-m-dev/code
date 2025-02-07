@@ -121,8 +121,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "wwi.tests", "wwi\tests\wwi.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "wwi.web", "wwi\web\wwi.web.csproj", "{E30CDEC8-85DD-4301-A17D-DA4EF3E0CC0A}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "pizza-maker", "pizza-maker", "{591F14A8-83DA-4344-B74A-EF84FB8F412D}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
