@@ -2,7 +2,7 @@
 
 public record ReadableFile(string FilePath)
 {
-    public async Task<string[]> ReadAllLinesAsync(CancellationToken token)
+    public async Task<IEnumerable<string>> ReadAllLinesAsync(CancellationToken token)
     {
         return await File.ReadAllLinesAsync(FilePath, token);
     }
