@@ -7,7 +7,7 @@ public record ReadableFile(string FilePath)
         return await File.ReadAllLinesAsync(FilePath, token);
     }
 
-    public string[] ReadAllLines()
+    public IEnumerable<string> ReadAllLines()
     {
         return File.ReadAllLines(FilePath);
     }
