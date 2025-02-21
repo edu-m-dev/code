@@ -1,24 +1,12 @@
-# code reference
+# how-to
 
-## EF
-
-### Starting with an existing database
-
-004_refactoring.sln
+### EF database first
 
 https://www.learnentityframeworkcore.com/walkthroughs/existing-database
 - getting started with ef core for a code-first, non-migration approach
 - force model to change when db has been modified outside migrations
 
-## Dapper
-
-### dapper.contrib https://github.com/StackExchange/Dapper/tree/main/Dapper.Contrib
-
-004_refactoring.sln
-
-- CRUD ops with dapper
-
-## git cheatsheet
+### git cheatsheet
 
 **show all commits on a feature branch not coming from develop branch**
 
@@ -34,13 +22,9 @@ git reset --hard origin/x
 
 git clean -f <path>
 
-## How-to
-
-### [compare vscode with sls-based search](how-to/compare-vscode-with-sls-based-search.md)
-
 ### add all projects to a solution file 
 https://stackoverflow.com/questions/52017316/how-to-add-all-projects-to-a-single-solution-with-dotnet-sln
 dotnet sln add (ls -r **/*.csproj)
 
-end of file
-
+### Directory.Packages.props
+https://github.com/Webreaper/CentralisedPackageConverter - awesome global tool to centralise all nuget refs

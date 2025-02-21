@@ -8,8 +8,8 @@
       </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="fluentvalidation" Version="11.5.2" />
-    <PackageReference Include="microsoft.Extensions.Hosting" Version="7.0.1" />
+    <PackageReference Include="fluentvalidation" />
+    <PackageReference Include="microsoft.Extensions.Hosting" />
   </ItemGroup>
 
   <ItemGroup>

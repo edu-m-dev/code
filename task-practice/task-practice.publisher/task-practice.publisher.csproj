@@ -8,8 +8,8 @@
       </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="EasyNetQ" Version="7.5.1" />
-    <PackageReference Include="EasyNetQ.Serialization.NewtonsoftJson" Version="7.5.1" />
+    <PackageReference Include="EasyNetQ" />
+    <PackageReference Include="EasyNetQ.Serialization.NewtonsoftJson" />
   </ItemGroup>
 
   <ItemGroup>
