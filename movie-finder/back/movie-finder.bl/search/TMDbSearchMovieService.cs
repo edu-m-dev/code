@@ -1,22 +1,30 @@
 ﻿using AutoMapper;
+using Microsoft.Extensions.Options;
 using TMDbLib.Client;
 
 namespace movie_finder.bl.search;
 
 public class TMDbSearchMovieService : ISearchMovieService
 {
-    private readonly AppSettings _appSettings;
+    private readonly MovieFinderOptions _options;
     private readonly IMapper _mapper;
 
-    public TMDbSearchMovieService(AppSettings appSettings, IMapper mapper)
+    public TMDbSearchMovieService(IMapper mapper, IOptions<MovieFinderOptions> options)
     {
-        _appSettings = appSettings;
         _mapper = mapper;
+        _options = options.Value;
     }
-    public async Task<IEnumerable<SearchMovie>> SearchMoviesAsync(SearchMovieQuery searchMovieQuery)
+    public async Task<IEnumerable<SearchMovie>> SearchMoviesAsync(SearchMovieQuery searchMovieQuery, CancellationToken ct = default)
     {
-        var client = new TMDbClient(_appSettings.TmdbApiKey);
-        var searchMovies = await client.SearchMovieAsync(searchMovieQuery.Title);
+        var client = new TMDbClient(_options.TmdbApiKey);
+        var searchMovies = await client.SearchMovieAsync(
+            query: searchMovieQuery.Title,
+            page: default,
+            includeAdult: default,
+            year: default,
+            region: default,
+            primaryReleaseYear: default,
+            ct);
         return
             searchMovies.Results
                 .Select(x => _mapper.Map<TMDbLib.Objects.Search.SearchMovie, SearchMovie>(x))

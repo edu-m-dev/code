@@ -2,5 +2,5 @@
 
 public interface ISearchMovieService
 {
-    Task<IEnumerable<SearchMovie>> SearchMoviesAsync(SearchMovieQuery searchMovieQuery);
+    Task<IEnumerable<SearchMovie>> SearchMoviesAsync(SearchMovieQuery searchMovieQuery, CancellationToken ct);
 }

@@ -1,4 +1,7 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>  
+    <UserSecretsId>da771f06-99ae-467f-a7ea-901d4eaa08ca</UserSecretsId>
+  </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" />

@@ -1,35 +1,17 @@
-﻿using AutoMapper;
-using MediatR;
-using TMDbLib.Client;
+﻿using MediatR;
 
 namespace movie_finder.bl.search;
 
 public class SearchMovieQueryHandler : IRequestHandler<SearchMovieQuery, IEnumerable<SearchMovie>>
 {
-    private readonly IMapper _mapper;
-    private readonly TMDbClient _tMDbClient;
-
-    public SearchMovieQueryHandler(
-        IMapper mapper,
-        TMDbClient tMDbClient)
+    private readonly ISearchMovieService _searchMovieService;
+    public SearchMovieQueryHandler(ISearchMovieService searchMovieService)
     {
-        _mapper = mapper;
-        _tMDbClient = tMDbClient;
+        _searchMovieService = searchMovieService;
     }
 
-    public async Task<IEnumerable<SearchMovie>> Handle(SearchMovieQuery searchMovieQuery, CancellationToken cancellationToken)
+    public async Task<IEnumerable<SearchMovie>> Handle(SearchMovieQuery searchMovieQuery, CancellationToken ct)
     {
-        var searchMovies = await _tMDbClient.SearchMovieAsync(
-            query: searchMovieQuery.Title,
-            page: default,
-            includeAdult: default,
-            year: default,
-            region: default,
-            primaryReleaseYear: default,
-            cancellationToken);
-        return
-            searchMovies.Results
-                .Select(x => _mapper.Map<TMDbLib.Objects.Search.SearchMovie, SearchMovie>(x))
-                .ToList();
+        return await _searchMovieService.SearchMoviesAsync(searchMovieQuery, ct);
     }
 }
