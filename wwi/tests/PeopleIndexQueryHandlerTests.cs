@@ -15,7 +15,7 @@ public class PeopleIndexQueryHandlerTests : BaseTest
     {
     }
 
-    [Fact]
+    [Fact(Skip = "this test connects to the db")]
     public async Task _PeopleAreReturned()
     {
         var indexQueryHandler = TestHost.Services.GetService<IRequestHandler<Index.Query, Index.Result>>();

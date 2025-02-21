@@ -1,4 +1,4 @@
-﻿using MediatR;
+﻿using System.Reflection;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -15,7 +15,7 @@ namespace wwwi.bl.DI
                 options.UseSqlServer(configuration.GetConnectionString("wwi"))
                     .LogTo(Console.WriteLine, LogLevel.Information));
 
-            services.AddMediatR(AppDomain.CurrentDomain.GetAssemblies());
+            services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddLazyCache();
 
