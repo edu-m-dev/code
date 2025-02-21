@@ -2,11 +2,10 @@
 
   <PropertyGroup>
     <OutputType>library</OutputType>
-    <TargetFramework>net9.0</TargetFramework>
+    
     <RootNamespace>Library</RootNamespace>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
+    
+      </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="FluentAssertions" Version="8.0.1" />
