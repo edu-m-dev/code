@@ -26,13 +26,15 @@ jobs:
       with:
         dotnet-version: 9.0.x
 
-    - name: build, publish and test
-      run: |
-        dotnet restore
-        dotnet build -c Release --no-restore
-        dotnet publish -c Release -o '${{ env.AZURE_WEBAPP_PACKAGE_PATH }}' --no-build
-        dotnet test --no-build --verbosity normal
+    - name: restore
+      run: dotnet restore
+    - name: build
+      run: dotnet build -c Release --no-restore
+    - name: test
+      run: dotnet test --no-build --verbosity normal
     
+    - name: publish
+      run: dotnet publish -c Release -o '${{ env.AZURE_WEBAPP_PACKAGE_PATH }}' --no-build
     - name: deploy to Azure
       uses: azure/webapps-deploy@v3
       with:
