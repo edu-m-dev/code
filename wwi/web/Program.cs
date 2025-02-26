@@ -12,7 +12,8 @@ namespace wwi.web
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            ConfigureLogging(builder);
+            if (builder.Environment.IsDevelopment())
+                ConfigureLogging(builder);
 
             ConfigureServices(builder);
 
@@ -26,7 +27,7 @@ namespace wwi.web
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
-            if (app.Environment.IsDevelopment()) // TODO - why not on prod
+            if (app.Environment.IsDevelopment())
             {
                 app.UseSwagger();
                 app.UseSwaggerUI();

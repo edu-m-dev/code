@@ -4,8 +4,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using Serilog;
-using Serilog.Exceptions;
 using Serilog.Sinks.Elasticsearch;
 using task_practice.messages;
 
@@ -17,15 +15,15 @@ var host = Host.CreateDefaultBuilder(args)
     {
         services.RegisterEasyNetQ("host=localhost", register => register.EnableMicrosoftLogging());
     })
-    .UseSerilog((hostBuilderContext, loggerConfiguration) => loggerConfiguration
-                .Enrich.FromLogContext()
-                .Enrich.WithMachineName()
-                .Enrich.WithExceptionDetails()
-                .Enrich.WithProperty("Environment", environment)
-                .WriteTo.Debug()
-                .WriteTo.Async(wt => wt.Console())
-                .WriteTo.Elasticsearch(ConfigureElasticSink(hostBuilderContext.Configuration, environment))
-                .ReadFrom.Configuration(hostBuilderContext.Configuration))
+    //.UseSerilog((hostBuilderContext, loggerConfiguration) => loggerConfiguration
+    //            .Enrich.FromLogContext()
+    //            .Enrich.WithMachineName()
+    //            .Enrich.WithExceptionDetails()
+    //            .Enrich.WithProperty("Environment", environment)
+    //            .WriteTo.Debug()
+    //            .WriteTo.Async(wt => wt.Console())
+    //            .WriteTo.Elasticsearch(ConfigureElasticSink(hostBuilderContext.Configuration, environment))
+    //            .ReadFrom.Configuration(hostBuilderContext.Configuration))
     .Build();
 
 using var bus = RabbitHutch.CreateBus("host=localhost");
