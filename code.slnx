@@ -1,0 +1,82 @@
+<Solution>
+  <Configurations>
+    <Platform Name="Any CPU" />
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Folder Name="/async-enumerable/">
+    <Project Path="async-enumerable/async-enumerable.console/async-enumerable.console.csproj" />
+  </Folder>
+  <Folder Name="/chores/">
+    <Project Path="chores/chores.bl/chores.bl.csproj" />
+    <Project Path="chores/chores.console/chores.console.csproj" />
+  </Folder>
+  <Folder Name="/CountWordOccurrences/">
+    <Project Path="CountWordOccurrences/CountWordOccurrences/CountWordOccurrences.csproj" />
+  </Folder>
+  <Folder Name="/date-json-serialization/">
+    <Project Path="date-json-serialization/date-json-serialization.console/date-json-serialization.console.csproj" />
+  </Folder>
+  <Folder Name="/efcore-adventureWorks/">
+    <Project Path="efcore-adventureWorks/efcore-adventureWorks-webApi/adventureWorks.webApi.csproj" />
+  </Folder>
+  <Folder Name="/equality/">
+    <Project Path="equality/equality.bl/equality.bl.csproj" />
+    <Project Path="equality/equality.console/equality.console.csproj" />
+    <Project Path="equality/equality.tests/equality.tests.csproj" />
+  </Folder>
+  <Folder Name="/island-finder/">
+    <Project Path="island-finder/island-finder.console/island-finder.console.csproj" />
+    <Project Path="island-finder/island-finder.test/island-finder.test.csproj" />
+  </Folder>
+  <Folder Name="/Library/" />
+  <Folder Name="/Library/Library.Console/">
+    <Project Path="Library/Library.Console/Library.Console.csproj" />
+  </Folder>
+  <Folder Name="/Library/Library.Tests/">
+    <Project Path="Library/Library.Tests/Library.Tests.csproj" />
+  </Folder>
+  <Folder Name="/list-batch/">
+    <Project Path="list-batch/list-batch.bl/list-batch.bl.csproj" />
+    <Project Path="list-batch/list-batch.console/list-batch.console.csproj" />
+    <Project Path="list-batch/list-batch.tests/list-batch.tests.csproj" />
+  </Folder>
+  <Folder Name="/movie-finder/">
+    <Project Path="movie-finder/back/movie-finder.bl/movie-finder.bl.csproj" />
+    <Project Path="movie-finder/back/movie-finder.web/movie-finder.web.csproj" />
+  </Folder>
+  <Folder Name="/periodic-timer/">
+    <Project Path="periodic-timer/periodic-timer.console/periodic-timer.console.csproj" />
+  </Folder>
+  <Folder Name="/processBigFile/">
+    <Project Path="processBigFile/processBigFile.benchmark/processBigFile.benchmark.csproj" />
+    <Project Path="processBigFile/processBigFile.console/processBigFile.console.csproj" />
+  </Folder>
+  <Folder Name="/serilog-bootstrap-logger/">
+    <Project Path="serilog-bootstrap-logger/serilog-bootstrap-logger.console/serilog-bootstrap-logger.console.csproj" />
+  </Folder>
+  <Folder Name="/switch-for-hierarchy/">
+    <Project Path="switch-for-hierarchy/switch-for-hierarchy.csproj" />
+  </Folder>
+  <Folder Name="/task-practice/">
+    <Project Path="task-practice/task-practice.logger/task-practice.logger.csproj" />
+    <Project Path="task-practice/task-practice.messages/task-practice.messages.csproj" />
+    <Project Path="task-practice/task-practice.publisher/task-practice.publisher.csproj" />
+    <Project Path="task-practice/task-practice.subscriber/task-practice.subscriber.csproj" />
+  </Folder>
+  <Folder Name="/tick-on-the-second/">
+    <Project Path="tick-on-the-second/tick-on-the-second.csproj" />
+  </Folder>
+  <Folder Name="/validate-settings-section/">
+    <Project Path="validate-settings-section/validate-settings-section.console/validate-settings-section.console.csproj" />
+  </Folder>
+  <Folder Name="/worker-vs-non-worker/">
+    <Project Path="worker-vs-non-worker/worker-vs-non-worker.console/worker-vs-non-worker.console.csproj" />
+  </Folder>
+  <Folder Name="/wwi/">
+    <Project Path="wwi/bl/wwi.bl.csproj" />
+    <Project Path="wwi/console/wwi.console.csproj" />
+    <Project Path="wwi/tests/wwi.tests.csproj" />
+    <Project Path="wwi/web/wwi.web.csproj" />
+  </Folder>
+</Solution>
