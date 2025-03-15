@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace Library
+﻿namespace Library
 {
     public class Library
     {
@@ -85,7 +81,12 @@ namespace Library
                 .GroupBy(x => new { x.Borrower.FirstName, x.Borrower.LastName })
                 .Where(x => _bookLimitPolicy.LimitReached(
                     x.Select(y => y.Book).ToList(),
-                    new Book() { Type = type }))
+                    new Book()
+                    {
+                        Title = "_",
+                        Author = "_",
+                        Type = type
+                    }))
                 .Select(x => x.First().Borrower)
                 .ToList();
         }

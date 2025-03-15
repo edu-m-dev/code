@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace Library
+﻿namespace Library
 {
     public class Book
     {
@@ -15,10 +10,10 @@ namespace Library
             NonFiction,
         }
 
-        public string Title { get; set; }
+        public required string Title { get; init; }
 
-        public string Author { get; set; }
+        public required string Author { get; init; }
 
-        public BookType Type { get; set; }
+        public BookType Type { get; init; }
     }
 }

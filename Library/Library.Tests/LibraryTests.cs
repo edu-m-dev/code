@@ -1,8 +1,5 @@
-using FluentAssertions;
+﻿using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Library.Tests
 {
@@ -43,13 +40,10 @@ namespace Library.Tests
 
             var user = users[0];
             var booksToBorrow = books.Take(7);
-            Loan lastLoan = null;
-            foreach (var book in booksToBorrow)
-            {
-                lastLoan = library.AddLoan(user, book);
-            }
-
-            library.FinishLoan(lastLoan);
+            booksToBorrow
+                .Select(x => library.AddLoan(user, x))
+                .TakeLast(1)
+                .ToList().ForEach(x => library.FinishLoan(x));
 
             library.AddLoan(user, books[7]);
         }
@@ -67,10 +61,10 @@ namespace Library.Tests
 
             var user = users[0];
             var booksToBorrow = books.Take(7);
-            Loan lastLoan = null;
+
             foreach (var book in booksToBorrow)
             {
-                lastLoan = library.AddLoan(user, book);
+                _ = library.AddLoan(user, book);
             }
 
             var loans = library.GetUserLoans(user);
@@ -158,14 +152,12 @@ namespace Library.Tests
 
             var user = users[0];
             var booksToBorrow = books.Take(7);
-            Loan lastLoan = null;
-            foreach (var book in booksToBorrow)
-            {
-                lastLoan = library.AddLoan(user, book);
-            }
+            booksToBorrow
+                .Select(x => library.AddLoan(user, x))
+                .TakeLast(1)
+                .ToList().ForEach(x => library.FinishLoan(x));
 
-            library.FinishLoan(lastLoan);
-            lastLoan = library.AddLoan(user, books[7]);
+            Loan lastLoan = library.AddLoan(user, books[7]);
 
             var bookNumber = library.GetNumberOfBooksOnLoanOnThisDate(dateTimeProvider.Now());
             bookNumber.Should().Be(8);
