@@ -40,9 +40,10 @@ namespace Library.Tests
 
             var user = users[0];
             var booksToBorrow = books.Take(7);
+            var loans = new List<Loan>();
             booksToBorrow
-                .Select(x => library.AddLoan(user, x))
-                .TakeLast(1)
+                .ToList().ForEach(x => loans.Add(library.AddLoan(user, x)));
+            loans.TakeLast(1)
                 .ToList().ForEach(x => library.FinishLoan(x));
 
             library.AddLoan(user, books[7]);
@@ -152,9 +153,10 @@ namespace Library.Tests
 
             var user = users[0];
             var booksToBorrow = books.Take(7);
+            var loans = new List<Loan>();
             booksToBorrow
-                .Select(x => library.AddLoan(user, x))
-                .TakeLast(1)
+                .ToList().ForEach(x => loans.Add(library.AddLoan(user, x)));
+            loans.TakeLast(1)
                 .ToList().ForEach(x => library.FinishLoan(x));
 
             Loan lastLoan = library.AddLoan(user, books[7]);
