@@ -2,7 +2,7 @@
 
 using chores.bl.ef;
 
-using (var dbContext = new ChoresDbContext())
+using var dbContext = new ChoresDbContext();
 
-    dbContext.Chores.ToList().ForEach(x =>
-        Console.WriteLine(x.Name));
+dbContext.Chores.ToList().ForEach(x =>
+    Console.WriteLine(x.Name));
