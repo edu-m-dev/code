@@ -41,6 +41,9 @@
     <Project Path="list-batch/list-batch.console/list-batch.console.csproj" />
     <Project Path="list-batch/list-batch.tests/list-batch.tests.csproj" />
   </Folder>
+  <Folder Name="/markets/">
+    <Project Path="markets/markets.webapi/markets.webapi.csproj" />
+  </Folder>
   <Folder Name="/movie-finder/">
     <Project Path="movie-finder/back/movie-finder.bl/movie-finder.bl.csproj" />
     <Project Path="movie-finder/back/movie-finder.web/movie-finder.web.csproj" />
@@ -54,6 +57,18 @@
   </Folder>
   <Folder Name="/serilog-bootstrap-logger/">
     <Project Path="serilog-bootstrap-logger/serilog-bootstrap-logger.console/serilog-bootstrap-logger.console.csproj" />
+  </Folder>
+  <Folder Name="/Solution Items/">
+    <File Path=".editorconfig" />
+    <File Path=".editorconfig.externalia" />
+    <File Path=".editorconfig.microsoft" />
+    <File Path=".gitignore" />
+    <File Path="Directory.Build.props" />
+    <File Path="Directory.Packages.props" />
+    <File Path="editorconfig.roslyn" />
+    <File Path="nuget.config" />
+    <File Path="README.md" />
+    <File Path="to-do.txt" />
   </Folder>
   <Folder Name="/switch-for-hierarchy/">
     <Project Path="switch-for-hierarchy/switch-for-hierarchy.csproj" />
