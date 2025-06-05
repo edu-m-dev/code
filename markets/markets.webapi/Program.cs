@@ -37,6 +37,8 @@ app.MapGet("/weatherforecast", () =>
 .WithName("GetWeatherForecast")
 .WithOpenApi(); // Ensure endpoint is included in OpenAPI
 
+app.MapGet("/", () => "Hallo Hello Hullo");
+
 app.Run();
 
 record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
