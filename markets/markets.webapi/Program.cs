@@ -1,10 +1,11 @@
-﻿using markets.webapi;
-using Microsoft.Extensions.DependencyInjection;
+﻿
+using markets.webapi;
 using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.AddOpenApiServices();
+builder.AddMarketsServices();
 
 var app = builder.Build();
 
@@ -33,6 +34,7 @@ app.MapGet("/weatherforecast", () =>
 .WithOpenApi(); // Ensure endpoint is included in OpenAPI
 
 app.MapGet("/", () => "Hallo Hello Hullo");
+app.MapGet("/tickers", (ITickerService tickerService) => tickerService.GetTickers());
 
 app.Run();
 
