@@ -58,6 +58,10 @@
   <Folder Name="/serilog-bootstrap-logger/">
     <Project Path="serilog-bootstrap-logger/serilog-bootstrap-logger.console/serilog-bootstrap-logger.console.csproj" />
   </Folder>
+  <Folder Name="/slidingStringMatch/" />
+  <Folder Name="/slidingStringMatch/slidingStringMatch.core/">
+    <Project Path="slidingStringMatch/slidingStringMatch.core/SlidingStringMatch.csproj" />
+  </Folder>
   <Folder Name="/Solution Items/">
     <File Path=".editorconfig" />
     <File Path=".editorconfig.externalia" />
