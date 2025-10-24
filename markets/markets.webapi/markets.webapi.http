@@ -1,0 +1,6 @@
+@markets.webapi_HostAddress = http://localhost:5151
+
+GET {{markets.webapi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
