@@ -2,7 +2,16 @@
 
 public class Machine
 {
-    public string Run(string operation, int pseudoRandomNumber, string[] rotors, string message)
+    private readonly int pseudoRandomNumber;
+    private readonly string[] rotors;
+
+    public Machine(int pseudoRandomNumber, string[] rotors)
+    {
+        this.pseudoRandomNumber = pseudoRandomNumber;
+        this.rotors = rotors ?? throw new ArgumentNullException(nameof(rotors));
+    }
+
+    public string Run(string operation, string message)
     {
         var alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         var indexedAlphabet = alphabet.Select((c, i) => new { c, i });
