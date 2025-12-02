@@ -1,20 +1,18 @@
 ﻿namespace Enigma;
 
-internal static class Program
+static class Program
 {
-    private const int PseudoRandomNumber = 4;
-
     private static void Main(string[] args)
     {
+        int shift = Random.Shared.Next(1, 25);
         string[] rotors = [
             "BDFHJLCPRTXVZNYEIWGAKMUSQO",
             "AJDKSIRUXBLHWTMCQGZNPYFVOE",
             "EKMFLGDQVZNTOWYHXUSPAIBRCJ"];
-        var encryptor = new Machine();
-        var encrypted = encryptor.Run("ENCODE", PseudoRandomNumber, rotors, args[0]);
+        var encryptor = new Machine(shift, rotors);
+        var encrypted = encryptor.Run("ENCODE", args[0]);
         Console.WriteLine($"encrypted: {encrypted}");
-        var decrypted = encryptor.Run("DECODE", PseudoRandomNumber, rotors, encrypted);
+        var decrypted = encryptor.Run("DECODE", encrypted);
         Console.WriteLine($"decrypted: {decrypted}");
-        Console.ReadLine();
     }
 }
