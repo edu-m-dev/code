@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" />
+    <PackageReference Include="NSwag.AspNetCore" />
+    <PackageReference Include="NSwag.Generation.AspNetCore" />    
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- reuse Machine from the existing console project -->
+    <ProjectReference Include="..\enigma.console\enigma.console.csproj" />
+  </ItemGroup>
+</Project>

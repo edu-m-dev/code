@@ -23,6 +23,7 @@
   <Folder Name="/enigma/">
     <Project Path="enigma/enigma.console/enigma.console.csproj" />
     <Project Path="enigma/enigma.tests/enigma.tests.csproj" />
+    <Project Path="enigma/enigma.webapp/enigma.webapp.csproj" />
   </Folder>
   <Folder Name="/equality/">
     <Project Path="equality/equality.bl/equality.bl.csproj" />
