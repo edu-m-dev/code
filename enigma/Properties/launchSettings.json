@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "interview-exercises": {
+      "commandName": "Project",
+      "commandLineArgs": "TALESFROMTHEEXTRAORDINARY"
+    }
+  }
+}

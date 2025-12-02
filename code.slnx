@@ -20,6 +20,9 @@
   <Folder Name="/efcore-adventureWorks/">
     <Project Path="efcore-adventureWorks/efcore-adventureWorks-webApi/adventureWorks.webApi.csproj" />
   </Folder>
+  <Folder Name="/enigma/">
+    <Project Path="enigma/enigma.csproj" />
+  </Folder>
   <Folder Name="/equality/">
     <Project Path="equality/equality.bl/equality.bl.csproj" />
     <Project Path="equality/equality.console/equality.console.csproj" />
