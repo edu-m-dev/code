@@ -1,6 +1,6 @@
 {
   "profiles": {
-    "interview-exercises": {
+    "enigma.console": {
       "commandName": "Project",
       "commandLineArgs": "TALESFROMTHEEXTRAORDINARY"
     }
