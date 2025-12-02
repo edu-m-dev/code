@@ -1,10 +1,10 @@
-﻿namespace Enigma;
+﻿namespace enigma.console;
 
-static class Program
+public static class Program
 {
-    private static void Main(string[] args)
+    public static void Main(string[] args)
     {
-        int shift = Random.Shared.Next(1, 25);
+        var shift = Random.Shared.Next(1, 25);
         string[] rotors = [
             "BDFHJLCPRTXVZNYEIWGAKMUSQO",
             "AJDKSIRUXBLHWTMCQGZNPYFVOE",
