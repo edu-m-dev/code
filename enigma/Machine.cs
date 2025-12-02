@@ -1,16 +1,7 @@
 ﻿namespace Enigma;
 
-public class Machine
+public class Machine(int pseudoRandomNumber, string[] rotors)
 {
-    private readonly int pseudoRandomNumber;
-    private readonly string[] rotors;
-
-    public Machine(int pseudoRandomNumber, string[] rotors)
-    {
-        this.pseudoRandomNumber = pseudoRandomNumber;
-        this.rotors = rotors ?? throw new ArgumentNullException(nameof(rotors));
-    }
-
     public string Run(string operation, string message)
     {
         var alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -53,7 +44,7 @@ public class Machine
                 var index = (alphabetCharDict[c] + (pseudoRandomNumber + i)) % 26;
                 return alphabetIndexDict[index];
             });
-        return new string(shiftedCharacters.ToArray());
+        return new string([.. shiftedCharacters]);
     }
 
     public static string UnshiftMessage(
@@ -68,7 +59,7 @@ public class Machine
                 var index = (alphabetCharDict[c] - (pseudoRandomNumber + i) + 26 * 10) % 26;
                 return alphabetIndexDict[index];
             });
-        return new string(shiftedCharacters.ToArray());
+        return new string([.. shiftedCharacters]);
     }
     public static string RotateMessage(
         string message,
@@ -77,7 +68,7 @@ public class Machine
     {
         var rotatedCharacters = message
             .Select(c => rotor[alphabetCharDict[c]]);
-        return new string(rotatedCharacters.ToArray());
+        return new string([.. rotatedCharacters]);
     }
 
     public static string UnrotateMessage(
@@ -87,6 +78,6 @@ public class Machine
     {
         var unrotatedCharacters = message
             .Select(c => alphabet[rotorCharDict[c]]);
-        return new string(unrotatedCharacters.ToArray());
+        return new string([.. unrotatedCharacters]);
     }
 }
