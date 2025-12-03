@@ -1,12 +1,12 @@
 ﻿using System.Reflection;
+using enigma.webapp.Controllers;
 using FluentAssertions;
 using Microsoft.AspNetCore.Mvc;
 using NUnit.Framework;
-using enigma.webapp.Controllers;
 
 namespace enigma.tests;
 
-public class EnigmaControllerTests
+public class EnigmaControllerUnitTests
 {
     [Test]
     public void Encode_ValidRequest_ReturnsOkWithResult()

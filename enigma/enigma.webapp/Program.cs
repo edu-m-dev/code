@@ -23,3 +23,5 @@ app.UseSwaggerUi();  // Serves Swagger UI at /swagger
 app.MapControllers();
 
 app.Run();
+
+public partial class Program { } // make it accessible to WebApplicationFactory<Program>
