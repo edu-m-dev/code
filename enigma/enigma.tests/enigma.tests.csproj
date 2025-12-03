@@ -18,5 +18,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\enigma.console\enigma.console.csproj" />
+    <ProjectReference Include="..\enigma.webapp\enigma.webapp.csproj" />
   </ItemGroup>
 </Project>
