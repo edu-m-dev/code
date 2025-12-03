@@ -1,0 +1,40 @@
+name: Deploy ASP.NET Core App to Azure on Release
+
+on:
+  release:
+    types: [published]   # Trigger only when a new release is published
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout source code
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      # Setup .NET 9 SDK
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '9.0.x'
+
+      # Restore dependencies
+      - name: Restore
+        run: dotnet restore
+
+      # Build project
+      - name: Build
+        run: dotnet build --configuration Release --no-restore
+
+      # Publish project
+      - name: Publish
+        run: dotnet publish -c Release -o ./publish
+
+      # Deploy to Azure Web App
+      - name: Deploy to Azure WebApp
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: ${{ secrets.AZURE_WEBAPP_NAME }}   # Your Azure Web App name
+          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+          package: ./publish
