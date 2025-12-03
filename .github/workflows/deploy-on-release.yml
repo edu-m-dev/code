@@ -1,4 +1,4 @@
-name: Deploy ASP.NET Core App to Azure on Release
+name: release to azure prod
 
 on:
   release:
