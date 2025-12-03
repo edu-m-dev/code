@@ -14,9 +14,11 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="coverlet.collector" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\enigma.console\enigma.console.csproj" />
+    <ProjectReference Include="..\enigma.webapp\enigma.webapp.csproj" />
   </ItemGroup>
 </Project>
