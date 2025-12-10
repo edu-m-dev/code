@@ -1,8 +1,11 @@
-﻿using chores.bl;
+﻿using System.Security.Principal;
+using chores.bl;
 using chores.bl.ef;
 using MediatR;
 
-public record GetUserChoresQuery(string UserId) : IRequest<IEnumerable<Chore>>;
+namespace chores.webapi.Handlers;
+
+public record GetUserChoresQuery(IPrincipal User) : IRequest<IEnumerable<Chore>>;
 
 public class GetUserChoresHandler : IRequestHandler<GetUserChoresQuery, IEnumerable<Chore>>
 {
@@ -15,7 +18,7 @@ public class GetUserChoresHandler : IRequestHandler<GetUserChoresQuery, IEnumera
 
     public Task<IEnumerable<Chore>> Handle(GetUserChoresQuery request, CancellationToken cancellationToken)
     {
-        var data = _service.GetUserChores(request.UserId);
+        var data = _service.GetChores(request.User);
         return Task.FromResult(data);
     }
 }

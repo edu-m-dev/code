@@ -18,6 +18,9 @@ builder.Services.AddOpenApiDocument(config =>
 var connection = builder.Configuration.GetConnectionString("chores") ?? "data source=chores.db";
 builder.Services.AddDbContext<ChoresDbContext>(options => options.UseSqlite(connection));
 
+// IHttpContextAccessor for accessing the current principal in controllers
+builder.Services.AddHttpContextAccessor();
+
 // Services
 builder.Services.AddScoped<IChoresService, ChoresService>();
 

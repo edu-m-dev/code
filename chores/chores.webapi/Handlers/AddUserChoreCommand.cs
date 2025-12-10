@@ -1,8 +1,9 @@
-﻿using chores.bl;
+﻿using System.Security.Principal;
+using chores.bl;
 using chores.bl.ef;
 using MediatR;
 
-public record AddUserChoreCommand(string UserId, Chore Chore) : IRequest<Chore>;
+public record AddUserChoreCommand(IPrincipal User, Chore Chore) : IRequest<Chore>;
 
 public class AddUserChoreHandler : IRequestHandler<AddUserChoreCommand, Chore>
 {
@@ -15,7 +16,7 @@ public class AddUserChoreHandler : IRequestHandler<AddUserChoreCommand, Chore>
 
     public Task<Chore> Handle(AddUserChoreCommand request, CancellationToken cancellationToken)
     {
-        var added = _service.AddUserChore(request.UserId, request.Chore);
+        var added = _service.AddChore(request.User, request.Chore);
         return Task.FromResult(added);
     }
 }

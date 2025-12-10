@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System.Security.Principal;
 using chores.bl.ef;
 
 namespace chores.bl;
 
 public interface IChoresService
 {
-    IEnumerable<Chore> GetUserChores(string userId);
-    Chore AddUserChore(string userId, Chore chore);
+    IEnumerable<Chore> GetChores(IPrincipal user);
+    Chore AddChore(IPrincipal user, Chore chore);
 }
