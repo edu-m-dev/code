@@ -5,7 +5,6 @@
     <PackageReference Include="NSwag.AspNetCore" />
     <PackageReference Include="NSwag.Generation.AspNetCore" />
     <PackageReference Include="MediatR" />
-    <!-- <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" /> -->
   </ItemGroup>
 
   <ItemGroup>
