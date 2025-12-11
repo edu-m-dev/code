@@ -1,4 +1,4 @@
-name: release enigma to azure prod
+name: release chores to azure
 
 on:
   release:
@@ -7,6 +7,9 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        environment: [dev, uat, staging, prod]
 
     steps:
       # Checkout source code
@@ -27,6 +30,11 @@ jobs:
       - name: Build
         run: dotnet build --configuration Release --no-restore
 
+      # Replace DB_CONNECTION placeholder in appsettings.json
+      - name: Inject DB connection string
+        run: |
+          sed -i "s/#{DB_CONNECTION}#/${{ secrets.DB_CONNECTION_${{ matrix.environment | upper }} }}/g" ./chores/chores.webapp/appsettings.json
+
       # Publish project
       - name: Publish
         run: dotnet publish ./enigma/enigma.webapp/enigma.webapp.csproj -c Release -o ./publish
@@ -35,12 +43,12 @@ jobs:
       - name: Azure Login
         uses: azure/login@v2
         with:
-          creds: ${{ secrets.AZURE_CREDENTIALS  }}
-      
+          creds: ${{ secrets.AZURE_CREDENTIALS_${{ matrix.environment | upper }} }}
+
       # Deploy to Azure Web App
       - name: Deploy to Azure WebApp
         uses: azure/webapps-deploy@v3
         with:
-          app-name: ${{ secrets.ENIGMA_AZURE_WEBAPP_NAME }}
-          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+          app-name: ${{ secrets.CHORES_API_AZURE_WEBAPP_NAME_${{ matrix.environment | upper }} }}
+          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE_${{ matrix.environment | upper }} }}
           package: ./publish
