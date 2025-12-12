@@ -10,6 +10,9 @@
   <Folder Name="/chores/">
     <Project Path="chores/chores.bl/chores.bl.csproj" />
     <Project Path="chores/chores.console/chores.console.csproj" />
+    <Project Path="chores/chores.migrations/chores.migrations.csproj" />
+    <Project Path="chores/chores.tests/chores.tests.csproj" />
+    <Project Path="chores/chores.webapi/chores.webapi.csproj" />
   </Folder>
   <Folder Name="/CountWordOccurrences/">
     <Project Path="CountWordOccurrences/CountWordOccurrences/CountWordOccurrences.csproj" />

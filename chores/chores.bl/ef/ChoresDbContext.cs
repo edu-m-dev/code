@@ -32,16 +32,5 @@ namespace chores.bl.ef
         }
 
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            var config = new ConfigurationBuilder()
-                .AddJsonFile("config.json", optional: false).Build(); // TODO - should be part of configuration root
-
-            if (!optionsBuilder.IsConfigured)
-            {
-                optionsBuilder.UseSqlite(config.GetConnectionString("chores"));
-            }
-        }
     }
 }

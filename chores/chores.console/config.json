@@ -1,5 +1,5 @@
 ﻿{
   "ConnectionStrings": {
-    "chores": "data source=.\\chores.db"
+    "chores": "data source=c:\\data\\chores.db"
   }
 }
