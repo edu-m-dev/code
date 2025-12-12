@@ -1,0 +1,27 @@
+name: Provision
+
+on:
+  workflow_dispatch:
+    inputs:
+      env:
+        description: "Target environment (dev, uat, staging, prod)"
+        required: true
+        default: "dev"
+
+jobs:
+  provision:
+    runs-on: ubuntu-latest
+    environment: ${{ github.event.inputs.env }}  # selects env-scoped secrets
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+      - name: Provision infra
+        env:
+          ENV: ${{ github.event.inputs.env }}
+          AZURE_SQL_PASSWORD: ${{ secrets.AZURE_SQL_PASSWORD }}  # resolves per environment
+        run: |
+          bash ./provision.sh
