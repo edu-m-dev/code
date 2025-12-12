@@ -20,7 +20,7 @@ az group create --name $RG_NAME --location $LOCATION
 
 # 2. App Service Plan
 az appservice plan show --name $PLAN_NAME --resource-group $RG_NAME >/dev/null 2>&1 \
-  || az appservice plan create --name $PLAN_NAME --resource-group $RG_NAME --sku F1 --is-linux true
+  || az appservice plan create --name $PLAN_NAME --resource-group $RG_NAME --sku F1 --is-linux
 
 # 3. Web Apps
 for APP in "${APPS[@]}"; do
