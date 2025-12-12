@@ -1,4 +1,4 @@
-name: Provision
+name: provision env infra
 
 on:
   workflow_dispatch:
