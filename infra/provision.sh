@@ -25,7 +25,7 @@ az appservice plan show --name $PLAN_NAME --resource-group $RG_NAME >/dev/null 2
 # 3. Web Apps
 for APP in "${APPS[@]}"; do
   az webapp show --name $APP --resource-group $RG_NAME >/dev/null 2>&1 \
-    || az webapp create --name $APP --resource-group $RG_NAME --plan $PLAN_NAME
+    || az webapp create --name $APP --resource-group $RG_NAME --plan $PLAN_NAME --runtime "${DOTNET_RUNTIME}"
 done
 
 # 4. SQL Server (shared across all envs)
