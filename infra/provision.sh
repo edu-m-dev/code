@@ -7,7 +7,7 @@ ENV="${ENV}"
 RG_NAME="edu-m-rg-${ENV}"
 LOCATION="westeurope"
 PLAN_NAME="edu-m-plan-${ENV}"
-APPS=("enigma-api_edu-m-${ENV}" "chores-api_edu-m-${ENV}")
+APPS=("enigma-api-edu-m-${ENV}" "chores-api-edu-m-${ENV}")
 
 # SQL Server settings (shared across all envs)
 SQL_SERVER_NAME="edu-m-sqlserver"
