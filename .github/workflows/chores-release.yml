@@ -1,26 +1,36 @@
-name: release chores to azure
+name: deploy chores release
 
 on:
+  workflow_dispatch:
+    inputs:
+      env:
+        description: "Target environment (dev, uat, staging, prod)"
+        required: true
+        default: "dev"
+      dotnet_version:
+        description: "dotnet runtime version"
+        required: true
+        default: "9.0"
   release:
-    types: [published]   # Trigger only when a new release is published
+    types: [published]   # Trigger only when a new release is published // TODO - modify to only consider chores new releases
 
 jobs:
   build-and-deploy:
+    # Run for manual dispatch OR for published releases whose tag/name starts with "chores-webapp"
+    if: github.event_name == 'workflow_dispatch' || (github.event_name == 'release' && startsWith(github.event.release.tag_name, 'chores-webapp'))
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        environment: [dev, uat, staging, prod]
+    environment: ${{ github.event.inputs.env }}  # selects env-scoped vars and secrets
 
     steps:
       # Checkout source code
       - name: Checkout
         uses: actions/checkout@v3
 
-      # Setup .NET 9 SDK
+      # Setup .NET SDK
       - name: Setup .NET
         uses: actions/setup-dotnet@v3
         with:
-          dotnet-version: '9.0.x'
+          dotnet-version: '${{ github.event.inputs.dotnet_version }}.x'
 
       # Restore dependencies
       - name: Restore
@@ -30,25 +40,24 @@ jobs:
       - name: Build
         run: dotnet build --configuration Release --no-restore
 
-      # Replace DB_CONNECTION placeholder in appsettings.json
-      - name: Inject DB connection string
-        run: |
-          sed -i "s/#{DB_CONNECTION}#/${{ secrets.DB_CONNECTION_${{ matrix.environment | upper }} }}/g" ./chores/chores.webapp/appsettings.json
-
+      # Replace placeholders in appsettings.json
+      - name: Replace appsettings.json placeholders
+        run: sed -i "s|#{DB_CONNECTION}#|${{ vars.DB_CONNECTION }}|g" ./chores/chores.webapp/appsettings.json
+      
       # Publish project
       - name: Publish
-        run: dotnet publish ./enigma/enigma.webapp/enigma.webapp.csproj -c Release -o ./publish
+        run: dotnet publish ./chores/chores.webapp/chores.webapp.csproj -c Release -o ./publish
 
       # Login to Azure
       - name: Azure Login
         uses: azure/login@v2
         with:
-          creds: ${{ secrets.AZURE_CREDENTIALS_${{ matrix.environment | upper }} }}
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
 
       # Deploy to Azure Web App
       - name: Deploy to Azure WebApp
         uses: azure/webapps-deploy@v3
         with:
-          app-name: ${{ secrets.CHORES_API_AZURE_WEBAPP_NAME_${{ matrix.environment | upper }} }}
-          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE_${{ matrix.environment | upper }} }}
+          app-name: ${{ chores-api-edu-m-${{ github.event.inputs.env }} }}
+          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE_CHORES }}
           package: ./publish
