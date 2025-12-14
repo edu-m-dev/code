@@ -76,5 +76,5 @@ jobs:
         uses: azure/webapps-deploy@v3
         with:
           app-name: chores-api-edu-m-${{ env.ENV }}
-          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE_CHORES }}
+          # publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE_CHORES }}
           package: ./publish
