@@ -7,30 +7,26 @@ on:
         description: "Target environment (dev, uat, staging, prod)"
         required: true
         default: "dev"
-      dotnet_version:
-        description: "dotnet runtime version"
-        required: true
-        default: "9.0"
   release:
     types: [published]   # Trigger only when a new release is published
 
 jobs:
   build-and-deploy:
-    # Run for manual dispatch OR for published releases whose tag/name starts with "chores-webapp"
-    if: github.event_name == 'workflow_dispatch' || (github.event_name == 'release' && startsWith(github.event.release.tag_name, 'chores-webapp'))
+    # Run for manual dispatch OR for published releases whose tag/name starts with "chores-webapi"
+    if: github.event_name == 'workflow_dispatch' || (github.event_name == 'release' && startsWith(github.event.release.tag_name, 'chores-webapi'))
     runs-on: ubuntu-latest
-    environment: ${{ github.event.inputs.env }}  # selects env-scoped vars and secrets
+    environment: ${{ github.event.inputs.env || 'dev' }}  # selects env-scoped vars and secrets
 
     steps:
       # Checkout source code
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       # Setup .NET SDK
       - name: Setup .NET
-        uses: actions/setup-dotnet@v3
+        uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: '${{ github.event.inputs.dotnet_version }}.x'
+          dotnet-version: '9.0.x'
 
       # Restore dependencies
       - name: Restore
@@ -48,11 +44,11 @@ jobs:
             # Replace the #{pwd}# placeholder with the actual SQL password secret
             CONNECTION="${CONNECTION//#{AZURE_SQL_PASSWORD}#/${{ secrets.AZURE_SQL_PASSWORD }}}"
             # Inject the final connection string into appsettings.json
-            sed -i "s|#{DB_CONNECTION}#|$CONNECTION|g" ./chores/chores.webapp/appsettings.json
+            sed -i "s|#{DB_CONNECTION}#|$CONNECTION|g" ./chores/chores.webapi/appsettings.json
 
       # Publish project
       - name: Publish
-        run: dotnet publish ./chores/chores.webapp/chores.webapp.csproj -c Release -o ./publish
+        run: dotnet publish ./chores/chores.webapi/chores.webapi.csproj -c Release -o ./publish
 
       # Login to Azure
       - name: Azure Login
