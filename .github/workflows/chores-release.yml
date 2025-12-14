@@ -58,6 +58,6 @@ jobs:
       - name: Deploy to Azure WebApp
         uses: azure/webapps-deploy@v3
         with:
-           SDKapp-name: chores-api-edu-m-${{ github.event.inputs.env }}
+          app-name: chores-api-edu-m-${{ github.event.inputs.env }}
           publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE_CHORES }}
           package: ./publish
