@@ -1,4 +1,4 @@
-name: deploy chores release
+name: chores-webapi
 
 on:
   workflow_dispatch:
