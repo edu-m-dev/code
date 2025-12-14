@@ -42,8 +42,14 @@ jobs:
 
       # Replace placeholders in appsettings.json
       - name: Replace appsettings.json placeholders
-        run: sed -i "s|#{DB_CONNECTION}#|${{ secrets.DB_CONNECTION }}|g" ./chores/chores.webapp/appsettings.json
-      
+        run: |
+            # Take the parameterized connection string from the secret
+            CONNECTION="${{ secrets.DB_CONNECTION }}"
+            # Replace the #{pwd}# placeholder with the actual SQL password secret
+            CONNECTION="${CONNECTION//#{AZURE_SQL_PASSWORD}#/${{ secrets.AZURE_SQL_PASSWORD }}}"
+            # Inject the final connection string into appsettings.json
+            sed -i "s|#{DB_CONNECTION}#|$CONNECTION|g" ./chores/chores.webapp/appsettings.json
+
       # Publish project
       - name: Publish
         run: dotnet publish ./chores/chores.webapp/chores.webapp.csproj -c Release -o ./publish
