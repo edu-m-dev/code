@@ -10,18 +10,25 @@ on:
   release:
     types: [published]   # Trigger only when a new release is published
 
-# Define ENV globally
-env:
-  ENV: ${{ github.event.inputs.env || 'dev' }}
-
 jobs:
   build-and-deploy:
     # Run for manual dispatch OR for published releases whose tag/name starts with "chores-webapi"
     if: github.event_name == 'workflow_dispatch' || (github.event_name == 'release' && startsWith(github.event.release.tag_name, 'chores-webapi'))
     runs-on: ubuntu-latest
+    env:
+      ENV: ${{ github.event.inputs.env || 'dev' }}
     environment: ${{ env.ENV }} # selects env-scoped vars and secrets
 
     steps:
+      # Validate environment
+      - name: Validate environment
+        run: |
+            if [[ ! "${{ env.ENV }}" =~ ^(dev|uat|staging|prod)$ ]]; then
+            echo "Invalid environment: ${{ env.ENV }}. Must be one of: dev, uat, staging, prod."
+            exit 1
+            fi
+            echo "Environment validated: ${{ env.ENV }}"
+      
       # Checkout source code
       - name: Checkout
         uses: actions/checkout@v4
