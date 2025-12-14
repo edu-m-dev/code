@@ -12,7 +12,7 @@ on:
         required: true
         default: "9.0"
   release:
-    types: [published]   # Trigger only when a new release is published // TODO - modify to only consider chores new releases
+    types: [published]   # Trigger only when a new release is published
 
 jobs:
   build-and-deploy:
@@ -42,7 +42,7 @@ jobs:
 
       # Replace placeholders in appsettings.json
       - name: Replace appsettings.json placeholders
-        run: sed -i "s|#{DB_CONNECTION}#|${{ vars.DB_CONNECTION }}|g" ./chores/chores.webapp/appsettings.json
+        run: sed -i "s|#{DB_CONNECTION}#|${{ secrets.DB_CONNECTION }}|g" ./chores/chores.webapp/appsettings.json
       
       # Publish project
       - name: Publish
@@ -58,6 +58,6 @@ jobs:
       - name: Deploy to Azure WebApp
         uses: azure/webapps-deploy@v3
         with:
-          app-name: ${{ chores-api-edu-m-${{ github.event.inputs.env }} }}
+           SDKapp-name: chores-api-edu-m-${{ github.event.inputs.env }}
           publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE_CHORES }}
           package: ./publish
