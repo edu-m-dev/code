@@ -10,12 +10,16 @@ on:
   release:
     types: [published]   # Trigger only when a new release is published
 
+# Define ENV globally
+env:
+  ENV: ${{ github.event.inputs.env || 'dev' }}
+
 jobs:
   build-and-deploy:
     # Run for manual dispatch OR for published releases whose tag/name starts with "chores-webapi"
     if: github.event_name == 'workflow_dispatch' || (github.event_name == 'release' && startsWith(github.event.release.tag_name, 'chores-webapi'))
     runs-on: ubuntu-latest
-    environment: ${{ github.event.inputs.env || 'dev' }}  # selects env-scoped vars and secrets
+    environment: ${{ env.ENV }} # selects env-scoped vars and secrets
 
     steps:
       # Checkout source code
@@ -60,6 +64,6 @@ jobs:
       - name: Deploy to Azure WebApp
         uses: azure/webapps-deploy@v3
         with:
-          app-name: chores-api-edu-m-${{ github.event.inputs.env }}
+          app-name: chores-api-edu-m-${{ env.ENV }}
           publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE_CHORES }}
           package: ./publish
