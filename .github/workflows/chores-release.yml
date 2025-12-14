@@ -15,9 +15,13 @@ jobs:
     # Run for manual dispatch OR for published releases whose tag/name starts with "chores-webapi"
     if: github.event_name == 'workflow_dispatch' || (github.event_name == 'release' && startsWith(github.event.release.tag_name, 'chores-webapi'))
     runs-on: ubuntu-latest
+
+    # Job-level env variable for reuse in steps
     env:
       ENV: ${{ github.event.inputs.env || 'dev' }}
-    environment: ${{ env.ENV }} # selects env-scoped vars and secrets
+
+    # GitHub environment (for env-scoped secrets/approvals)
+    environment: ${{ github.event.inputs.env || 'dev' }}
 
     steps:
       # Validate environment
