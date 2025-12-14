@@ -59,7 +59,12 @@ jobs:
             # Replace the #{pwd}# placeholder with the actual SQL password secret
             CONNECTION="${CONNECTION//#{AZURE_SQL_PASSWORD}#/${{ secrets.AZURE_SQL_PASSWORD }}}"
             # Inject the final connection string into appsettings.json
+            sed -i "s|#{DB_CONNECTION}#|$CONNECTION|g" ./chores/chores.migrations/appsettings.json
             sed -i "s|#{DB_CONNECTION}#|$CONNECTION|g" ./chores/chores.webapi/appsettings.json
+
+     #  Run EF Core migrations before publishing/deploying
+      - name: Run EF Core migrations
+        run: dotnet run --project ./chores/chores.migrations/chores.migrations.csproj --configuration Release
 
       # Publish project
       - name: Publish
@@ -76,5 +81,4 @@ jobs:
         uses: azure/webapps-deploy@v3
         with:
           app-name: chores-api-edu-m-${{ env.ENV }}
-          # publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE_CHORES }}
           package: ./publish

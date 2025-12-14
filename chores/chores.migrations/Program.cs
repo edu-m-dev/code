@@ -13,7 +13,7 @@ var host = Host.CreateDefaultBuilder(args)
     .ConfigureServices((context, services) =>
     {
         var configuration = context.Configuration;
-        var connection = configuration.GetConnectionString("chores") ?? "data source=chores.db";
+        var connection = configuration.GetConnectionString("chores");
         services.AddDbContext<ChoresDbContext>(
             options => options.UseSqlite(connection, sqlOptions =>
                 sqlOptions.MigrationsAssembly("chores.migrations")));
