@@ -11,6 +11,8 @@ var config = new ConfigurationBuilder()
 // Get the connection string named "chores"
 var connection = config.GetConnectionString("chores");
 
+Console.WriteLine($"connection string is {connection}"); // TODO - remove after testing
+
 // Configure DbContext for SQL Server
 var options = new DbContextOptionsBuilder<ChoresDbContext>()
     .UseSqlServer(connection, sqlOptions =>
