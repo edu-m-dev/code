@@ -10,4 +10,10 @@
   <ItemGroup>
     <ProjectReference Include="..\chores.bl\chores.bl.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="appsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
 </Project>
