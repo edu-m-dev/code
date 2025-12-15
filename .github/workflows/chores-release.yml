@@ -57,10 +57,12 @@ jobs:
             # Take the parameterized connection string from the secret
             CONNECTION="${{ secrets.DB_CONNECTION }}"
             # Replace the #{pwd}# placeholder with the actual SQL password secret
-            CONNECTION="${CONNECTION//#{AZURE_SQL_PASSWORD}#/${{ secrets.AZURE_SQL_PASSWORD }}}"
+            CONNECTION="${CONNECTION//\#\{AZURE_SQL_PASSWORD\}\#/${AZURE_SQL_PASSWORD}}"
             # Inject the final connection string into appsettings.json
             sed -i "s|#{DB_CONNECTION}#|$CONNECTION|g" ./chores/chores.migrations/appsettings.json
             sed -i "s|#{DB_CONNECTION}#|$CONNECTION|g" ./chores/chores.webapi/appsettings.json
+        env:
+            AZURE_SQL_PASSWORD: ${{ secrets.AZURE_SQL_PASSWORD }}
 
      #  Run EF Core migrations before publishing/deploying
       - name: Run EF Core migrations
