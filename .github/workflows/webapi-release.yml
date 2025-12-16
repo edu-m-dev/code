@@ -64,7 +64,7 @@ jobs:
     if: contains(github.event.release.tag_name, '-webapi@')
     needs: build
     runs-on: ubuntu-latest
-    environment: ${{ env.ENV }}
+    environment: ${{ github.event.inputs.env || 'dev' }} # ${{ env.ENV }} not available yet
     steps:
       - name: Validate environment
         run: |
