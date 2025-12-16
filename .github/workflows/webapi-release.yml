@@ -30,7 +30,7 @@ jobs:
           echo "- [View Release Notes](https://github.com/${{ github.repository }}/releases/tag/${{ github.event.release.tag_name }})" >> $GITHUB_STEP_SUMMARY
           echo "- Timestamp: $(date)" >> $GITHUB_STEP_SUMMARY
 
-      - name: Extract app + project from tag
+      - name: Extract tag + app
         run: |
           tag="${{ github.event.release.tag_name }}"
           app="${tag%%-*}"
@@ -94,7 +94,7 @@ jobs:
           fi
           echo "Environment validated: ${{ github.event.inputs.env }}"
 
-      - name: Extract app + project from tag
+      - name: Extract tag + app
         run: |
           tag="${{ github.event.release.tag_name }}"
           app="${tag%%-*}"
