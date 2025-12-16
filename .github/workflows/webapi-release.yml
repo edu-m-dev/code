@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       env:
-        description: "Target environment (dev, uat, staging, prod)"
+        description: "dev, uat, staging, prod"
         required: true
         default: "dev"
       tag:
@@ -15,20 +15,11 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
     if: github.event_name == 'release' && contains(github.event.release.tag_name, '-webapi@')
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-
-      - name: Status echo (start build)
-        run: echo "📦 Building ${{ github.event.release.tag_name }}"
-
-      - name: Job summary (start build)
-        run: |
-          echo "### Build Started" >> $GITHUB_STEP_SUMMARY
-          echo "- Version: ${{ github.event.release.tag_name }}" >> $GITHUB_STEP_SUMMARY
-          echo "- [View Release Notes](https://github.com/${{ github.repository }}/releases/tag/${{ github.event.release.tag_name }})" >> $GITHUB_STEP_SUMMARY
-          echo "- Timestamp: $(date)" >> $GITHUB_STEP_SUMMARY
+      - name: checkout
+        uses: actions/checkout@v4
 
       - name: Extract tag + app
         run: |
@@ -42,50 +33,36 @@ jobs:
         with:
           dotnet-version: '9.0.x'
 
-      - name: Restore
-        run: dotnet restore
+      - name: Restore tests
+        run: dotnet restore ./"$APP"/"$APP".tests/"$APP".tests.csproj
 
-      - name: Build
-        run: dotnet build --configuration Release --no-restore
+      - name: Build tests
+        run: dotnet build ./"$APP"/"$APP".tests/"$APP".tests.csproj --configuration Release --no-restore
 
       - name: Test 
         run: dotnet test --configuration Release --no-build --verbosity normal
 
-      - name: Publish
-        run: dotnet publish ./"$APP"/"$APP".webapi/"$APP".webapi.csproj -c Release -o ./publish
+      - name: Restore webapi
+        run: dotnet restore ./"$APP"/"$APP".webapi/"$APP".webapi.csproj
 
-      - name: Upload artifact
+      - name: Build webapi
+        run: dotnet build ./"$APP"/"$APP".webapi/"$APP".webapi.csproj --configuration Release --no-restore
+
+      - name: Publish webapi
+        run: dotnet publish ./"$APP"/"$APP".webapi/"$APP".webapi.csproj -c Release -o ./publish --no-build
+
+      - name: Upload webapi artifact
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ github.event.release.tag_name }}
-          path: ./publish
-
-      - name: Status echo (end build)
-        run: echo "✅ Successfully built ${{ github.event.release.tag_name }}"
-
-      - name: Job summary (end build)
-        run: |
-          echo "### ✅ Build Completed" >> $GITHUB_STEP_SUMMARY
-          echo "- Version: ${{ github.event.release.tag_name }}" >> $GITHUB_STEP_SUMMARY
-          echo "- [View Release Notes](https://github.com/${{ github.repository }}/releases/tag/${{ github.event.release.tag_name }})" >> $GITHUB_STEP_SUMMARY
-          echo "- Timestamp: $(date)" >> $GITHUB_STEP_SUMMARY
+          name: ${{ github.event.release.tag_name }}-webapi
+          path: ./publish/webapi
 
   deploy:
+    if: contains(github.event.release.tag_name, '-webapi@')  
     needs: build
     runs-on: ubuntu-latest
     environment: ${{ github.event.inputs.env || 'dev' }}
     steps:
-      - name: Status echo (start deploy)
-        run: echo "🚀 Deploying ${{ github.event.inputs.tag }} → ${{ github.event.inputs.env }}"
-
-      - name: Job summary (start deploy)
-        run: |
-          echo "### 🚀 Deployment Started" >> $GITHUB_STEP_SUMMARY
-          echo "- Version: ${{ github.event.inputs.tag }}" >> $GITHUB_STEP_SUMMARY
-          echo "- Environment: ${{ github.event.inputs.env }}" >> $GITHUB_STEP_SUMMARY
-          echo "- [View Release Notes](https://github.com/${{ github.repository }}/releases/tag/${{ github.event.inputs.tag }})" >> $GITHUB_STEP_SUMMARY
-          echo "- Timestamp: $(date)" >> $GITHUB_STEP_SUMMARY
-
       - name: Validate environment
         run: |
           if [[ ! "${{ github.event.inputs.env || 'dev' }}" =~ ^(dev|uat|staging|prod)$ ]]; then
@@ -101,24 +78,23 @@ jobs:
           echo "TAG=$tag" >> $GITHUB_ENV
           echo "APP=$app" >> $GITHUB_ENV
 
-      - name: Download artifact
+      - name: Download webapi artifact
         uses: actions/download-artifact@v4
         with:
-          name: ${{ env.TAG }}
-          path: ./publish
+          name: ${{ env.TAG }}-webapi
+          path: ./publish/webapi
 
       - name: Replace appsettings.json placeholders
         run: |
           CONNECTION="${{ secrets.DB_CONNECTION }}"
           CONNECTION="${CONNECTION//\#\{AZURE_SQL_PASSWORD\}\#/${AZURE_SQL_PASSWORD}}"
-          sed -i "s|#{DB_CONNECTION}#|$CONNECTION|g" ./"$APP"/"$APP".migrations/appsettings.json
-          sed -i "s|#{DB_CONNECTION}#|$CONNECTION|g" ./"$APP"/"$APP".webapi/appsettings.json
+          sed -i "s|#{DB_CONNECTION}#|$CONNECTION|g" ./publish/webapi/appsettings.json
         env:
           AZURE_SQL_PASSWORD: ${{ secrets.AZURE_SQL_PASSWORD }}
 
-      - name: Run EF Core migrations
-        run: |
-          dotnet run --project ./"$APP"/"$APP".migrations/"$APP".migrations.csproj --configuration Release
+      # - name: Run EF Core migrations
+      #   run: |
+      #     dotnet run .publish/"$APP".migr/ations.dll
       
       - name: Azure Login
         uses: azure/login@v2
@@ -129,15 +105,4 @@ jobs:
         uses: azure/webapps-deploy@v3
         with:
           app-name: $APP-api-edu-m-${{ github.event.inputs.env }}
-          package: ./publish
-
-      - name: Status echo (end deploy)
-        run: echo "✅ Successfully deployed ${{ github.event.inputs.tag }} → ${{ github.event.inputs.env }}"
-
-      - name: Job summary (end deploy)
-        run: |
-          echo "### ✅ Deployment Completed" >> $GITHUB_STEP_SUMMARY
-          echo "- Version: ${{ github.event.inputs.tag }}" >> $GITHUB_STEP_SUMMARY
-          echo "- Environment: ${{ github.event.inputs.env }}" >> $GITHUB_STEP_SUMMARY
-          echo "- [View Release Notes](https://github.com/${{ github.repository }}/releases/tag/${{ github.event.inputs.tag }})" >> $GITHUB_STEP_SUMMARY
-          echo "- Timestamp: $(date)" >> $GITHUB_STEP_SUMMARY
+          package: ./publish/webapi
