@@ -61,7 +61,7 @@ jobs:
     if: contains(github.event.release.tag_name, '-webapi@')  
     needs: build
     runs-on: ubuntu-latest
-    environment: ${{ github.event.inputs.env }}
+    environment: ${{ github.event.inputs.env || 'dev' }}
     steps:
       - name: Validate environment
         run: |
@@ -69,7 +69,7 @@ jobs:
             echo "Invalid environment: ${{ github.event.inputs.env }}. Must be one of: dev, uat, staging, prod."
             exit 1
           fi
-          echo "Environment validated: ${{ github.event.inputs.env }}"
+          echo "Environment validated: ${{ github.event.inputs.env || 'dev' }}
 
       - name: Extract tag + app
         run: |
@@ -103,5 +103,5 @@ jobs:
       - name: Deploy to Azure WebApp
         uses: azure/webapps-deploy@v3
         with:
-          app-name: ${{ env.APP }}-api-edu-m-${{ github.event.inputs.env }}
+          app-name: ${{ env.APP }}-api-edu-m-${{ github.event.inputs.env || 'dev' }}
           package: ./deploy/webapi
