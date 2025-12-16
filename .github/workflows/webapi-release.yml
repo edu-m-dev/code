@@ -61,7 +61,7 @@ jobs:
     if: contains(github.event.release.tag_name, '-webapi@')  
     needs: build
     runs-on: ubuntu-latest
-    environment: ${{ github.event.inputs.env || 'dev' }}
+    environment: ${{ github.event.inputs.env }}
     steps:
       - name: Validate environment
         run: |
@@ -93,7 +93,7 @@ jobs:
           AZURE_SQL_PASSWORD: ${{ secrets.AZURE_SQL_PASSWORD }}
 
       # - name: Run EF Core migrations
-      #   run: dotnet run .deploy/migrations/"$APP".migrations.dll
+      #   run: dotnet .deploy/migrations/"$APP".migrations.dll
       
       - name: Azure Login
         uses: azure/login@v2
