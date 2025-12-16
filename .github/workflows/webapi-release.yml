@@ -14,7 +14,7 @@ on:
     types: [published]
 
 env:
-  ENV: ${{ coalesce(github.event.inputs.env, 'dev') }}
+  ENV: ${{ github.event.inputs.env || 'dev' }}
 
 jobs:
   build:
