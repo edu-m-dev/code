@@ -40,7 +40,7 @@ jobs:
         run: dotnet build ./"$APP"/"$APP".tests/"$APP".tests.csproj --configuration Release --no-restore
 
       - name: Test 
-        run: dotnet test --configuration Release --no-build --verbosity normal
+        run: dotnet test ./"$APP"/"$APP".tests/"$APP".tests.csproj --configuration Release --no-build --verbosity normal
 
       - name: Restore webapi
         run: dotnet restore ./"$APP"/"$APP".webapi/"$APP".webapi.csproj
@@ -49,7 +49,7 @@ jobs:
         run: dotnet build ./"$APP"/"$APP".webapi/"$APP".webapi.csproj --configuration Release --no-restore
 
       - name: Publish webapi
-        run: dotnet publish ./"$APP"/"$APP".webapi/"$APP".webapi.csproj -c Release -o ./publish --no-build
+        run: dotnet publish ./"$APP"/"$APP".webapi/"$APP".webapi.csproj -c Release -o ./publish/webapi --no-build
 
       - name: Upload webapi artifact
         uses: actions/upload-artifact@v4
@@ -82,19 +82,18 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: ${{ env.TAG }}-webapi
-          path: ./publish/webapi
+          path: ./deploy/webapi
 
       - name: Replace appsettings.json placeholders
         run: |
           CONNECTION="${{ secrets.DB_CONNECTION }}"
           CONNECTION="${CONNECTION//\#\{AZURE_SQL_PASSWORD\}\#/${AZURE_SQL_PASSWORD}}"
-          sed -i "s|#{DB_CONNECTION}#|$CONNECTION|g" ./publish/webapi/appsettings.json
+          sed -i "s|#{DB_CONNECTION}#|$CONNECTION|g" ./deploy/webapi/appsettings.json
         env:
           AZURE_SQL_PASSWORD: ${{ secrets.AZURE_SQL_PASSWORD }}
 
       # - name: Run EF Core migrations
-      #   run: |
-      #     dotnet run .publish/"$APP".migr/ations.dll
+      #   run: dotnet run .deploy/migrations/"$APP".migrations.dll
       
       - name: Azure Login
         uses: azure/login@v2
@@ -104,5 +103,5 @@ jobs:
       - name: Deploy to Azure WebApp
         uses: azure/webapps-deploy@v3
         with:
-          app-name: $APP-api-edu-m-${{ github.event.inputs.env }}
-          package: ./publish/webapi
+          app-name: ${{ env.APP }}-api-edu-m-${{ github.event.inputs.env }}
+          package: ./deploy/webapi
