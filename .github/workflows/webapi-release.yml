@@ -13,6 +13,9 @@ on:
   release:
     types: [published]
 
+env:
+  ENV: ${{ coalesce(github.event.inputs.env, 'dev') }}
+
 jobs:
   build:
     if: github.event_name == 'release' && contains(github.event.release.tag_name, '-webapi@')
@@ -39,7 +42,7 @@ jobs:
       - name: Build tests
         run: dotnet build ./"$APP"/"$APP".tests/"$APP".tests.csproj --configuration Release --no-restore
 
-      - name: Test 
+      - name: Test
         run: dotnet test ./"$APP"/"$APP".tests/"$APP".tests.csproj --configuration Release --no-build --verbosity normal
 
       - name: Restore webapi
@@ -58,18 +61,18 @@ jobs:
           path: ./publish/webapi
 
   deploy:
-    if: contains(github.event.release.tag_name, '-webapi@')  
+    if: contains(github.event.release.tag_name, '-webapi@')
     needs: build
     runs-on: ubuntu-latest
-    environment: ${{ github.event.inputs.env || 'dev' }}
+    environment: ${{ env.ENV }}
     steps:
       - name: Validate environment
         run: |
-          if [[ ! "${{ github.event.inputs.env || 'dev' }}" =~ ^(dev|uat|staging|prod)$ ]]; then
-            echo "Invalid environment: ${{ github.event.inputs.env }}. Must be one of: dev, uat, staging, prod."
+          if [[ ! "$ENV" =~ ^(dev|uat|staging|prod)$ ]]; then
+            echo "Invalid environment: $ENV. Must be one of: dev, uat, staging, prod."
             exit 1
           fi
-          echo "Environment validated: ${{ github.event.inputs.env || 'dev' }}
+          echo "Environment validated: $ENV"
 
       - name: Extract tag + app
         run: |
@@ -93,8 +96,8 @@ jobs:
           AZURE_SQL_PASSWORD: ${{ secrets.AZURE_SQL_PASSWORD }}
 
       # - name: Run EF Core migrations
-      #   run: dotnet .deploy/migrations/"$APP".migrations.dll
-      
+      #   run: dotnet ./deploy/migrations/$APP.migrations.dll
+
       - name: Azure Login
         uses: azure/login@v2
         with:
@@ -103,5 +106,5 @@ jobs:
       - name: Deploy to Azure WebApp
         uses: azure/webapps-deploy@v3
         with:
-          app-name: ${{ env.APP }}-api-edu-m-${{ github.event.inputs.env || 'dev' }}
+          app-name: ${{ env.APP }}-api-edu-m-${{ env.ENV }}
           package: ./deploy/webapi
