@@ -61,7 +61,6 @@ jobs:
           path: ./publish/webapi
 
   deploy:
-    if: contains(github.event.inputs.tag, '-webapi@')
     needs: build
     runs-on: ubuntu-latest
     environment: ${{ github.event.inputs.env || 'dev' }} # ${{ env.ENV }} not available yet
@@ -76,7 +75,7 @@ jobs:
 
       - name: Extract tag + app
         run: |
-          tag="${{ github.event.inputs.tag }}"
+          tag="${{ github.event.inputs.tag || github.event.release.tag_name }}"
           app="${tag%%-*}"
           echo "TAG=$tag" >> $GITHUB_ENV
           echo "APP=$app" >> $GITHUB_ENV
