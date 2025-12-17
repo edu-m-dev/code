@@ -37,6 +37,15 @@ az sql server show --name $SQL_SERVER_NAME --resource-group $RG_NAME >/dev/null 
        --admin-user $SQL_ADMIN_USER \
        --admin-password $SQL_ADMIN_PASS
 
+# 4b. Firewall rule (allow all IPs)
+az sql server firewall-rule show --name allow-all-ips --server $SQL_SERVER_NAME --resource-group $RG_NAME >/dev/null 2>&1 \
+  || az sql server firewall-rule create \
+       --resource-group $RG_NAME \
+       --server $SQL_SERVER_NAME \
+       --name allow-all-ips \
+       --start-ip-address 0.0.0.0 \
+       --end-ip-address 255.255.255.255
+
 # 5. Database (always named 'code')
 az sql db show --name $DB_NAME --server $SQL_SERVER_NAME --resource-group $RG_NAME >/dev/null 2>&1 \
   || az sql db create \
