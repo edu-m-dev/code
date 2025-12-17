@@ -1,24 +1,12 @@
 ﻿name: webapi-release
 
 on:
-  workflow_dispatch:
-    inputs:
-      env:
-        description: "dev, uat, staging, prod"
-        required: true
-        default: "dev"
-      tag:
-        description: "Release tag (e.g. myapp-webapi@1.2.3)"
-        required: true
   release:
     types: [published]
 
-env:
-  ENV: ${{ github.event.inputs.env || 'dev' }}
-
 jobs:
   build:
-    if: github.event_name == 'release' && contains(github.event.release.tag_name, '-webapi@')
+    if: contains(github.event.release.tag_name, '-webapi@')
     runs-on: ubuntu-latest
     steps:
       - name: checkout
@@ -63,19 +51,14 @@ jobs:
   deploy:
     needs: build
     runs-on: ubuntu-latest
-    environment: ${{ github.event.inputs.env || 'dev' }} # ${{ env.ENV }} not available yet
+    strategy:
+      matrix:
+        env: [dev, uat]
+    environment: ${{ matrix.env }}
     steps:
-      - name: Validate environment
-        run: |
-          if [[ ! "$ENV" =~ ^(dev|uat|staging|prod)$ ]]; then
-            echo "Invalid environment: $ENV. Must be one of: dev, uat, staging, prod."
-            exit 1
-          fi
-          echo "Environment validated: $ENV"
-
       - name: Extract tag + app
         run: |
-          tag="${{ github.event.inputs.tag || github.event.release.tag_name }}"
+          tag="${{ github.event.release.tag_name }}"
           app="${tag%%-*}"
           echo "TAG=$tag" >> $GITHUB_ENV
           echo "APP=$app" >> $GITHUB_ENV
@@ -89,7 +72,7 @@ jobs:
       - name: Replace appsettings.json placeholders
         run: |
           CONNECTION="${{ secrets.DB_CONNECTION }}"
-          CONNECTION="${CONNECTION//\#\{ENV\}\#/${ENV}}"
+          CONNECTION="${CONNECTION//\#\{ENV\}\#/${{ matrix.env }}}"
           CONNECTION="${CONNECTION//\#\{AZURE_SQL_PASSWORD\}\#/${AZURE_SQL_PASSWORD}}"
           sed -i "s|#{DB_CONNECTION}#|$CONNECTION|g" ./deploy/webapi/appsettings.json
         env:
@@ -103,5 +86,5 @@ jobs:
       - name: Deploy to Azure WebApp
         uses: azure/webapps-deploy@v3
         with:
-          app-name: ${{ env.APP }}-api-edu-m-${{ env.ENV }}
+          app-name: ${{ env.APP }}-api-edu-m-${{ matrix.env }}
           package: ./deploy/webapi
