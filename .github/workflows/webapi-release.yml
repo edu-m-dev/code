@@ -90,6 +90,7 @@ jobs:
       - name: Replace appsettings.json placeholders
         run: |
           CONNECTION="${{ secrets.DB_CONNECTION }}"
+          CONNECTION="${CONNECTION//\#\{ENV\}\#/${ENV}}"
           CONNECTION="${CONNECTION//\#\{AZURE_SQL_PASSWORD\}\#/${AZURE_SQL_PASSWORD}}"
           sed -i "s|#{DB_CONNECTION}#|$CONNECTION|g" ./deploy/webapi/appsettings.json
         env:
