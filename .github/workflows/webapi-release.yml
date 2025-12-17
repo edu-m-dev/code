@@ -42,11 +42,20 @@ jobs:
       - name: Publish webapi
         run: dotnet publish ./"$APP"/"$APP".webapi/"$APP".webapi.csproj -c Release -o ./publish/webapi --no-build
 
-      - name: Upload webapi artifact
+      - name: Restore migrations
+        run: dotnet restore ./"$APP"/"$APP".migrations/"$APP".migrations.csproj
+
+      - name: Build migrations
+        run: dotnet build ./"$APP"/"$APP".migrations/"$APP".migrations.csproj --configuration Release --no-restore
+
+      - name: Publish migrations
+        run: dotnet publish ./"$APP"/"$APP".migrations/"$APP".migrations.csproj -c Release -o ./publish/migrations --no-build
+
+      - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: ${{ github.event.release.tag_name }}-webapi
-          path: ./publish/webapi
+          name: ${{ github.event.release.tag_name }}
+          path: ./publish
 
   deploy:
     needs: build
@@ -63,11 +72,11 @@ jobs:
           echo "TAG=$tag" >> $GITHUB_ENV
           echo "APP=$app" >> $GITHUB_ENV
 
-      - name: Download webapi artifact
+      - name: Download artifact
         uses: actions/download-artifact@v4
         with:
-          name: ${{ env.TAG }}-webapi
-          path: ./deploy/webapi
+          name: ${{ env.TAG }}
+          path: ./deploy
 
       - name: Replace appsettings.json placeholders
         run: |
@@ -75,8 +84,12 @@ jobs:
           CONNECTION="${CONNECTION//\#\{ENV\}\#/${{ matrix.env }}}"
           CONNECTION="${CONNECTION//\#\{AZURE_SQL_PASSWORD\}\#/${AZURE_SQL_PASSWORD}}"
           sed -i "s|#{DB_CONNECTION}#|$CONNECTION|g" ./deploy/webapi/appsettings.json
+          sed -i "s|#{DB_CONNECTION}#|$CONNECTION|g" ./deploy/migrations/appsettings.json
         env:
           AZURE_SQL_PASSWORD: ${{ secrets.AZURE_SQL_PASSWORD }}
+
+      - name: Execute migrations
+        run: dotnet ./deploy/migrations/$APP.migrations.dll
 
       - name: Azure Login
         uses: azure/login@v2
