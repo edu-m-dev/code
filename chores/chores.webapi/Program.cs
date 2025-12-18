@@ -16,7 +16,16 @@ builder.Services.AddOpenApiDocument(config =>
 
 // DbContext
 var connection = builder.Configuration.GetConnectionString("chores");
-builder.Services.AddDbContext<ChoresDbContext>(options => options.UseSqlServer(connection));
+if (builder.Environment.IsEnvironment("Testing"))
+{
+    builder.Services.AddDbContext<ChoresDbContext>(options =>
+        options.UseInMemoryDatabase("chores"));
+}
+else
+{
+    builder.Services.AddDbContext<ChoresDbContext>(options =>
+        options.UseSqlServer(connection));
+}
 
 // IHttpContextAccessor for accessing the current principal in controllers
 builder.Services.AddHttpContextAccessor();

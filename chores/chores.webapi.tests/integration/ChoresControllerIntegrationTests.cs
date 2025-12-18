@@ -4,7 +4,7 @@ using chores.bl.ef;
 using FluentAssertions;
 using Xunit;
 
-namespace chores.tests.integration;
+namespace chores.webapi.tests.integration;
 
 public class ChoresControllerIntegrationTests : IClassFixture<CustomWebApplicationFactory>
 {
@@ -15,7 +15,7 @@ public class ChoresControllerIntegrationTests : IClassFixture<CustomWebApplicati
         _client = factory.CreateClient();
     }
 
-    [Fact(Skip = "manual")]
+    [Fact]
     public async Task AddChore_ThenGetAllChores_WorksEndToEnd()
     {
         // Arrange: create a new chore
