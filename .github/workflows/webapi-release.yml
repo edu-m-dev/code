@@ -24,7 +24,7 @@ jobs:
         with:
           dotnet-version: '9.0.x'
 
-      - name: Restore tests
+      - name: Restore unit tests
         run: dotnet restore ./"$APP"/"$APP".tests/"$APP".tests.csproj
 
       - name: Build unit tests
@@ -32,6 +32,9 @@ jobs:
 
       - name: Run unit tests
         run: dotnet test ./"$APP"/"$APP".tests/"$APP".tests.csproj --configuration Release --no-build --verbosity normal
+
+      - name: Restore webaapi tests
+        run: dotnet restore ./"$APP"/"$APP".webapi.tests/"$APP".webapi.tests.csproj
 
       - name: Build webapi tests
         run: dotnet build ./"$APP"/"$APP".webapi.tests/"$APP".webapi.tests.csproj --configuration Release --no-restore
