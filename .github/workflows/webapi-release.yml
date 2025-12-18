@@ -27,11 +27,17 @@ jobs:
       - name: Restore tests
         run: dotnet restore ./"$APP"/"$APP".tests/"$APP".tests.csproj
 
-      - name: Build tests
+      - name: Build unit tests
         run: dotnet build ./"$APP"/"$APP".tests/"$APP".tests.csproj --configuration Release --no-restore
 
-      - name: Test
+      - name: Run unit tests
         run: dotnet test ./"$APP"/"$APP".tests/"$APP".tests.csproj --configuration Release --no-build --verbosity normal
+
+      - name: Build webapi tests
+        run: dotnet build ./"$APP"/"$APP".webapiwebapi.tests/"$APP".webapi.tests.csproj --configuration Release --no-restore
+
+      - name: Run webapi tests
+        run: dotnet test ./"$APP"/"$APP".webapi.tests/"$APP".webapi.tests.csproj --configuration Release --no-build --verbosity normal
 
       - name: Restore webapi
         run: dotnet restore ./"$APP"/"$APP".webapi/"$APP".webapi.csproj
