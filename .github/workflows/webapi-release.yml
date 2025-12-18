@@ -34,7 +34,7 @@ jobs:
         run: dotnet test ./"$APP"/"$APP".tests/"$APP".tests.csproj --configuration Release --no-build --verbosity normal
 
       - name: Build webapi tests
-        run: dotnet build ./"$APP"/"$APP".webapiwebapi.tests/"$APP".webapi.tests.csproj --configuration Release --no-restore
+        run: dotnet build ./"$APP"/"$APP".webapi.tests/"$APP".webapi.tests.csproj --configuration Release --no-restore
 
       - name: Run webapi tests
         run: dotnet test ./"$APP"/"$APP".webapi.tests/"$APP".webapi.tests.csproj --configuration Release --no-build --verbosity normal
