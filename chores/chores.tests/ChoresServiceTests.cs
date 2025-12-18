@@ -1,9 +1,8 @@
-﻿using chores.bl;
+﻿using System.Security.Principal;
+using chores.bl;
 using chores.bl.ef;
 using Microsoft.EntityFrameworkCore;
 using Xunit;
-using System.Linq;
-using System.Security.Principal;
 
 namespace chores.tests;
 
