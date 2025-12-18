@@ -1,8 +1,10 @@
-﻿using chores.bl;
+using chores.bl;
 using chores.bl.ef;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.AddServiceDefaults();
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
@@ -37,6 +39,8 @@ builder.Services.AddScoped<IChoresService, ChoresService>();
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(Program).Assembly));
 
 var app = builder.Build();
+
+app.MapDefaultEndpoints();
 
 app.UseDeveloperExceptionPage();
 app.UseOpenApi();

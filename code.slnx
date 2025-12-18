@@ -107,4 +107,8 @@
     <Project Path="wwi/tests/wwi.tests.csproj" />
     <Project Path="wwi/web/wwi.web.csproj" />
   </Folder>
+  <Folder Name="/aspire/">
+    <Project Path="aspire/aspire.appHost/aspire.appHost.csproj" Id="f427c882-9aab-4856-8c59-66df0ab61f5d" />
+    <Project Path="aspire/aspire.serviceDefaults/aspire.serviceDefaults.csproj" DisplayName="aspire.serviceDefaults" />
+  </Folder> 
 </Solution>

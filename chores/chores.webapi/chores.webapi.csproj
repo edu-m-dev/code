@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\aspire\aspire.serviceDefaults\aspire.serviceDefaults.csproj" />
     <ProjectReference Include="..\chores.bl\chores.bl.csproj" />
   </ItemGroup>
 
