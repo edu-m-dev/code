@@ -9,9 +9,11 @@
 
   <ItemGroup>
     <PackageReference Include="Aspire.Hosting.AppHost" />
+    <PackageReference Include="Aspire.Hosting.SqlServer" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\chores\chores.migrations\chores.migrations.csproj" />
     <ProjectReference Include="..\..\chores\chores.webapi\chores.webapi.csproj" />
   </ItemGroup>
 
