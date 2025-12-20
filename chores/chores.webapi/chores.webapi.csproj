@@ -9,6 +9,7 @@
     <PackageReference Include="NSwag.AspNetCore" />
     <PackageReference Include="NSwag.Generation.AspNetCore" />
     <PackageReference Include="MediatR" />
+    <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" />
   </ItemGroup>
 
   <ItemGroup>

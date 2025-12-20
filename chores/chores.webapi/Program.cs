@@ -1,5 +1,6 @@
-using chores.bl;
+﻿using chores.bl;
 using chores.bl.ef;
+using MediatR;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -34,6 +35,12 @@ builder.Services.AddHttpContextAccessor();
 
 // Services
 builder.Services.AddScoped<IChoresService, ChoresService>();
+
+builder.Services.AddStackExchangeRedisCache(options =>
+{
+    options.Configuration = builder.Configuration.GetConnectionString("chores-cache");
+});
+builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(CachingBehavior<,>));
 
 // MediatR - register all handlers in this assembly
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(Program).Assembly));

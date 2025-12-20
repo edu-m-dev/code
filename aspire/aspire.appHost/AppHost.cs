@@ -4,12 +4,19 @@
 var sql = builder.AddSqlServer("chores-sqlserver")
                  .AddDatabase("chores");
 
+var redis = builder.AddRedis("chores-cache");
+
+builder.AddProject<Projects.chores_webapi>("chores-webapi")
+       .WithReference(redis);
+
 var migrations = builder.AddProject<Projects.chores_migrations>("chores-migrations")
     .WithReference(sql)
     .WaitFor(sql);
 
 builder.AddProject<Projects.chores_webapi>("chores-webapi")
     .WithReference(sql)
-    .WaitFor(migrations);
+    .WaitFor(migrations)
+    .WithReference(redis)
+    .WaitFor(redis);
 
 builder.Build().Run();
