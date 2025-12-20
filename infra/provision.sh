@@ -121,5 +121,4 @@ az redis show --name $REDIS_NAME --resource-group $RG_NAME >/dev/null 2>&1 \
        --resource-group $RG_NAME \
        --location $LOCATION \
        --sku $REDIS_SKU \
-       --vm-size $REDIS_SIZE \
-       --enable-non-ssl-port false
+       --vm-size $REDIS_SIZE
