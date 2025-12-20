@@ -94,8 +94,15 @@ jobs:
           CONNECTION="${CONNECTION//\#\{AZURE_SQL_PASSWORD\}\#/${AZURE_SQL_PASSWORD}}"
           sed -i "s|#{DB_CONNECTION}#|$CONNECTION|g" ./deploy/webapi/appsettings.json
           sed -i "s|#{DB_CONNECTION}#|$CONNECTION|g" ./deploy/migrations/appsettings.json
+
+          REDIS_CONNECTION="${{ secrets.REDIS_CONNECTION }}"
+          REDIS_CONNECTION="${REDIS_CONNECTION//\#\{ENV\}\#/${{ matrix.env }}}"
+          REDIS_CONNECTION="${REDIS_CONNECTION//\#\{REDIS_PASSWORD\}\#/${REDIS_PASSWORD}}"
+          sed -i "s|#{REDIS_CONNECTION}#|$REDIS_CONNECTION|g" ./deploy/webapi/appsettings.json
+
         env:
           AZURE_SQL_PASSWORD: ${{ secrets.AZURE_SQL_PASSWORD }}
+          REDIS_PASSWORD: ${{ secrets.REDIS_PASSWORD }}
 
       - name: Execute migrations
         run: dotnet ./deploy/migrations/$APP.migrations.dll
