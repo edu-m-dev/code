@@ -15,9 +15,6 @@
     <Project Path="chores/chores.webapi.tests/chores.webapi.tests.csproj" />
     <Project Path="chores/chores.webapi/chores.webapi.csproj" />
   </Folder>
-  <Folder Name="/CountWordOccurrences/">
-    <Project Path="CountWordOccurrences/CountWordOccurrences/CountWordOccurrences.csproj" />
-  </Folder>
   <Folder Name="/date-json-serialization/">
     <Project Path="date-json-serialization/date-json-serialization.console/date-json-serialization.console.csproj" />
   </Folder>
@@ -109,6 +106,6 @@
   </Folder>
   <Folder Name="/aspire/">
     <Project Path="aspire/aspire.appHost/aspire.appHost.csproj" Id="f427c882-9aab-4856-8c59-66df0ab61f5d" />
-    <Project Path="aspire/aspire.serviceDefaults/aspire.serviceDefaults.csproj" DisplayName="aspire.serviceDefaults" />
+    <Project Path="aspire/aspire.serviceDefaults/aspire.serviceDefaults.csproj" />
   </Folder> 
 </Solution>
