@@ -3,7 +3,7 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     
-    <RootNamespace>tick_on_the_second</RootNamespace>
+    <RootNamespace>tick_on_the_second_console</RootNamespace>
     
       </PropertyGroup>
 
