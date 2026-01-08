@@ -3,7 +3,7 @@
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     
-    <RootNamespace>switch_for_hierarchy</RootNamespace>
+    <RootNamespace>surname-combination-strategy</RootNamespace>
     
       </PropertyGroup>
 
