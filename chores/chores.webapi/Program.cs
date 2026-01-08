@@ -1,7 +1,10 @@
-﻿using chores.bl;
+﻿using Azure.Monitor.OpenTelemetry.AspNetCore;
+using chores.bl;
 using chores.bl.ef;
+using chores.webapi;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using OpenTelemetry.Resources;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -45,14 +48,35 @@ builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(CachingBehavi
 // MediatR - register all handlers in this assembly
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(Program).Assembly));
 
+// Structured logging with OpenTelemetry
+builder.Logging.AddOpenTelemetry(options =>
+{
+    options.ParseStateValues = true;
+    options.IncludeScopes = true;
+});
+
+builder.Services.AddOpenTelemetry()
+    .ConfigureResource(r => r.AddAttributes(
+    [
+        new KeyValuePair<string, object>("deployment.environment", builder.Environment.EnvironmentName)
+    ]))
+    .UseAzureMonitor();
+
 var app = builder.Build();
 
-app.MapDefaultEndpoints();
+// 1. Dimension middlewares FIRST
+app.UseMiddleware<CorrelationIdEnrichmentMiddleware>();
+app.UseMiddleware<EnvEnrichmentMiddleware>();
 
+// 2. Diagnostics / developer tools
 app.UseDeveloperExceptionPage();
+
+// 3. API surface
 app.UseOpenApi();
 app.UseSwaggerUi();
 
+// 4. Routing + controllers
+app.MapDefaultEndpoints();
 app.MapControllers();
 
 app.Run();

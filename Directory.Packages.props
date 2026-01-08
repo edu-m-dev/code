@@ -9,6 +9,7 @@
     <PackageVersion Include="Aspire.Hosting.SqlServer" Version="13.1.0" />
     <PackageVersion Include="Automapper" Version="14.0.0" />
     <PackageVersion Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
+    <PackageVersion Include="Azure.Monitor.OpenTelemetry.AspNetCore" Version="1.4.0" />
     <PackageVersion Include="BenchmarkDotNet" Version="0.14.0" />
     <PackageVersion Include="coverlet.collector" Version="6.0.4" />
     <PackageVersion Include="EasyNetQ" Version="7.8.0" />
