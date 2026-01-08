@@ -81,7 +81,7 @@
     <File Path="to-do.txt" />
   </Folder>
   <Folder Name="/surname-combination-strategy/">
-    <Project Path="switch-for-hierarchy/surname-combination-strategy.console.csproj" />
+    <Project Path="surname-combination-strategy/surname-combination-strategy.console.csproj" />
   </Folder>
   <Folder Name="/task-practice/">
     <Project Path="task-practice/task-practice.logger/task-practice.logger.csproj" />
@@ -90,7 +90,7 @@
     <Project Path="task-practice/task-practice.subscriber/task-practice.subscriber.csproj" />
   </Folder>
   <Folder Name="/tick-on-the-second/">
-    <Project Path="tick-on-the-second/tick-on-the-second.csproj" />
+    <Project Path="tick-on-the-second/tick-on-the-second.console.csproj" />
   </Folder>
   <Folder Name="/validate-settings-section/">
     <Project Path="validate-settings-section/validate-settings-section.console/validate-settings-section.console.csproj" />

@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>    
+    <RootNamespace>surname_combination_strategy_console</RootNamespace>  
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Linq" />
+  </ItemGroup>
+
+</Project>
