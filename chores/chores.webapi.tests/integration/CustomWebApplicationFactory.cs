@@ -18,7 +18,8 @@ public class CustomWebApplicationFactory : WebApplicationFactory<Program>
             // Disable Azure Monitor exporter for tests
             var testOverrides = new Dictionary<string, string>
             {
-                ["AzureMonitor:ConnectionString"] = ""
+                // Syntactically valid, but points nowhere meaningful
+                ["AzureMonitor:ConnectionString"] = "InstrumentationKey=00000000-0000-0000-0000-000000000000;IngestionEndpoint=https://localhost/"
             };
 
             configBuilder.AddInMemoryCollection(testOverrides);
