@@ -33,11 +33,8 @@
     <Project Path="island-finder/island-finder.console/island-finder.console.csproj" />
     <Project Path="island-finder/island-finder.test/island-finder.test.csproj" />
   </Folder>
-  <Folder Name="/Library/" />
-  <Folder Name="/Library/Library.Console/">
+  <Folder Name="/Library/">
     <Project Path="Library/Library.Console/Library.Console.csproj" />
-  </Folder>
-  <Folder Name="/Library/Library.Tests/">
     <Project Path="Library/Library.Tests/Library.Tests.csproj" />
   </Folder>
   <Folder Name="/list-batch/">

@@ -1,12 +1,5 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <OutputType>library</OutputType>
-    
-    <RootNamespace>Library</RootNamespace>
-    
-      </PropertyGroup>
-
   <ItemGroup>
     <PackageReference Include="FluentAssertions" />
   </ItemGroup>
