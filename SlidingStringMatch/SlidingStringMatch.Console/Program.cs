@@ -1,7 +1,6 @@
-﻿// calculate the max match length of two sliding strings
+﻿using SlidingStringMatch.Core;
 
-using SlidingStringMatch.Core;
-
+// calculate the max match length of two sliding strings
 var (string1, string2) = ReadTwoStrings();
 var maxLength = SlidingStringMatchService.GetSlidingMatchMaxLength(string1, string2);
 Console.WriteLine($"Max match length: {maxLength}");
