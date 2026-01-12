@@ -59,14 +59,39 @@ CAE_NAME="edu-m-cae-${ENV}"
 REDIS_APP_NAME="edu-m-redis-${ENV}"
 REDIS_IMAGE="redis:7-alpine"
 
-# 6a. Container Apps Environment
+# 6a. Container Apps Environment (with explicit Log Analytics workspace)
+WORKSPACE_NAME="edu-m-law-${ENV}"
+
+# Create workspace if missing
+az monitor log-analytics workspace show \
+  --resource-group $RG_NAME \
+  --workspace-name $WORKSPACE_NAME >/dev/null 2>&1 \
+  || az monitor log-analytics workspace create \
+       --resource-group $RG_NAME \
+       --workspace-name $WORKSPACE_NAME \
+       --location $LOCATION
+
+# Retrieve workspace ID + key
+WORKSPACE_ID=$(az monitor log-analytics workspace show \
+  --resource-group $RG_NAME \
+  --workspace-name $WORKSPACE_NAME \
+  --query customerId -o tsv)
+
+WORKSPACE_KEY=$(az monitor log-analytics workspace get-shared-keys \
+  --resource-group $RG_NAME \
+  --workspace-name $WORKSPACE_NAME \
+  --query primarySharedKey -o tsv)
+
+# Create Container Apps Environment using the explicit workspace
 az containerapp env show \
   --name $CAE_NAME \
   --resource-group $RG_NAME >/dev/null 2>&1 \
   || az containerapp env create \
        --name $CAE_NAME \
        --resource-group $RG_NAME \
-       --location $LOCATION
+       --location $LOCATION \
+       --logs-workspace-id $WORKSPACE_ID \
+       --logs-workspace-key $WORKSPACE_KEY
 
 # 6b. Redis Container App
 az containerapp show \
