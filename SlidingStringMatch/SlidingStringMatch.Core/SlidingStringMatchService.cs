@@ -16,6 +16,9 @@ public static class SlidingStringMatchService
 
     public static int GetSlidingMatchMaxLength(string s, string p)
     {
+        if (s is null || p is null) return 0;
+        if (string.IsNullOrWhiteSpace(s) || string.IsNullOrWhiteSpace(p)) return 0;
+
         // This will store the best (maximum) contiguous match found.
         int max = 0;
 

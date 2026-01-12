@@ -38,7 +38,7 @@ public class SlidingStringMatchServiceTests
 
     [Theory]
     [InlineData("abc", "xyz", 0)]
-    [InlineData("hello", "world", 0)]
+    [InlineData("hello", "worms", 0)]
     public void ReturnsZeroWhenNoMatch(string s, string p, int expected)
     {
         var actual = SlidingStringMatchService.GetSlidingMatchMaxLength(s, p);
