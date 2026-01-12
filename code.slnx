@@ -1,8 +1,6 @@
 <Solution>
   <Configurations>
     <Platform Name="Any CPU" />
-    <Platform Name="x64" />
-    <Platform Name="x86" />
   </Configurations>
   <Folder Name="/async-enumerable/">
     <Project Path="async-enumerable/async-enumerable.console/async-enumerable.console.csproj" />
