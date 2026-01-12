@@ -39,10 +39,13 @@ builder.Services.AddHttpContextAccessor();
 // Services
 builder.Services.AddScoped<IChoresService, ChoresService>();
 
+var redisHost = builder.Configuration["Redis:Host"];
+
 builder.Services.AddStackExchangeRedisCache(options =>
 {
-    options.Configuration = builder.Configuration.GetConnectionString("chores-cache");
+    options.Configuration = redisHost;
 });
+
 builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(CachingBehavior<,>));
 
 // MediatR - register all handlers in this assembly

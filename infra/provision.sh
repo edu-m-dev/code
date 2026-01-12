@@ -54,18 +54,41 @@ az sql db show --name $DB_NAME --server $SQL_SERVER_NAME --resource-group $RG_NA
        --name $DB_NAME \
        --edition Free
 
-# 6. redis
-REDIS_NAME="edu-m-redis-${ENV}"
-REDIS_SKU="Basic"
-REDIS_SIZE="C0"
+# 6. Redis (FREE via Azure Container Apps)
+CAE_NAME="edu-m-cae-${ENV}"
+REDIS_APP_NAME="edu-m-redis-${ENV}"
+REDIS_IMAGE="redis:7-alpine"
 
-az redis show --name $REDIS_NAME --resource-group $RG_NAME >/dev/null 2>&1 \
-  || az redis create \
-       --name $REDIS_NAME \
+# 6a. Container Apps Environment
+az containerapp env show \
+  --name $CAE_NAME \
+  --resource-group $RG_NAME >/dev/null 2>&1 \
+  || az containerapp env create \
+       --name $CAE_NAME \
        --resource-group $RG_NAME \
-       --location $LOCATION \
-       --sku $REDIS_SKU \
-       --vm-size $REDIS_SIZE
+       --location $LOCATION
+
+# 6b. Redis Container App
+az containerapp show \
+  --name $REDIS_APP_NAME \
+  --resource-group $RG_NAME >/dev/null 2>&1 \
+  || az containerapp create \
+       --name $REDIS_APP_NAME \
+       --resource-group $RG_NAME \
+       --environment $CAE_NAME \
+       --image $REDIS_IMAGE \
+       --target-port 6379 \
+       --ingress internal \
+       --min-replicas 1 \
+       --max-replicas 1
+
+# 6c. Get internal Redis URL
+REDIS_HOST=$(az containerapp show \
+  --name $REDIS_APP_NAME \
+  --resource-group $RG_NAME \
+  --query "properties.configuration.ingress.fqdn" -o tsv)
+
+echo "Redis internal hostname: $REDIS_HOST"
 
 # 7. Application Insights
 AI_NAME="edu-m-ai-${ENV}"
