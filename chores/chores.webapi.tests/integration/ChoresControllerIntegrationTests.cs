@@ -27,13 +27,14 @@ public class ChoresControllerIntegrationTests : IClassFixture<CustomWebApplicati
 
         var createdChore = await postResponse.Content.ReadFromJsonAsync<Chore>();
         createdChore.Should().NotBeNull();
-        createdChore.Name.Should().Be("Vacuum");
+        createdChore.Name.Should().Be(newChore.Name);
+        createdChore.Description.Should().Be(newChore.Description);
 
         // Act: GET chores
         var getResponse = await _client.GetAsync("/api/chores/getAllChores");
         getResponse.StatusCode.Should().Be(HttpStatusCode.OK);
 
         var chores = await getResponse.Content.ReadFromJsonAsync<List<Chore>>();
-        chores.Should().ContainSingle(c => c.Name == "Vacuum");
+        chores.Should().ContainSingle(c => c.Name == newChore.Name && c.Description == newChore.Description);
     }
 }
