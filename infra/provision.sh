@@ -126,3 +126,30 @@ az monitor app-insights component show \
        --location $LOCATION \
        --resource-group $RG_NAME \
        --application-type web
+
+
+# 8. Create a €1 monthly budget that alerts at 1% (~€0.01)
+
+SUBSCRIPTION_ID=$(az account show --query id -o tsv)
+BUDGET_NAME="edu-m-budget-${ENV}"
+START_DATE="$(date +%Y-%m-01)"
+END_DATE="2100-01-01"
+
+az consumption budget show \
+  --budget-name $BUDGET_NAME \
+  --subscription $SUBSCRIPTION_ID >/dev/null 2>&1 \
+  || az consumption budget create \
+       --amount 1 \
+       --budget-name $BUDGET_NAME \
+       --category cost \
+       --time-grain monthly \
+       --start-date $START_DATE \
+       --end-date $END_DATE \
+       --subscription $SUBSCRIPTION_ID \
+       --notifications actual_greater_than_1percent="{
+         \"enabled\": true,
+         \"operator\": \"GreaterThan\",
+         \"threshold\": 1,
+         \"contactEmails\": [\"${AZURE_ALERT_EMAIL}\"],
+         \"contactWebhook\": \"placeholder-webhook-url-will-be-replaced-below\"
+       }"
