@@ -150,6 +150,5 @@ az consumption budget show \
          \"enabled\": true,
          \"operator\": \"GreaterThan\",
          \"threshold\": 1,
-         \"contactEmails\": [\"${AZURE_ALERT_EMAIL}\"],
-         \"contactWebhook\": \"placeholder-webhook-url-will-be-replaced-below\"
+         \"contactEmails\": [\"${AZURE_ALERT_EMAIL}\"]
        }"
