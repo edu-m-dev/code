@@ -24,6 +24,7 @@ jobs:
           ENV: ${{ github.event.inputs.env }}
           AZURE_SQL_PASSWORD: ${{ secrets.AZURE_SQL_PASSWORD }}  # resolves per environment\
           AZURE_REGION: ${{ vars.AZURE_REGION }}
+          AZURE_ALERT_EMAIL: ${{ vars.AZURE_ALERT_EMAIL }}
           DOTNET_RUNTIME: "DOTNETCORE|9.0"
         run: |
           bash ./infra/provision.sh
