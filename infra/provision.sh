@@ -130,6 +130,8 @@ az monitor app-insights component show \
 
 # 8. Create a €1 monthly budget that alerts at 1% (~€0.01)
 
+az extension add --name consumption >/dev/null 2>&1 || true
+
 SUBSCRIPTION_ID=$(az account show --query id -o tsv)
 BUDGET_NAME="edu-m-budget-${ENV}"
 START_DATE="$(date +%Y-%m-01)"
