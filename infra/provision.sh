@@ -146,9 +146,9 @@ az consumption budget show \
        --start-date $START_DATE \
        --end-date $END_DATE \
        --subscription $SUBSCRIPTION_ID \
-       --notifications actual_greater_than_1percent="{
-         \"enabled\": true,
-         \"operator\": \"GreaterThan\",
-         \"threshold\": 1,
-         \"contactEmails\": [\"${AZURE_ALERT_EMAIL}\"]
-       }"
+       --notifications actual_greater_than_1percent='{
+         "enabled": true,
+         "operator": "GreaterThan",
+         "threshold": 1,
+         "contactEmails": ["'"${AZURE_ALERT_EMAIL}"'"]
+       }'
