@@ -125,8 +125,8 @@ az monitor app-insights component show \
        --app $AI_NAME \
        --location $LOCATION \
        --resource-group $RG_NAME \
+       --workspace $WORKSPACE_ID \
        --application-type web
-
 
 # 8. Create a €1 monthly budget that alerts at 1% (~€0.01)
 
