@@ -130,21 +130,16 @@ az monitor app-insights component show \
 
 # 8. Create a €1 monthly budget that alerts at 1% (~€0.01)
 
-az extension add --name consumption >/dev/null 2>&1 || true
-
-SUBSCRIPTION_ID=$(az account show --query id -o tsv)
 BUDGET_NAME="edu-m-budget-${ENV}"
-START_DATE="$(date +%Y-%m-01)"
-END_DATE="2100-01-01"
 
 az consumption budget show \
   --budget-name $BUDGET_NAME \
   --subscription $SUBSCRIPTION_ID >/dev/null 2>&1 \
-  || az consumption budget create \
+  || az consumption budget create-with-rg \
+       -g $RG_NAME       
        --amount 1 \
        --budget-name $BUDGET_NAME \
        --category cost \
-       --time-grain monthly \
-       --start-date $START_DATE \
-       --end-date $END_DATE \
-       --subscription $SUBSCRIPTION_ID
+       --time-grain Monthly \
+       --time-period '{"start-date":"2026-01-01","end-date":"2125-12-31"}' 
+       --notifications "{\"Key1\":{\"enabled\":\"true\", \"operator\":\"GreaterThanOrEqualTo\", \"contact-emails\":["${AZURE_ALERT_EMAIL}"],  \"threshold\":1 }}"
