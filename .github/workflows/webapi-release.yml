@@ -93,18 +93,14 @@ jobs:
           # Database connection
           # -------------------------
           CONNECTION="${{ secrets.DB_CONNECTION }}"
-          CONNECTION="${CONNECTION//\#\{ENV\}\#/${{ matrix.env }}}"
-          CONNECTION="${CONNECTION//\#\{AZURE_SQL_PASSWORD\}\#/${AZURE_SQL_PASSWORD}}"
           sed -i "s|#{DB_CONNECTION}#|$CONNECTION|g" ./deploy/webapi/appsettings.json
           sed -i "s|#{DB_CONNECTION}#|$CONNECTION|g" ./deploy/migrations/appsettings.json
 
           # -------------------------
           # Redis connection
           # -------------------------
-          REDIS_CONNECTION="${{ secrets.REDIS_CONNECTION }}"
-          REDIS_CONNECTION="${REDIS_CONNECTION//\#\{ENV\}\#/${{ matrix.env }}}"
-          REDIS_CONNECTION="${REDIS_CONNECTION//\#\{REDIS_PASSWORD\}\#/${REDIS_PASSWORD}}"
-          sed -i "s|#{REDIS_CONNECTION}#|$REDIS_CONNECTION|g" ./deploy/webapi/appsettings.json
+          REDIS_HOST="${{ secrets.REDIS_HOST }}"
+          sed -i "s|#{REDIS_HOST}#|$REDIS_HOST|g" ./deploy/webapi/appsettings.json
 
           # -------------------------
           # Azure Monitor (OpenTelemetry)
@@ -112,9 +108,6 @@ jobs:
           AZURE_MONITOR_CONNECTION="${{ secrets.AZURE_MONITOR_CONNECTION }}"
           sed -i "s|#{AZURE_MONITOR_CONNECTION}#|$AZURE_MONITOR_CONNECTION|g" ./deploy/webapi/appsettings.json
           sed -i "s|#{AZURE_MONITOR_CONNECTION}#|$AZURE_MONITOR_CONNECTION|g" ./deploy/migrations/appsettings.json
-        env:
-          AZURE_SQL_PASSWORD: ${{ secrets.AZURE_SQL_PASSWORD }}
-          REDIS_PASSWORD: ${{ secrets.REDIS_PASSWORD }}
 
       - name: Execute migrations
         run: dotnet ./deploy/migrations/$APP.migrations.dll --env ${{ matrix.env }}
