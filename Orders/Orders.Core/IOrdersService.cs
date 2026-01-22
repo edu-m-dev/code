@@ -10,7 +10,7 @@ public interface IOrdersService
 
     Product GetBestSellingProduct(IEnumerable<Order> orders);
 
-    IDictionary<Product, int> GetProductAverageQuantity(IEnumerable<Order> orders);
+    IDictionary<Product, double> GetProductAverageQuantity(IEnumerable<Order> orders);
 
     double GetTotalProfit(IEnumerable<Order> orders);
 

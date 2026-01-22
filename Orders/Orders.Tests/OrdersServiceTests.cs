@@ -59,7 +59,7 @@ public class OrdersServiceTests
 
         // find average for product A
         var avgForA = averages.Single(kv => kv.Key.Name == "A").Value;
-        Assert.Equal((int)Math.Round((2 + 3) / 2.0, MidpointRounding.AwayFromZero), avgForA);
+        Assert.Equal(2.5, avgForA);
     }
 
     [Fact]

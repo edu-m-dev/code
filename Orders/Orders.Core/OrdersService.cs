@@ -34,14 +34,13 @@ public class OrdersService : IOrdersService
         return new Product(best.Name, best.Price);
     }
 
-    public IDictionary<Product, int> GetProductAverageQuantity(IEnumerable<Order> orders)
+    public IDictionary<Product, double> GetProductAverageQuantity(IEnumerable<Order> orders)
     {
-        var grouped = orders
+        return orders
             .SelectMany(o => o.Items)
-            .GroupBy(i => i.Product.Name)
-            .ToDictionary(g => g.Key, g => new { Avg = (int)Math.Round(g.Average(i => i.Quantity), MidpointRounding.AwayFromZero), g.First().Product });
-
-        return grouped.ToDictionary(kv => kv.Value.Product, kv => kv.Value.Avg);
+            .GroupBy(i => i.Product)
+            .Select(g => new { Product = g.Key, Avg = g.Average(i => i.Quantity) })
+            .ToDictionary(x => x.Product, x => x.Avg);
     }
 
     public double GetTotalProfit(IEnumerable<Order> orders)
