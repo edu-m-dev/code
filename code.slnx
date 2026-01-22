@@ -1,7 +1,4 @@
 <Solution>
-  <Configurations>
-    <Platform Name="Any CPU" />
-  </Configurations>
   <Folder Name="/async-enumerable/">
     <Project Path="async-enumerable/async-enumerable.console/async-enumerable.console.csproj" />
   </Folder>
@@ -48,6 +45,10 @@
   <Folder Name="/movie-finder/">
     <Project Path="movie-finder/back/movie-finder.bl/movie-finder.bl.csproj" />
     <Project Path="movie-finder/back/movie-finder.web/movie-finder.web.csproj" />
+  </Folder>
+  <Folder Name="/Orders/">
+    <Project Path="Orders/Orders.Core/Orders.Core.csproj" />
+    <Project Path="Orders/Orders.Tests/Orders.Tests.csproj" />
   </Folder>
   <Folder Name="/periodic-timer/">
     <Project Path="periodic-timer/periodic-timer.console/periodic-timer.console.csproj" />
