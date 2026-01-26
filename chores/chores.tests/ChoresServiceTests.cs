@@ -13,7 +13,7 @@ public class ChoresServiceTests
     {
         // Arrange: use InMemory db and a new context
         var options = new DbContextOptionsBuilder<ChoresDbContext>()
-            .UseInMemoryDatabase(databaseName: "chores")
+            .UseInMemoryDatabase(databaseName: "code")
             .Options;
 
         using var context = new ChoresDbContext(options);

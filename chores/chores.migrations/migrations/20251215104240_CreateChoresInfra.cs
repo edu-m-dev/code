@@ -5,7 +5,7 @@
 namespace chores.migrations.migrations
 {
     /// <inheritdoc />
-    public partial class original : Migration
+    public partial class CreateChoresInfra : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

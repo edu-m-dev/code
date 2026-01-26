@@ -15,8 +15,8 @@ public class ChoresDesignTimeDbContextFactory : IDesignTimeDbContextFactory<Chor
             .AddEnvironmentVariables()
             .Build();
 
-        // Get connection string named "chores"
-        var conn = config.GetConnectionString("chores");
+        // Get connection string named "code"
+        var conn = config.GetConnectionString("code");
 
         var builder = new DbContextOptionsBuilder<ChoresDbContext>();
         builder.UseSqlServer(conn, sqlOptions => sqlOptions.MigrationsAssembly("chores.migrations"));

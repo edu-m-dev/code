@@ -76,19 +76,19 @@ using var loggerFactory = LoggerFactory.Create(builder =>
     });
 });
 
-var logger = loggerFactory.CreateLogger("Migrations");
+var logger = loggerFactory.CreateLogger("chores.migrations");
 
 // -------------------------------
 // 7. Run migrations with full observability
 // -------------------------------
-using var activity = activitySource.StartActivity("ApplyMigrations", ActivityKind.Internal);
+using var activity = activitySource.StartActivity("ApplyChoresMigrations", ActivityKind.Internal);
 
 var sw = Stopwatch.StartNew();
 
-logger.LogInformation("Starting migrations for environment {env}", environment);
+logger.LogInformation("Starting chores migrations for environment {env}", environment);
 
 // DB connection
-var connection = config.GetConnectionString("chores");
+var connection = config.GetConnectionString("code");
 
 var options = new DbContextOptionsBuilder<ChoresDbContext>()
     .UseSqlServer(connection, sqlOptions =>
@@ -105,7 +105,7 @@ migrationDuration.Record(sw.ElapsedMilliseconds);
 
 // Structured log
 logger.LogInformation(
-    "SQL Server migrations applied successfully in {Duration} ms for environment {env}",
+    "Chores migrations applied successfully in {Duration} ms for environment {env}",
     sw.ElapsedMilliseconds,
     environment
 );

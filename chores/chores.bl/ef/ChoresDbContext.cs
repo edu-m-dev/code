@@ -20,6 +20,7 @@ namespace chores.bl.ef
         {
         }
 
+        public virtual DbSet<CacheEntry> CacheEntries { get; set; }
         public virtual DbSet<Chore> Chores { get; set; }
         public virtual DbSet<CompletedChore> CompletedChores { get; set; }
 
@@ -27,6 +28,7 @@ namespace chores.bl.ef
         {
             modelBuilder.ApplyConfiguration(new Configurations.ChoreConfiguration());
             modelBuilder.ApplyConfiguration(new Configurations.CompletedChoreConfiguration());
+            modelBuilder.ApplyConfiguration(new Configurations.CacheEntryConfiguration());
 
             OnModelCreatingPartial(modelBuilder);
         }

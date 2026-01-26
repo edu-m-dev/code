@@ -99,12 +99,6 @@ jobs:
           sed -i "s|#{DB_CONNECTION}#|$CONNECTION|g" ./deploy/migrations/appsettings.json
 
           # -------------------------
-          # Redis connection
-          # -------------------------
-          REDIS_HOST="${{ secrets.REDIS_HOST }}"
-          sed -i "s|#{REDIS_HOST}#|$REDIS_HOST|g" ./deploy/webapi/appsettings.json
-
-          # -------------------------
           # Azure Monitor (OpenTelemetry)
           # -------------------------
           AZURE_MONITOR_CONNECTION="${{ secrets.AZURE_MONITOR_CONNECTION }}"

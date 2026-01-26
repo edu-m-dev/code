@@ -21,11 +21,11 @@ builder.Services.AddOpenApiDocument(config =>
 });
 
 // DbContext
-var connection = builder.Configuration.GetConnectionString("chores");
+var connection = builder.Configuration.GetConnectionString("code");
 if (builder.Environment.IsEnvironment("Testing"))
 {
     builder.Services.AddDbContext<ChoresDbContext>(options =>
-        options.UseInMemoryDatabase("chores"));
+        options.UseInMemoryDatabase("code"));
 }
 else
 {
@@ -39,13 +39,12 @@ builder.Services.AddHttpContextAccessor();
 // Services
 builder.Services.AddScoped<IChoresService, ChoresService>();
 
-var redisHost = builder.Configuration["Redis:Host"];
-
-builder.Services.AddStackExchangeRedisCache(options =>
+builder.Services.AddDistributedSqlServerCache(options =>
 {
-    options.Configuration = redisHost;
+    options.ConnectionString = builder.Configuration.GetConnectionString("code");
+    options.SchemaName = "dbo";
+    options.TableName = "chores_cache";
 });
-
 builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(CachingBehavior<,>));
 
 // MediatR - register all handlers in this assembly

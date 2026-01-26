@@ -7,10 +7,10 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" />
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" />
+    <PackageReference Include="Microsoft.Extensions.Caching.SqlServer" />
     <PackageReference Include="NSwag.AspNetCore" />
     <PackageReference Include="NSwag.Generation.AspNetCore" />
     <PackageReference Include="MediatR" />
-    <PackageReference Include="Microsoft.Extensions.Caching.StackExchangeRedis" />
   </ItemGroup>
 
   <ItemGroup>

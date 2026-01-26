@@ -12,7 +12,7 @@ namespace chores.migrations.migrations
 {
     [DbContext(typeof(ChoresDbContext))]
     [Migration("20251215104240_original")]
-    partial class original
+    partial class CreateChoresInfra
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
