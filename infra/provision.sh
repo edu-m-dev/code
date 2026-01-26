@@ -64,5 +64,4 @@ az monitor app-insights component show \
        --app $AI_NAME \
        --location $LOCATION \
        --resource-group $RG_NAME \
-       --workspace $WORKSPACE_ID \
        --application-type web
