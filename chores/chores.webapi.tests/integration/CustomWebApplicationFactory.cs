@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Hosting;
+﻿using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Configuration;
@@ -37,6 +39,13 @@ public class CustomWebApplicationFactory : WebApplicationFactory<Program>
 
             // Replace with in-memory cache for tests
             services.AddDistributedMemoryCache();
+
+            // Add fake authentication
+            services.AddAuthentication("Test")
+                .AddScheme<AuthenticationSchemeOptions, TestAuthHandler>("Test", _ => { });
+
+            // Add allow-all authorization handler
+            services.AddSingleton<IAuthorizationHandler, AllowAnonymousAuthorizationHandler>();
         });
     }
 }
