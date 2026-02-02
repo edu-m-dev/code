@@ -68,48 +68,6 @@ namespace chores.migrations.migrations
 
                     b.ToTable("chores", (string)null);
                 });
-
-            modelBuilder.Entity("chores.bl.ef.CompletedChore", b =>
-                {
-                    b.Property<long>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
-
-                    b.Property<long>("ChoreId")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("Date")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("UserId")
-                        .HasColumnType("bigint");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ChoreId");
-
-                    b.HasIndex(new[] { "Id" }, "IX_completed_chores_Id")
-                        .IsUnique();
-
-                    b.ToTable("completed_chores", (string)null);
-                });
-
-            modelBuilder.Entity("chores.bl.ef.CompletedChore", b =>
-                {
-                    b.HasOne("chores.bl.ef.Chore", "Chore")
-                        .WithMany("CompletedChores")
-                        .HasForeignKey("ChoreId")
-                        .IsRequired();
-
-                    b.Navigation("Chore");
-                });
-
-            modelBuilder.Entity("chores.bl.ef.Chore", b =>
-                {
-                    b.Navigation("CompletedChores");
-                });
 #pragma warning restore 612, 618
         }
     }

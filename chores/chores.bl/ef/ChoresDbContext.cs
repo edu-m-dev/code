@@ -22,12 +22,10 @@ namespace chores.bl.ef
 
         public virtual DbSet<CacheEntry> CacheEntries { get; set; }
         public virtual DbSet<Chore> Chores { get; set; }
-        public virtual DbSet<CompletedChore> CompletedChores { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new Configurations.ChoreConfiguration());
-            modelBuilder.ApplyConfiguration(new Configurations.CompletedChoreConfiguration());
             modelBuilder.ApplyConfiguration(new Configurations.CacheEntryConfiguration());
 
             OnModelCreatingPartial(modelBuilder);
