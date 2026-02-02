@@ -47,7 +47,6 @@ namespace chores.migrations.migrations
                     b.ToTable("chores", (string)null);
                 });
 
-            modelBuilder.Entity("chores.bl.ef.CompletedChore", b =>
 #pragma warning restore 612, 618
         }
     }

@@ -29,16 +29,11 @@ namespace chores.migrations.migrations
                 table: "chores",
                 column: "Id",
                 unique: true);
-
-            migrationBuilder.CreateIndex(
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "completed_chores");
-
             migrationBuilder.DropTable(
                 name: "chores");
         }
