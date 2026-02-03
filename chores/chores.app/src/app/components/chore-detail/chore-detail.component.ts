@@ -7,15 +7,18 @@ import { ChoresService } from '../../services/chores.service';
 @Component({
   selector: 'app-chore-detail',
   template: `
-    <div *ngIf="chore" class="space-y-4">
-      <div class="flex items-start justify-between">
+    <div *ngIf="chore">
+      <div class="d-flex justify-content-between align-items-start mb-3">
         <div>
-          <h2 class="text-2xl font-semibold">{{ chore.name }}</h2>
-          <p class="text-sm text-gray-600 mt-1">ID: {{ chore.id }}</p>
+          <h2 class="h5 mb-1">{{ chore.name }}</h2>
+          <div class="small text-muted">ID: {{ chore.id }}</div>
         </div>
-        <a routerLink="/" class="text-sm text-blue-600">Back</a>
+        <a routerLink="/" class="btn btn-link">Back</a>
       </div>
-      <div class="p-4 bg-gray-50 border rounded">{{ chore.description }}</div>
+
+      <div class="card">
+        <div class="card-body">{{ chore.description }}</div>
+      </div>
     </div>
   `,
   standalone: true,

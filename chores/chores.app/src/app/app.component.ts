@@ -8,24 +8,26 @@ import { AuthService } from './auth/auth.service';
   standalone: true,
   imports: [CommonModule, RouterModule],
   template: `
-    <div class="max-w-4xl mx-auto">
-      <header class="flex items-center justify-between py-6">
+    <div class="container">
+      <header class="d-flex align-items-center justify-content-between py-4">
         <div>
-          <h1 class="text-3xl font-bold text-gray-800">Chores</h1>
+          <h1 class="h3 mb-1">Chores</h1>
           <nav class="mt-2">
-            <a routerLink="/" class="text-sm text-gray-600 hover:text-gray-900 mr-3">List</a>
-            <a routerLink="/add" class="text-sm text-gray-600 hover:text-gray-900">Add</a>
+            <a routerLink="/" class="me-3 text-muted">List</a>
+            <a routerLink="/add" class="text-muted">Add</a>
           </nav>
         </div>
-        <div class="flex items-center gap-3">
-          <span *ngIf="username() as u" class="text-sm text-gray-700">Signed in: {{ u }}</span>
-          <button *ngIf="!username()" (click)="login()" class="px-3 py-1 bg-blue-600 text-white rounded">Login</button>
-          <button *ngIf="username()" (click)="logout()" class="px-3 py-1 bg-gray-200 rounded">Logout</button>
+        <div>
+          <span *ngIf="username() as u" class="me-2 small text-secondary">Signed in: {{ u }}</span>
+          <button *ngIf="!username()" (click)="login()" class="btn btn-primary btn-sm me-1">Login</button>
+          <button *ngIf="username()" (click)="logout()" class="btn btn-outline-secondary btn-sm">Logout</button>
         </div>
       </header>
 
-      <main class="bg-white shadow-sm rounded-md p-6">
-        <router-outlet></router-outlet>
+      <main class="card shadow-sm">
+        <div class="card-body">
+          <router-outlet></router-outlet>
+        </div>
       </main>
     </div>
   `

@@ -7,20 +7,20 @@ import { Chore } from '../../models/chore.model';
 @Component({
   selector: 'app-chore-add',
   template: `
-    <div class="max-w-xl mx-auto">
-      <h2 class="text-2xl font-semibold mb-4">Add Chore</h2>
-      <form (ngSubmit)="submit()" class="space-y-4">
-        <div>
-          <label class="block text-sm font-medium text-gray-700 mb-1">Name</label>
-          <input [(ngModel)]="model.name" name="name" required class="w-full px-3 py-2 border rounded-md focus:ring-2 focus:ring-blue-300" />
+    <div class="container">
+      <h2 class="h5 mb-3">Add Chore</h2>
+      <form (ngSubmit)="submit()">
+        <div class="mb-3">
+          <label class="form-label">Name</label>
+          <input [(ngModel)]="model.name" name="name" required class="form-control" />
         </div>
-        <div>
-          <label class="block text-sm font-medium text-gray-700 mb-1">Description</label>
-          <input [(ngModel)]="model.description" name="description" class="w-full px-3 py-2 border rounded-md focus:ring-2 focus:ring-blue-300" />
+        <div class="mb-3">
+          <label class="form-label">Description</label>
+          <input [(ngModel)]="model.description" name="description" class="form-control" />
         </div>
-        <div class="flex gap-3">
-          <button type="submit" class="px-4 py-2 bg-green-600 text-white rounded">Add</button>
-          <a routerLink="/" class="px-4 py-2 bg-gray-200 rounded">Cancel</a>
+        <div class="d-flex gap-2">
+          <button type="submit" class="btn btn-success">Add</button>
+          <a routerLink="/" class="btn btn-secondary">Cancel</a>
         </div>
       </form>
     </div>
