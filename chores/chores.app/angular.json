@@ -21,7 +21,8 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "buildTarget": "chores-app:build"
+            "buildTarget": "chores-app:build",
+            "port": 4300
           }
         }
       }

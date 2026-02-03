@@ -1,5 +1,13 @@
 /* minimal styles */
-body { font-family: Arial, Helvetica, sans-serif; margin: 16px; }
-nav a { margin-right: 8px; }
-ul { padding-left: 0; list-style: none; }
-li { padding: 8px; border-bottom: 1px solid #eee; cursor: pointer; }
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* small app overrides */
+@layer base {
+	body { @apply bg-gray-50 text-gray-900 font-sans p-6; }
+}
+
+nav a { @apply text-blue-600 hover:underline mr-2; }
+ul { @apply p-0 list-none; }
+li { @apply p-3 border-b border-gray-200 cursor-pointer; }

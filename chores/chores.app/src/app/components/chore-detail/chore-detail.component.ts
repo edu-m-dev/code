@@ -1,18 +1,25 @@
 import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 import { Chore } from '../../models/chore.model';
 import { ChoresService } from '../../services/chores.service';
 
 @Component({
   selector: 'app-chore-detail',
   template: `
-    <div *ngIf="chore">
-      <h2>{{ chore.name }}</h2>
-      <p>{{ chore.description }}</p>
-      <a routerLink="/">Back</a>
+    <div *ngIf="chore" class="space-y-4">
+      <div class="flex items-start justify-between">
+        <div>
+          <h2 class="text-2xl font-semibold">{{ chore.name }}</h2>
+          <p class="text-sm text-gray-600 mt-1">ID: {{ chore.id }}</p>
+        </div>
+        <a routerLink="/" class="text-sm text-blue-600">Back</a>
+      </div>
+      <div class="p-4 bg-gray-50 border rounded">{{ chore.description }}</div>
     </div>
   `,
   standalone: true,
-  imports: []
+  imports: [CommonModule, RouterModule]
 })
 export class ChoreDetailComponent implements OnInit {
   chore: Chore | undefined;

@@ -7,10 +7,20 @@ import { Chore } from '../../models/chore.model';
 @Component({
   selector: 'app-chores-list',
   template: `
-    <input [(ngModel)]="query" placeholder="Search chores" />
-    <ul>
-      <li *ngFor="let chore of filteredChores()" (click)="select(chore)">
-        <strong>{{ chore.name }}</strong> — {{ chore.description }}
+    <div class="flex items-center gap-3 mb-4">
+      <input [(ngModel)]="query" placeholder="Search chores" class="flex-1 px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-300" />
+      <button class="px-3 py-2 bg-blue-600 text-white rounded">Search</button>
+    </div>
+
+    <ul class="grid gap-4">
+      <li *ngFor="let chore of filteredChores()" (click)="select(chore)" class="p-4 bg-gray-50 border rounded hover:shadow cursor-pointer">
+        <div class="flex items-center justify-between">
+          <div>
+            <div class="text-lg font-semibold text-gray-800">{{ chore.name }}</div>
+            <div class="text-sm text-gray-600 mt-1">{{ chore.description }}</div>
+          </div>
+          <div class="text-sm text-gray-500">#{{ chore.id }}</div>
+        </div>
       </li>
     </ul>
   `,
