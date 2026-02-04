@@ -1,0 +1,24 @@
+<div class="mb-3">
+  <h2 class="h5">Chore List</h2>
+</div>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Description</th>
+      <th scope="col" style="width: 1px"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let chore of chores">
+      <td>{{ chore.name }}</td>
+      <td class="text-truncate" style="max-width: 40rem">{{ chore.description }}</td>
+      <td>
+        <a [routerLink]="['/edit', chore.id]" class="btn btn-link p-0" title="Edit">
+          ✏️
+        </a>
+      </td>
+    </tr>
+  </tbody>
+</table>

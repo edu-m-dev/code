@@ -27,4 +27,8 @@ export class ChoresService {
   addChore(chore: Chore): Observable<Chore> {
     return this.withAuth(this.auth.getToken(), headers => this.http.post<Chore>(`${this.base}/addChore`, chore, { headers }));
   }
+
+  updateChore(chore: Chore): Observable<Chore> {
+    return this.withAuth(this.auth.getToken(), headers => this.http.put<Chore>(`${this.base}/updateChore/${chore.id}`, chore, { headers }));
+  }
 }
