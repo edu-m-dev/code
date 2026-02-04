@@ -6,21 +6,7 @@ import { ChoresService } from '../../services/chores.service';
 
 @Component({
   selector: 'app-chore-detail',
-  template: `
-    <div *ngIf="chore">
-      <div class="d-flex justify-content-between align-items-start mb-3">
-        <div>
-          <h2 class="h5 mb-1">{{ chore.name }}</h2>
-          <div class="small text-muted">ID: {{ chore.id }}</div>
-        </div>
-        <a routerLink="/" class="btn btn-link">Back</a>
-      </div>
-
-      <div class="card">
-        <div class="card-body">{{ chore.description }}</div>
-      </div>
-    </div>
-  `,
+  templateUrl: './chore-detail.component.html',
   standalone: true,
   imports: [CommonModule, RouterModule]
 })
