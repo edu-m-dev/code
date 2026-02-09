@@ -3,7 +3,7 @@
     <Project Path="async-enumerable/async-enumerable.console/async-enumerable.console.csproj" />
   </Folder>
   <Folder Name="/chores/">
-    <Project Path="chores/chores.bl/chores.bl.csproj" />
+    <Project Path="chores/chores.bl/chores.core.csproj" />
     <Project Path="chores/chores.console/chores.console.csproj" />
     <Project Path="chores/chores.migrations/chores.migrations.csproj" />
     <Project Path="chores/chores.tests/chores.tests.csproj" />

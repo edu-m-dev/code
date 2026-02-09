@@ -1,5 +1,5 @@
-﻿using chores.bl.ef;
-using chores.webapi.Handlers;
+﻿using chores.core.createChore;
+using chores.core.getAllChores;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -21,15 +21,15 @@ public class ChoresController : ControllerBase
     [HttpGet("getAllChores")]
     public async Task<IActionResult> GetAllChores()
     {
-        var result = await _mediator.Send(new GetUserChoresQuery(User));
+        var result = await _mediator.Send(new GetAllChoresQuery());
         return Ok(result);
     }
 
     [Authorize(Policy = "WriteAccess")]
-    [HttpPost("addChore")]
-    public async Task<IActionResult> AddChore([FromBody] Chore chore)
+    [HttpPost("createChore")]
+    public async Task<IActionResult> CreateChore([FromBody] CreateChoreRequest createChoreRequest)
     {
-        var result = await _mediator.Send(new AddUserChoreCommand(User, chore));
-        return Ok(result);
+        await _mediator.Send(createChoreRequest);
+        return Ok();
     }
 }

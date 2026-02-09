@@ -1,6 +1,6 @@
 ﻿using Azure.Monitor.OpenTelemetry.AspNetCore;
-using chores.bl;
 using chores.bl.ef;
+using chores.core.getAllChores;
 using chores.webapi;
 using chores.webapi.Auth;
 using MediatR;
@@ -80,7 +80,6 @@ else
 }
 
 builder.Services.AddHttpContextAccessor();
-builder.Services.AddScoped<IChoresService, ChoresService>();
 
 builder.Services.AddDistributedSqlServerCache(options =>
 {
@@ -90,7 +89,7 @@ builder.Services.AddDistributedSqlServerCache(options =>
 });
 
 builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(CachingBehavior<,>));
-builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(Program).Assembly));
+builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(ChoreDto).Assembly));
 
 builder.Logging.AddOpenTelemetry(options =>
 {

@@ -16,7 +16,7 @@
 </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\chores.bl\chores.bl.csproj" />
+    <ProjectReference Include="..\chores.bl\chores.core.csproj" />
     <ProjectReference Include="..\chores.webapi\chores.webapi.csproj" />
   </ItemGroup>
 

@@ -22,13 +22,8 @@ public class ChoresControllerIntegrationTests : IClassFixture<CustomWebApplicati
         var newChore = new Chore { Name = "Vacuum", Description = "Vacuum the floor" };
 
         // Act: POST chore
-        var postResponse = await _client.PostAsJsonAsync("/api/chores/addChore", newChore);
+        var postResponse = await _client.PostAsJsonAsync("/api/chores/createChore", newChore);
         postResponse.StatusCode.Should().Be(HttpStatusCode.OK);
-
-        var createdChore = await postResponse.Content.ReadFromJsonAsync<Chore>();
-        createdChore.Should().NotBeNull();
-        createdChore.Name.Should().Be(newChore.Name);
-        createdChore.Description.Should().Be(newChore.Description);
 
         // Act: GET chores
         var getResponse = await _client.GetAsync("/api/chores/getAllChores");

@@ -1,5 +1,6 @@
 ﻿using System.Text.Json;
-using chores.webapi.Handlers;
+using chores.core.createChore;
+using chores.core.getAllChores;
 using MediatR;
 using Microsoft.Extensions.Caching.Distributed;
 
@@ -18,9 +19,9 @@ public class CachingBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, 
         CancellationToken cancellationToken)
     {
         // Only cache queries (not commands)
-        if (request is GetUserChoresQuery query)
+        if (request is GetAllChoresQuery query)
         {
-            var key = $"chores:{query.User.Identity?.Name}";
+            var key = $"chores:all";
             var cached = await _cache.GetStringAsync(key, cancellationToken);
 
             if (cached != null)
@@ -32,10 +33,10 @@ public class CachingBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, 
         }
 
         // For commands, run handler then invalidate cache
-        if (request is AddUserChoreCommand cmd)
+        if (request is CreateChoreRequest cmd)
         {
             var response = await next();
-            var key = $"chores:{cmd.User.Identity?.Name}";
+            var key = $"chores:all";
             await _cache.RemoveAsync(key, cancellationToken);
             return response;
         }

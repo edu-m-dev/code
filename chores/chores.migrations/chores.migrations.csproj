@@ -18,7 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\chores.bl\chores.bl.csproj" />
+    <ProjectReference Include="..\chores.bl\chores.core.csproj" />
   </ItemGroup>
 
   <ItemGroup>
