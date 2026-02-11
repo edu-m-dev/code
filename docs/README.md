@@ -33,4 +33,6 @@ https://github.com/Webreaper/CentralisedPackageConverter - awesome global tool t
 
 Use [UpdateIISExpressCertificate.ps1](https://gist.github.com/camieleggermont/5b2971a96e80a658863106b21c479988#file-updateiisexpresscertificate-ps1) to update all certs within typical iis express port range.
 
-# [2026-02-11 - Why do we need MediatR](why-mediatr.md)
+### [![Why do we need MediatR](https://miro.medium.com/v2/resize:fit:1100/format:webp/1*AmD4-Up1jduZ6WcVpuy1Gg.jpeg)Why do we need MediatR](why-mediatr.md)
+
+A short post explaining why MediatR is useful in .NET apps.
