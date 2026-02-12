@@ -1,13 +1,9 @@
 ---
-title: "Why do we need MediatR"
+title: "MediatR - decoupling, behavior pipelines and testing"
 date: 2026-02-11
 ---
 
 # Why do we need MediatR
-
-Three concise reasons, each with an illustrative image and a small C# example.
-
----
 
 ## 1) Decoupling callers from handlers
 
@@ -98,9 +94,3 @@ public async Task GetCustomerHandler_ReturnsCustomer()
 ```
 
 Because handlers are instantiated via DI, you can test them by providing test doubles and verifying behavior without wiring the whole app.
-
----
-
-## Further reading
-
-- Official MediatR: https://github.com/jbogard/MediatR
