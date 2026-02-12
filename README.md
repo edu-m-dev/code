@@ -1,3 +1,3 @@
 # edu.m.dev blog
 
-### [MediatR - decoupling, behavior pipelines and testing](./docs/mediatr-usages)
+### [![icon](docs/images/mediator.ico)&nbsp;&nbsp;MediatR - decoupling, behavior pipelines and testing](docs/mediatr-usages/)
