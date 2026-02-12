@@ -7,7 +7,7 @@ date: 2026-02-11
 
 ## 1) Decoupling callers from handlers
 
-![Decoupling](https://images.ft.com/v3/image/raw/ftcms%3A34d99d97-ecd1-47c3-9a00-c352d8b5b7bc?source=next-article&fit=scale-down&quality=highest&width=700&dpr=2)
+![Decoupling](images/decoupling.avif)
 
 MediatR turns requests into simple objects and handlers into discrete classes. Callers don't need concrete service references — they only send a request and receive a response.
 
@@ -35,7 +35,7 @@ This keeps controllers thin and enforces single-responsibility for each logical 
 
 ## 2) Cross-cutting concerns via pipeline behaviors
 
-![Pipelines](https://specialpipingmaterials.com/wp-content/uploads/2020/05/Copy-of-Copy-of-Untitled-14.png)
+![Pipelines](images/pipeline-behaviors.png)
 
 Use `IPipelineBehavior<TRequest,TResponse>` to run code before/after handlers (logging, validation, caching, retries) without polluting handlers.
 
@@ -64,7 +64,7 @@ Pipeline behaviors compose around handlers, making it easy to add/remove cross-c
 
 ## 3) Testability and clear composition
 
-![Testability](https://miro.medium.com/v2/resize:fit:640/format:webp/1*CnAy53KoS8PcTiYIJY97Yw.jpeg)
+![Testability](images/mediatr-testing.webp)
 
 Handlers are plain classes you can unit-test in isolation. Notifications allow easy publish/subscribe composition.
 
