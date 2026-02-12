@@ -1,0 +1,7 @@
+{
+  "github.copilot.chat.customInstructions": {
+    "workspace": {
+      "path": ".vscode/angular.instructions.md"
+    }
+  }
+}
