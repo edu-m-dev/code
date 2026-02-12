@@ -104,5 +104,3 @@ Because handlers are instantiated via DI, you can test them by providing test do
 ## Further reading
 
 - Official MediatR: https://github.com/jbogard/MediatR
-
-If you'd like, I can convert these card blocks into a reusable Jekyll include for consistent styling across the docs.
