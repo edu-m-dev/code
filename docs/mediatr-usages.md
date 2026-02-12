@@ -94,3 +94,5 @@ public async Task GetCustomerHandler_ReturnsCustomer()
 ```
 
 Because handlers are instantiated via DI, you can test them by providing test doubles and verifying behavior without wiring the whole app.
+
+You can find an example of MediatR usage [in my repo](../../code/chores/chores.bl/getAllChores/GetAllChoresHandler.cs)
